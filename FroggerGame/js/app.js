@@ -20,14 +20,19 @@ function initialPlayerPosition () {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) { 
-    this.x+=3* this.speed;
+    this.x+=2* this.speed;
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
     if (this.x>520) {
         this.x=-100;
         this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
-    }
+    }    
+    var yPosition = this.y;
+    allEnemies.forEach(function() {
+        if (this.y === yPosition)
+            this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
+    })
 };
 
 // Draw the enemy on the screen, required method for game
