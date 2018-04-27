@@ -1,6 +1,6 @@
     var records = document.getElementById("records");
 // Enemies our player must avoid
- class Enemy {
+class Enemy {
     constructor() {   
     this.x=-100;
     this.y=enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)];
@@ -16,9 +16,7 @@
 function initialPlayerPosition () {
     player.y=390;
     player.x=200;
-
-
-}
+    }
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) { 
@@ -75,7 +73,7 @@ function getRandomArbitrary(min, max) {
 }
 function enemiesSpeed() {
     allEnemies.forEach(function(enemy) {
-        enemy.speed = getRandomArbitrary(1,2.2);
+        enemy.speed = getRandomArbitrary(1,2.1);
     });
 }
 function createEnemies () {
@@ -107,10 +105,13 @@ function checkCollisions() {
     allEnemies.forEach(function(enemy) {
         var enemyxposition= Math.round(enemy.x);
         var playerXPosition = player.x;
-        if (((player.x > enemyxposition-60) && (player.x < enemyxposition +70) 
+        if (((player.x > enemyxposition-50) && (player.x < enemyxposition +70) 
              && (player.y == enemy.y)) || (player.y == -35)) {
                 initialPlayerPosition();
-                drawHeart();
+                dieAlert.classList.add("die-animation");
+                setTimeout(function() {
+                    dieAlert.classList.remove("die-animation");
+                },600)
                 var gametime = (Date.now() - start)/1000;
                 start = Date.now();
                 if (bestTime>gametime) 
@@ -118,11 +119,4 @@ function checkCollisions() {
                 records.innerText=gametime+'s';
             }  
     })
-}
-function drawHeart() {
-    var heartImage = new Image();
-    heartImage.src='images/blood.svg';
-    heartImage.onload = function () {
-    ctx.drawImage(heartImage, player.x, player.y, 15,20);
-    }
 }

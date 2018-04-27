@@ -23,8 +23,9 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
+    var dieAlert = document.getElementById("die-alert");
     canvas.width = 505;
-    canvas.height = 610;
+    canvas.height = 580;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -140,6 +141,7 @@ var Engine = (function(global) {
         renderEntities();
     }
 
+
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js
@@ -180,5 +182,7 @@ var Engine = (function(global) {
      * object when run in a browser) so that developers can use it more easily
      * from within their app.js files.
      */
+    dieAlert.style.left = canvas.offsetLeft+'px';
     global.ctx = ctx;
+    global.dieAlert=dieAlert;
 })(this);
