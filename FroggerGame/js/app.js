@@ -1,4 +1,5 @@
     var records = document.getElementById("records");
+    starsEarned=0;
 // Enemies our player must avoid
 class Enemy {
     constructor() {   
@@ -28,11 +29,11 @@ Enemy.prototype.update = function(dt) {
         this.x=-100;
         this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
     }    
-    var yPosition = this.y;
-    allEnemies.forEach(function() {
-        if (this.y === yPosition)
-            this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
-    })
+ /*    allEnemies.forEach(function(enemy, i) {
+         if (allEnemies[1].y === allEnemies[0].y) {
+             allEnemies[i].y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
+        }
+    }) */
 };
 
 // Draw the enemy on the screen, required method for game
@@ -103,25 +104,29 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
-// TIMER
-var start = Date.now();
-var bestTime = 0;   
 function checkCollisions() {
     allEnemies.forEach(function(enemy) {
         var enemyxposition= Math.round(enemy.x);
         var playerXPosition = player.x;
-        if (((player.x > enemyxposition-50) && (player.x < enemyxposition +70) 
-             && (player.y == enemy.y)) || (player.y == -35)) {
+        if ((player.x > enemyxposition-50) && (player.x < enemyxposition +70) 
+            && (player.y == enemy.y)) {
+                starsEarned--;
                 initialPlayerPosition();
                 dieAlert.classList.add("die-animation");
                 setTimeout(function() {
                     dieAlert.classList.remove("die-animation");
                 },600)
-                var gametime = (Date.now() - start)/1000;
-                start = Date.now();
-                if (bestTime>gametime) 
-                    gametime=bestTime;
-                records.innerText=gametime+'s';
-            }  
+        }
+        else
+        if ((player.y == -35)) {
+            starsEarned++;
+            initialPlayerPosition();
+            star.classList.add("star-loaded");
+            setTimeout(function() {
+                star.classList.remove("star-loaded");
+            },1000)
+        }
+        document.getElementById("stars-number").innerHTML=starsEarned;
+        console.log(starsEarned);
     })
 }

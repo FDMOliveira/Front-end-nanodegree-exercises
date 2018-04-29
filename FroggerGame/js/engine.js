@@ -24,6 +24,7 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
     var dieAlert = document.getElementById("die-alert");
+    var star = document.getElementById("star");
     canvas.width = 505;
     canvas.height = 580;
     doc.body.appendChild(canvas);
@@ -183,6 +184,8 @@ var Engine = (function(global) {
      * from within their app.js files.
      */
     dieAlert.style.left = canvas.offsetLeft+'px';
+    star.style.left = canvas.offsetLeft+'px';
     global.ctx = ctx;
     global.dieAlert=dieAlert;
+    global.star=star;
 })(this);
