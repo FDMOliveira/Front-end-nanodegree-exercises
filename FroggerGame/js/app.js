@@ -79,7 +79,7 @@ function getRandomArbitrary(min, max) {
 }
 function enemiesSpeed() {
     allEnemies.forEach(function(enemy) {
-        enemy.speed = getRandomArbitrary(1,2.1);
+        enemy.speed = getRandomArbitrary(1,2.3);
     });
 }
 function createEnemies () {
