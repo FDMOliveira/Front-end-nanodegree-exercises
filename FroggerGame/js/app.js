@@ -110,7 +110,7 @@ function checkCollisions() {
         var playerXPosition = player.x;
         if ((player.x > enemyxposition-50) && (player.x < enemyxposition +70) 
             && (player.y == enemy.y)) {
-                starsEarned--;
+                    starsEarned--;
                 initialPlayerPosition();
                 dieAlert.classList.add("die-animation");
                 setTimeout(function() {
@@ -127,6 +127,5 @@ function checkCollisions() {
             },1000)
         }
         document.getElementById("stars-number").innerHTML=starsEarned;
-        console.log(starsEarned);
     })
 }
