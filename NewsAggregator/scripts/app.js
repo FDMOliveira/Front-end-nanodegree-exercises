@@ -117,7 +117,7 @@ APP.Main = (function() {
   function hideStory(id) {
     if (!inDetails)
       return;
-    document.querySelector$('#sd-' + id).classList.add("removeStory");
+    document.querySelector('#sd-' + id).classList.add("removeStory");
   }
 
   main.addEventListener('scroll', function() {
