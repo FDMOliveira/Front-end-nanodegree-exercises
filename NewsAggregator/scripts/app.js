@@ -52,12 +52,6 @@ APP.Main = (function() {
   var storyDetailsCommentTemplate =
       Handlebars.compile(tmplStoryDetailsComment);
 
-  /**
-   * As every single story arrives in shove its
-   * content in at that exact moment. Feels like something
-   * that should really be handled more delicately, and
-   * probably in a requestAnimationFrame callback.
-   */
   function onStoryData (key, details) {
     var storyElement = document.querySelector('#s-' + key);
       if (storyElement) {
@@ -68,11 +62,6 @@ APP.Main = (function() {
   function onStoryClick(details) {    
     setTimeout(showStory.bind(this, details.id), 60);
 
-    // Create and append the story. A visual change...
-    // perhaps that should be in a requestAnimationFrame?
-    // And maybe, since they're all the same, I don't
-    // need to make a new element every single time? I mean,
-    // it inflates the DOM and I can only see one at once.
     if (!storyDetails) {
       if (details.url)
         details.urlobj = new URL(details.url);
