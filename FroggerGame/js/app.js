@@ -23,12 +23,12 @@ class Enemy extends Character {
     update (dt) {
         this.x += 150 * dt * this.speed;
         if (this.x > 520) {
-            super(x, y);
             this.x = -100;
             this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
         }
     };
 };
+
 class Player extends Character {
     constructor(x, y, sprite) {
         super(x, y, sprite);
