@@ -3,6 +3,7 @@ Here you can find exercises done by me during the Udacity nanodegree program.
 
 ## 1. *FroggerGame*
 [Frogger game](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/FroggerGame/index.html) is a child game built to practice OOP javascript.
+
 Some Grunt task's were used to enhance the performance of the game:
 * [Babel](https://github.com/babel/grunt-babel) To convert ES6 to ES5
 * Uglify to minify javascript files
