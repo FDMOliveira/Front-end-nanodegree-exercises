@@ -1,5 +1,5 @@
 var records = document.getElementById("records");
-    starsEarned=0;
+var starsEarned=0;
 
 class Character {
     constructor(x,y,sprite) {
