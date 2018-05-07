@@ -1,67 +1,71 @@
 var records = document.getElementById("records");
     starsEarned=0;
-    
-class Enemy {
-    constructor() {   
+
+class Character {
+    constructor(x,y,sprite) {
     this.x=-100;
-    this.y=enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)];
-    this.speed = 1;
-    this.sprite = 'images/enemy-bug.png';
+    this.y=50;
+    this.sprite='';
     }
+    render () {
+        ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
+    }
+}
+class Enemy extends Character {
+    constructor(x,y,sprite) {
+        super(x,y,sprite);   
+        this.x=-100;
+        this.y=enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)];
+        this.speed = 1;
+        this.sprite = 'images/enemy-bug.png';
+    }
+    update (dt) { 
+        this.x+=150*dt* this.speed;
+        if (this.x>520) {
+            this.x=-100;
+            this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
+        }    
+    };
 };
 function initialPlayerPosition () {
     player.y=390;
     player.x=200;
     }
-Enemy.prototype.update = function(dt) { 
-    this.x+=150*dt* this.speed;
 
-    if (this.x>520) {
-        this.x=-100;
-        this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
-    }    
-};
-
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
-};
-
-class Player {
-    constructor() {
-    this.x=200;
-    this.y=390;
-    this.speed = 1;
-    this.sprite = 'images/char-boy.png';
+class Player extends Character {
+    constructor(x,y,sprite) {
+        super(x,y,sprite);
+        this.x=200;
+        this.y=390;
+        this.speed = 1;
+        this.sprite = 'images/char-boy.png';
     }
-}
-Player.prototype.update = function(){
-    if ((player.y == -35)) {
-        starsEarned++;
-        initialPlayerPosition();
-        star.classList.add("star-loaded");
-        setTimeout(function() {
-            star.classList.remove("star-loaded");
-        },1000)
+    update () {
+        if ((player.y == -35)) {
+            starsEarned++;
+            initialPlayerPosition();
+            star.classList.add("star-loaded");
+            setTimeout(function() {
+                star.classList.remove("star-loaded");
+            },1000)
+        }
+        document.getElementById("stars-number").innerHTML=starsEarned;
     }
-    document.getElementById("stars-number").innerHTML=starsEarned;
-}
-Player.prototype.render = function(){
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
-Player.prototype.handleInput = function(keyCode){
-    switch(keyCode) {
-        case 'left':  if (this.x > 0)
-                          this.x-=100;
-                          break
-        case 'right': if (this.x < 400) 
-                          this.x+=100;
-                          break
-        case 'up':    if (this.y > -35)
-                          this.y-=85;
-                          break
-        case 'down':  if (this.y < 390)
-                          this.y+=85;
-                          break   
+    handleInput (keyCode) {
+        switch(keyCode) {
+            case 'left':  if (this.x > 0)
+                              this.x-=100;
+                              break
+            case 'right': if (this.x < 400) 
+                              this.x+=100;
+                              break
+            case 'up':    if (this.y > -35)
+                              this.y-=85;
+                              break
+            case 'down':  if (this.y < 390)
+                              this.y+=85;
+                              break   
+        }
     }
 }
 var player = new Player();
@@ -90,7 +94,6 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
     player.handleInput(allowedKeys[e.keyCode]);
 });
 function checkCollisions() {
