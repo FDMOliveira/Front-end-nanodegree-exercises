@@ -1,6 +1,6 @@
 var records = document.getElementById("records");
 var starsEarned=0;
-
+var i=0;
 class Character {
     constructor(x,y,sprite) {
     this.x=-100;
@@ -80,7 +80,7 @@ function enemiesSpeed() {
     });
 }
 function createEnemies () {
-    for (var i=0; i<3; i++) {
+    for (i=0; i<3; i++) {
         var enemy = new Enemy();
         allEnemies.push(enemy);
     }
