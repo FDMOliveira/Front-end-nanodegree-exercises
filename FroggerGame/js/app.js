@@ -3,9 +3,9 @@ var starsEarned=0;
 var i=0;
 class Character {
     constructor(x,y,sprite) {
-    this.x=-100;
-    this.y=50;
-    this.sprite='';
+        this.x=-100;
+        this.y=50;
+        this.sprite='';
     }
     render () {
         ctx.drawImage(Resources.get(this.sprite),this.x,this.y);
@@ -20,7 +20,7 @@ class Enemy extends Character {
         this.sprite = 'images/enemy-bug.png';
     }
     update (dt) { 
-        this.x+=150*dt* this.speed;
+        this.x+=170*dt* this.speed;
         if (this.x>520) {
             this.x=-100;
             this.y = enemiesYPositions[Math.floor(Math.random() * enemiesYPositions.length)]
@@ -41,7 +41,7 @@ class Player extends Character {
         this.sprite = 'images/char-boy.png';
     }
     update () {
-        if ((player.y == -35)) {
+        if ((this.y == -35)) {
             starsEarned++;
             initialPlayerPosition();
             star.classList.add("star-loaded");
