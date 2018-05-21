@@ -14,8 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-APP.Data = (function() {
-
   var HN_API_BASE = 'https://hacker-news.firebaseio.com';
   var HN_TOPSTORIES_URL = HN_API_BASE + '/v0/topstories.json';
   var HN_STORYDETAILS_URL = HN_API_BASE + '/v0/item/[ID].json';
@@ -56,5 +54,3 @@ APP.Data = (function() {
     getStoryById: getStoryById,
     getStoryComment: getStoryComment
   };
-
-})();
