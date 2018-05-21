@@ -60,12 +60,7 @@ APP.Main = (function() {
       }
     }  
   function onStoryClick(details) {    
-      inDetails = true;
-      var storyDetails = document.querySelector('#sd-' + details.id);
-      if (!storyDetails)
-        return;
-      storyDetails.classList.add("showStory");  
-      
+    
       if (details.url)
         details.urlobj = new URL(details.url);
       var kids = details.kids;
@@ -105,6 +100,14 @@ APP.Main = (function() {
       document.querySelector('.js-comments').appendChild(fragment);
     // There is a story container
     isStoryDetails = true;
+  }
+
+  function showStory(id) {
+    inDetails = true;
+    var storyDetails = document.querySelector('#sd-' + id);
+    if (!storyDetails)
+      return;
+    storyDetails.classList.add("showStory");  
   }
   function hideStory(id) {
     if (!inDetails)
