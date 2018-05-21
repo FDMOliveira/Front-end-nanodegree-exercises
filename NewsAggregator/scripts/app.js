@@ -62,8 +62,8 @@ APP.Main = (function() {
       }
     }  
   function onStoryClick(details) {    
-      showStory(details.id);
-
+      setTimeout(showStory.bind(this, details.id), 60);
+      
       if (details.url)
         details.urlobj = new URL(details.url);
       var kids = details.kids;
