@@ -16,18 +16,19 @@
  */
 APP.Main = (function() {
 
-  var $ = document.querySelector.bind(document);
-  var stories = null;
-  var count = 100;
-  var main = $('main');
-  var inDetails = false;
-  var isStoryDetails = false
- var localeData = {
-    data: {
-      intl: {
-        locales: 'en-US'
-      }
-    }
+  var $ = document.querySelector.bind(document),
+      stories = null,
+      count = 100,
+      main = $('main'),
+      inDetails = false,
+      isStoryDetails = false,
+      i=0;
+      localeData = {
+        data: {
+          intl: {
+            locales: 'en-US'
+          }
+        }
   };
 
   var tmplStory = $('#tmpl-story').textContent;
