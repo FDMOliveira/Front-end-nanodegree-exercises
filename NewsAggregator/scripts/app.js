@@ -24,7 +24,6 @@ APP.Main = (function() {
       isStoryDetails = false,
       i=0,
       k=0,
-      getDataWorker = new Worker('data.js');
       localeData = {
         data: {
           intl: {
@@ -63,7 +62,6 @@ APP.Main = (function() {
       }
     }  
   function onStoryClick(details) {    
-    
       if (details.url)
         details.urlobj = new URL(details.url);
       var kids = details.kids;
@@ -100,9 +98,9 @@ APP.Main = (function() {
                 commentDetails,
                 localeData);
           });
+          k++;
           requestAnimationFrame(getStoryCommentAnimation);
         }
-        k++;
       }
       requestAnimationFrame(getStoryCommentAnimation);
     // There is a story container
