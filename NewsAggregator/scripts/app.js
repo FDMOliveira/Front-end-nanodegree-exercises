@@ -60,9 +60,12 @@ APP.Main = (function() {
       }
     }  
   function onStoryClick(details) {    
-    setTimeout(showStory.bind(this, details.id), 60);
-
-    if (!storyDetails) {
+      inDetails = true;
+      var storyDetails = document.querySelector('#sd-' + details.id);
+      if (!storyDetails)
+        return;
+      storyDetails.classList.add("showStory");  
+      
       if (details.url)
         details.urlobj = new URL(details.url);
       var kids = details.kids;
@@ -77,12 +80,10 @@ APP.Main = (function() {
         storyDetails.classList.add('story-details');
         document.body.appendChild(storyDetails);
       }
-
       storyDetails.classList.remove("removeStory");
       storyDetails.id = 'sd-' + details.id;
       storyDetails.innerHTML = storyDetailsTemplate(details);      
       storyDetails.querySelector('.js-close').addEventListener('click', hideStory.bind(this, details.id));
-
       if (typeof kids === 'undefined')
         return;
       for (var k = 0; k < kids.length; k++) {
@@ -102,17 +103,8 @@ APP.Main = (function() {
         });
       }
       document.querySelector('.js-comments').appendChild(fragment);
-    }
     // There is a story container
     isStoryDetails = true;
-  }
-
-  function showStory(id) {
-    inDetails = true;
-    var storyDetails = document.querySelector('#sd-' + id);
-    if (!storyDetails)
-      return;
-    storyDetails.classList.add("showStory");  
   }
   function hideStory(id) {
     if (!inDetails)
@@ -135,13 +127,18 @@ function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
 
-      for (var i = 0; i < count; i++) {
+    function loadStoryAnimation() {
+      if (i < count) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
         APP.Data.getStoryById(stories[i], onStoryData.bind(this, stories[i]));
+        i++;
+        requestAnimationFrame(loadStoryAnimation);
       }
+    }
+    loadStoryAnimation();
 }
 
   // Bootstrap in the stories.

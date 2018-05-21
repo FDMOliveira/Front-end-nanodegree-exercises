@@ -57,18 +57,6 @@ body {
 a {
   color: #E65100;
 }
-
-.header {
-  width: 100%;
-  height: 156px;
-  background: #FF8F00;
-  color: #FFF;
-  font-size: 40px;
-  font-weight: 400;
-  padding: 0 0 0 72px;
-  z-index: 1;
-  position: fixed;
-}
 .header,
 .header__title-wrapper {
   transition: all 0.5s;
@@ -97,8 +85,7 @@ a {
 }
 
 body.raised .header {
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16),
-      0px 2px 5px 0px rgba(0, 0, 0, 0.23);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.23);
       height: 86px;
 }
 body.raised .header__title-wrapper {
@@ -131,14 +118,6 @@ main.loading {
   to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
 
-.story {
-  padding: 16px 16px 16px 72px;
-  background: linear-gradient(to bottom, #FFF 0%,#F4F4F4 100%);
-  position: relative;
-  min-height: 90px;
-  cursor: pointer;
-  transition: all 0.4s ease-out;
-}
 .story-details.showStory,
 .story-details.removeStory {
   will-change: left;
@@ -150,16 +129,6 @@ main.loading {
 .story-details.removeStory {
   transform: translateX(10vw);
 }
-.story:after {
-  display: block;
-  content: '';
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  border-bottom: 1px solid #dedede;
-}
-
 .story:nth-last-child(-n+1):after {
   display: none;
 }
@@ -195,45 +164,10 @@ main.loading {
   text-align: center;
   line-height: 40px;
 }
-.story-details,
 .story__score {
   box-shadow:
-  0px 2px 5px 0px rgba(0, 0, 0, 0.06),
-  0px 2px 5px 0px rgba(0, 0, 0, 0.08),
   0px 2px 7px 0px rgba(0, 0, 0, 0.10);
 }
-.story-details {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-flex-wrap: nowrap;
-      -ms-flex-wrap: nowrap;
-          flex-wrap: nowrap;
-  -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -ms-flex-line-pack: stretch;
-      -webkit-align-content: stretch;
-          align-content: stretch;
-
-  opacity: 1;
-  position: fixed;
-  top: 0;
-  left: 100%;
-  width: 100%;
-  height: 100%;
-  background: white;
-  z-index: 2;
-  overflow: hidden;
-  transition: opacity 0.3s ease-out;
-}
-
 .story-details__content {
   -webkit-flex: 1;
       -ms-flex: 1;
@@ -245,7 +179,6 @@ main.loading {
 
   padding: 0 16px 72px 72px;
 }
-
 .story-details__title {
   color: #FFF;
   font-size: 20px;
