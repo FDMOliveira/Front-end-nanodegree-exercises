@@ -155,7 +155,7 @@ function loadStoryBatch() {
     }
     requestAnimationFrame(loadStoryAnimation);
 }
-  dataWorker.postMessage(['1'])
+  dataWorker.postMessage(['1','asdda','asdad'])
   dataWorker.onmessage = function(e) {
     stories = e.data;
     loadStoryBatch();
