@@ -25,7 +25,7 @@ APP.Main = (function() {
       commentDetails,
       i=0,
       k=0,
-      dataWorker = new Worker("data.js"),
+      var dataWorker = new Worker("data.js"),
       localeData = {
         data: {
           intl: {
@@ -156,7 +156,7 @@ function loadStoryBatch() {
     requestAnimationFrame(loadStoryAnimation);
 }
   function firstLoad() {
-    dataWorker.postMessage(1);
+    dataWorker.postMessage([1]);
     dataWorker.onmessage = function(e) {
       stories = e.data;
       loadStoryBatch();
