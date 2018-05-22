@@ -49,8 +49,8 @@
   // functionNumber 2
   function getStoryById(id) {
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
-
     request(storyURL, function(evt) {
+      console.log(data);
       data = evt.target.response;
       postMessage(data);
     });

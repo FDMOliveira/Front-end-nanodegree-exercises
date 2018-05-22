@@ -58,7 +58,6 @@ APP.Main = (function() {
 
   function onStoryData (key, details) {
     var storyElement = document.getElementById(key);
-    console.log(storyElement);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
@@ -137,19 +136,20 @@ APP.Main = (function() {
 function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
+    console.log(count);
+    
+    dataWorker.postMessage([stories[i], 2]);
+    dataWorker.onmessage = function(e) {
+      details = e.data;
+    }
+    
     function loadStoryAnimation() {
-      if (i < count) {
+      while (i < count) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
-        console.log(story.id);
-        dataWorker.postMessage([stories[i], 2]);
-        dataWorker.onmessage = function(e) {
-          details = e.data;
-          console.log(details);
-          onStoryData(story.id, details);
-        }
+        onStoryData(story.id, details);
         i++;
         requestAnimationFrame(loadStoryAnimation);
       }
