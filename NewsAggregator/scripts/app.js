@@ -81,7 +81,6 @@ APP.Main = (function() {
           storyDetails.classList.add('story-details');
           document.body.appendChild(storyDetails);
         }
-  
         storyDetails.classList.remove("removeStory");
         storyDetails.id = 'sd-' + details.id;
         storyDetails.innerHTML = storyDetailsTemplate(details);      

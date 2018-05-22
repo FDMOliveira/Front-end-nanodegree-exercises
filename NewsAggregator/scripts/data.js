@@ -39,7 +39,6 @@ APP.Data = (function() {
 
   function getStoryById(id) {
     console.log('função getStoryById invocada');
-
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
     request(storyURL);
