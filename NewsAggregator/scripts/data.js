@@ -24,12 +24,11 @@
 
   onmessage = function(e) {
     console.log('mensagem recebida');
-    console.log(e.data[0]);
     var id = e.data[0];
     var functionName = e.data[1];
     if(e.data.length==1)
       functionNumber = e.data[0];
-
+    console.log(functionNumber);
     switch(functionNumber) {
       case 1: getTopStories();
               break;
@@ -45,7 +44,7 @@
 
   // functionNumber 1
   function getTopStories() { 
-    request(HN_TOPSTORIES_URL);
+    request(HN_TOPSTORIES_URL, evt);
     data = evt.target.response;
   }
 
@@ -54,7 +53,7 @@
     console.log('função getStoryById invocada');
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
-    request(storyURL);
+    request(storyURL, evt);
 
     data = evt.target.response;
   }
@@ -65,7 +64,7 @@
 
     var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
-    request(storyCommentURL);
+    request(storyCommentURL, evt);
 
     data = evt.target.response;
   }
