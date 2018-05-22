@@ -25,7 +25,7 @@ APP.Main = (function() {
       commentDetails,
       i=0,
       k=0,
-      dataWorker = new Worker('data.js'),
+      dataWorker = new Worker("data.js"),
       localeData = {
         data: {
           intl: {
@@ -94,7 +94,7 @@ APP.Main = (function() {
           comment.classList.add('story-details__comment');
           comment.innerHTML = commentHtml;
           fragment.appendChild(comment)
-          dataWorker.postMessage([kids[k], 'getStoryComment']);
+          dataWorker.postMessage([kids[k], 2]);
           dataWorker.onmessage = function(e) {
             commentDetails = e.data;
             var comment = document.body.querySelector(
@@ -143,7 +143,7 @@ function loadStoryBatch() {
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
-        dataWorker.postMessage([stories[i], 'getStoryById']);
+        dataWorker.postMessage([stories[i], 1]);
         dataWorker.onmessage = function(e) {
           details = e.data;
           console.log('mensagem recebida no app.js');
@@ -155,7 +155,7 @@ function loadStoryBatch() {
     }
     requestAnimationFrame(loadStoryAnimation);
 }
-  dataWorker.postMessage(['getTopStories'])
+  dataWorker.postMessage([0])
   dataWorker.onmessage = function(e) {
     stories = e.data;
     loadStoryBatch();

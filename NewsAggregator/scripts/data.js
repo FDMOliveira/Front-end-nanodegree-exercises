@@ -26,18 +26,29 @@ APP.Data = (function() {
     var id = e.data[0];
     var functionName = e.data[1];
     if(e.data.length==1)
-      functionName = e.data[0];
-    functionName(id);
+      functionNumber = e.data[0];
+
+    switch(functionNumber) {
+      case 0: getTopStories();
+              break;
+      case 1: getStoryById(id);
+              break;
+      case 2: getStoryComment(id);
+              break;
+    }
+
     console.log('informação recebida pelo web worker');
     postMessage(data);
   }
 
-  function getTopStories() {
+  // functionNumber 0
+  function getTopStories() { 
     request(HN_TOPSTORIES_URL);
     data = evt.target.response;
   }
 
-  function getStoryById(id) {
+  // functionNumber 1
+  function getStoryById(id) { // 1
     console.log('função getStoryById invocada');
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
@@ -46,6 +57,7 @@ APP.Data = (function() {
     data = evt.target.response;
   }
 
+  // functionNumber 2
   function getStoryComment(id) {
     console.log('função getStoryComment invocada');
 
