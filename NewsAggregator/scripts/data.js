@@ -23,7 +23,6 @@
   var data;
 
   onmessage = function(e) {
-    console.log('mensagem recebida');
     var id = e.data[0];
     var functionName = e.data[1];
     if(e.data.length==1)
@@ -40,6 +39,7 @@
 
     console.log('informação recebida pelo web worker');
     postMessage(data);
+    console.log(data)
   }
 
   // functionNumber 1
