@@ -48,12 +48,12 @@
 
   // functionNumber 2
   function getStoryById(id) {
-    console.log('função 2');
     console.log(id);
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
     request(storyURL, function(evt) {
       data = evt.target.response;
       postMessage(data);
+      console.log(data);
     });
 
   }
