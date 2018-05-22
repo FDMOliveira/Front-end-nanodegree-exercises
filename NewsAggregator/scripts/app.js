@@ -136,11 +136,11 @@
 function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
-    console.log(stories.length);
     
-    dataWorker.postMessage([stories[i], 2]);
+    dataWorker.postMessage([stories, 2]);
     dataWorker.onmessage = function(e) {
       details = e.data;
+      console.log(details);
     }
     
     function loadStoryAnimation() {
@@ -148,8 +148,8 @@ function loadStoryBatch() {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
-        main.appendChild(story);
-        onStoryData(story.id, details);
+        main.appendChild(story);/* 
+        onStoryData(story.id, details); */
         i++;
         requestAnimationFrame(loadStoryAnimation);
       }
