@@ -29,7 +29,6 @@
     if(e.data.length==1)
       functionNumber = e.data[0];
 
-    console.log(functionNumber);
     switch(functionNumber) {
       case 1: getTopStories();
               break;

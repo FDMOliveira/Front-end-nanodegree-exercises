@@ -57,6 +57,7 @@ APP.Main = (function() {
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
+    console.log(details);
     var storyElement = document.querySelector('#s-' + key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
@@ -136,7 +137,6 @@ APP.Main = (function() {
 function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
-    console.log('loadStory function');
     function loadStoryAnimation() {
       if (i < count) {
         var story = document.createElement('div');
@@ -146,7 +146,6 @@ function loadStoryBatch() {
         dataWorker.postMessage([stories[i], 2]);
         dataWorker.onmessage = function(e) {
           details = e.data;
-          console.log(details);
           onStoryData(stories[i], details);
         }
         i++;
