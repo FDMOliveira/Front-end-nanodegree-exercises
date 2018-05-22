@@ -38,14 +38,13 @@
     }
 
     console.log('informação recebida pelo web worker');
-    postMessage(data);
-    console.log(data)
   }
 
   // functionNumber 1
   function getTopStories() { 
     request(HN_TOPSTORIES_URL, function(evt) {
       data = evt.target.response;
+      postMessage(data);
     });
   }
 
@@ -56,6 +55,7 @@
 
     request(storyURL, function(evt) {
       data = evt.target.response;
+      postMessage(data);
     });
 
   }
@@ -68,6 +68,7 @@
 
     request(storyCommentURL, function(evt) {
       data = evt.target.response;
+      postMessage(data);
     });
 
   }
