@@ -159,6 +159,7 @@ function loadStoryBatch() {
     dataWorker.postMessage([1]);
     dataWorker.onmessage = function(e) {
       stories = e.data;
+      console.log(data);
       loadStoryBatch();
       main.classList.remove('loading');
     }
