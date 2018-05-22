@@ -41,10 +41,10 @@
   // functionNumber 1
   function getTopStories() { 
     request(HN_TOPSTORIES_URL, function(evt) {
-      console.log('data.js: ');
-      console.log(data);
       data = evt.target.response;
       postMessage(data);
+      console.log('data.js: ');
+      console.log(data);
     });
   }
 
