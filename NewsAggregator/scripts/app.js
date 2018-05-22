@@ -60,7 +60,6 @@ APP.Main = (function() {
     var storyElement = document.getElementById(key);
     console.log(storyElement);
       if (storyElement) {
-        console.log('entras sim');
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
@@ -138,13 +137,13 @@ APP.Main = (function() {
 function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
-
     function loadStoryAnimation() {
       if (i < count) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
+        console.log(details);
         dataWorker.postMessage([stories[i], 2]);
         dataWorker.onmessage = function(e) {
           details = e.data;
