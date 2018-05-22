@@ -31,11 +31,11 @@ APP.Data = (function() {
       functionNumber = e.data[0];
 
     switch(functionNumber) {
-      case 0: getTopStories();
+      case 1: getTopStories();
               break;
-      case 1: getStoryById(id);
+      case 2: getStoryById(id);
               break;
-      case 2: getStoryComment(id);
+      case 3: getStoryComment(id);
               break;
     }
 
@@ -43,13 +43,13 @@ APP.Data = (function() {
     postMessage(data);
   }
 
-  // functionNumber 0
+  // functionNumber 1
   function getTopStories() { 
     request(HN_TOPSTORIES_URL);
     data = evt.target.response;
   }
 
-  // functionNumber 1
+  // functionNumber 2
   function getStoryById(id) { // 1
     console.log('função getStoryById invocada');
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
@@ -59,7 +59,7 @@ APP.Data = (function() {
     data = evt.target.response;
   }
 
-  // functionNumber 2
+  // functionNumber 3
   function getStoryComment(id) {
     console.log('função getStoryComment invocada');
 
