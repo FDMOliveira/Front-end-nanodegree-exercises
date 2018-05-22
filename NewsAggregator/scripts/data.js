@@ -28,7 +28,6 @@
     var functionNumber = e.data[1];
     if(e.data.length==1)
       functionNumber = e.data[0];
-
     switch(functionNumber) {
       case 1: getTopStories();
               break;
@@ -43,7 +42,6 @@
   function getTopStories() { 
     request(HN_TOPSTORIES_URL, function(evt) {
       data = evt.target.response;
-      
       postMessage(data);
     });
   }
@@ -62,7 +60,6 @@
   // functionNumber 3
   function getStoryComment(id) {
     var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
-
     request(storyCommentURL, function(evt) {
       data = evt.target.response;
       postMessage(data);
