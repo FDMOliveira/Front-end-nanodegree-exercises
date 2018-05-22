@@ -18,7 +18,6 @@
 
   var $ = document.querySelector.bind(document),
       stories = null,
-      count = 100,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
@@ -133,23 +132,20 @@
       loadStoryBatch(); */
    });
 
-function loadStoryBatch() {
-    if (count >= stories.length)
-        count=stories.length;
-    
-    dataWorker.postMessage([stories, 2]);
-    dataWorker.onmessage = function(e) {
-      details = e.data;
-      console.log(details);
-    }
-    
+function loadStoryBatch() {    
     function loadStoryAnimation() {
-      while (i < count) {
+      while (i < stories.length) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
-        main.appendChild(story);/* 
-        onStoryData(story.id, details); */
+        main.appendChild(story);
+        console.log(story.id);
+        dataWorker.postMessage([stories[i], 2]);
+        dataWorker.onmessage = function(e) {
+          onStoryData(story.id, details);
+          details = e.data;
+          console.log(story.id);
+        }
         i++;
         requestAnimationFrame(loadStoryAnimation);
       }
