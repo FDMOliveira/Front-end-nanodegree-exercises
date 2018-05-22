@@ -22,8 +22,10 @@ APP.Main = (function() {
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
+      commentDetails,
       i=0,
       k=0,
+      dataWorker = new Worker('data.js'),
       localeData = {
         data: {
           intl: {
@@ -61,53 +63,52 @@ APP.Main = (function() {
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
     }  
-  function onStoryClick(details) {    
+    function onStoryClick(details) {    
       setTimeout(showStory.bind(this, details.id), 60);
-      
-      if (details.url)
-        details.urlobj = new URL(details.url);
-      var kids = details.kids;
-      var commentHtml = storyDetailsCommentTemplate({
-        by: '', text: 'Loading comment...'
-      }); 
-      var storyDetails = document.querySelector("section");
-      var fragment = document.createDocumentFragment();
-
-      if(!isStoryDetails) {
-        storyDetails = document.createElement('section');
-        storyDetails.classList.add('story-details');
-        document.body.appendChild(storyDetails);
-      }
-      storyDetails.classList.remove("removeStory");
-      storyDetails.id = 'sd-' + details.id;
-      storyDetails.innerHTML = storyDetailsTemplate(details);      
-      storyDetails.querySelector('.js-close').addEventListener('click', hideStory.bind(this, details.id));
   
-      function getStoryCommentAnimation() {
+      if (!storyDetails) {
+        if (details.url)
+          details.urlobj = new URL(details.url);
+        var kids = details.kids;
+        var commentHtml = storyDetailsCommentTemplate({
+          by: '', text: 'Loading comment...'
+        }); 
+        var storyDetails = document.querySelector("section");
+        var fragment = document.createDocumentFragment();
+  
+        if(!isStoryDetails) {
+          storyDetails = document.createElement('section');
+          storyDetails.classList.add('story-details');
+          document.body.appendChild(storyDetails);
+        }
+  
+        storyDetails.classList.remove("removeStory");
+        storyDetails.id = 'sd-' + details.id;
+        storyDetails.innerHTML = storyDetailsTemplate(details);      
+        storyDetails.querySelector('.js-close').addEventListener('click', hideStory.bind(this, details.id));
+  
         if (typeof kids === 'undefined')
-        return;
-        if (k < kids.length) {
+          return;
+        for (var k = 0; k < kids.length; k++) {
           var comment = document.createElement('aside');
           comment.setAttribute('id', 'sdc-' + kids[k]);
           comment.classList.add('story-details__comment');
           comment.innerHTML = commentHtml;
-          document.querySelector('.js-comments').appendChild(comment);
-          APP.Data.getStoryComment(kids[k], function(commentDetails) {
-            commentDetails.time *= 1000;
+          fragment.appendChild(comment)
+          dataWorker.postMessage([kids[k], 'getStoryComment']);
+          dataWorker.onmessage = function(e) {
+            commentDetails = e.data;
             var comment = document.body.querySelector(
-                '#sdc-' + commentDetails.id);
+              '#sdc-' + commentDetails.id);
             comment.innerHTML = storyDetailsCommentTemplate(
-                commentDetails,
-                localeData);
-          });
-          k++;
-          requestAnimationFrame(getStoryCommentAnimation);
+              commentDetails,localeData);
+          }
         }
+        document.querySelector('.js-comments').appendChild(fragment);
       }
-      requestAnimationFrame(getStoryCommentAnimation);
-    // There is a story container
-    isStoryDetails = true;
-  }
+      // There is a story container
+      isStoryDetails = true;
+    }
 
   function showStory(id) {
     inDetails = true;
@@ -143,18 +144,23 @@ function loadStoryBatch() {
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
-        APP.Data.getStoryById(stories[i], onStoryData.bind(this, stories[i]));
+        dataWorker.postMessage([stories[i], 'getStoryById']);
+        dataWorker.onmessage = function(e) {
+          details = e.data;
+          console.log('mensagem recebida no app.js');
+          onStoryData(stories[i], details);
+        }
         i++;
         requestAnimationFrame(loadStoryAnimation);
       }
     }
     requestAnimationFrame(loadStoryAnimation);
 }
-  // Bootstrap in the stories.
-  APP.Data.getTopStories(function(data) {
-    stories = data;
+  dataWorker.postMessage(['getTopStories'])
+  dataWorker.onmessage = function(e) {
+    stories = e.data;
     loadStoryBatch();
     main.classList.remove('loading');
-  });
+  }
 
 })();

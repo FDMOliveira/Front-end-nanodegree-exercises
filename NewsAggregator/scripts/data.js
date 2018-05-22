@@ -19,28 +19,42 @@ APP.Data = (function() {
   var HN_API_BASE = 'https://hacker-news.firebaseio.com';
   var HN_TOPSTORIES_URL = HN_API_BASE + '/v0/topstories.json';
   var HN_STORYDETAILS_URL = HN_API_BASE + '/v0/item/[ID].json';
+  var requestID = 0;
+  var data;
 
-  function getTopStories(callback) {
-    request(HN_TOPSTORIES_URL, function(evt) {
-      callback(evt.target.response);
-    });
+  onmessage = function(e) {
+    var id = e.data[0];
+    var functionName = e.data[1];
+    if(e.data.length==1)
+      functionName = e.data[0];
+    functionName(id);
+    console.log('informação recebida pelo web worker');
+    postMessage(data);
   }
 
-  function getStoryById(id, callback) {
+  function getTopStories() {
+    request(HN_TOPSTORIES_URL);
+    data = evt.target.response;
+  }
+
+  function getStoryById(id) {
+    console.log('função getStoryById invocada');
 
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
-    request(storyURL, function(evt) {
-      callback(evt.target.response);
-    });
+
+    request(storyURL);
+
+    data = evt.target.response;
   }
 
-  function getStoryComment(id, callback) {
+  function getStoryComment(id) {
+    console.log('função getStoryComment invocada');
 
     var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
-    request(storyCommentURL, function(evt) {
-      callback(evt.target.response);
-    });
+    request(storyCommentURL);
+
+    data = evt.target.response;
   }
 
   function request(url, callback) {
