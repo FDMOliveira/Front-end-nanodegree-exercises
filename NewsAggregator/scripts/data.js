@@ -23,6 +23,8 @@ APP.Data = (function() {
   var data;
 
   onmessage = function(e) {
+    console.log('mensagem recebida');
+    console.log(e);
     var id = e.data[0];
     var functionName = e.data[1];
     if(e.data.length==1)
