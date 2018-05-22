@@ -140,15 +140,16 @@ function loadStoryBatch() {
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
-        dataWorker.postMessage([stories[i], 2]);
         setTimeout(() => {
-          dataWorker.onmessage = function(e) {
-            console.log('onmessage : ');
-            details = e.data;
-            console.log(story.id);
-            onStoryData(story.id, details);
-          }
+          dataWorker.postMessage([stories[i], 2]);
+
         }, 1000);
+        dataWorker.onmessage = function(e) {
+          console.log('onmessage : ');
+          details = e.data;
+          console.log(story.id);
+          onStoryData(story.id, details);
+        }
         i++;
         requestAnimationFrame(loadStoryAnimation);
       }
