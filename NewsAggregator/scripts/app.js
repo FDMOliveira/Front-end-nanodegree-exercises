@@ -143,7 +143,7 @@ function loadStoryBatch() {
         console.log(story.id);
         dataWorker.postMessage([stories[i], 2]);
         dataWorker.onmessage = function(e) {
-          console.log('está dentro');
+          console.log('onmessage : ');
           details = e.data;
           console.log(story.id);
           onStoryData(story.id, details);
