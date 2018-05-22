@@ -44,8 +44,9 @@
 
   // functionNumber 1
   function getTopStories() { 
-    request(HN_TOPSTORIES_URL, evt);
-    data = evt.target.response;
+    request(HN_TOPSTORIES_URL, function(evt) {
+      data = evt.target.response;
+    });
   }
 
   // functionNumber 2
@@ -53,9 +54,10 @@
     console.log('função getStoryById invocada');
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
-    request(storyURL, evt);
+    request(storyURL, function(evt) {
+      data = evt.target.response;
+    });
 
-    data = evt.target.response;
   }
 
   // functionNumber 3
@@ -64,9 +66,10 @@
 
     var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
-    request(storyCommentURL, evt);
+    request(storyCommentURL, function(evt) {
+      data = evt.target.response;
+    });
 
-    data = evt.target.response;
   }
 
   function request(url, callback) {
