@@ -19,12 +19,13 @@
   var HN_API_BASE = 'https://hacker-news.firebaseio.com';
   var HN_TOPSTORIES_URL = HN_API_BASE + '/v0/topstories.json';
   var HN_STORYDETAILS_URL = HN_API_BASE + '/v0/item/[ID].json';
-  var requestID = 0;
-  var data;
+  var requestID = 0,
+      data,
+      functionNumber;
 
   onmessage = function(e) {
     var id = e.data[0];
-    var functionName = e.data[1];
+    var functionNumber = e.data[1];
     if(e.data.length==1)
       functionNumber = e.data[0];
 
