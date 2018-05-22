@@ -57,9 +57,10 @@ APP.Main = (function() {
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    console.log(key);
+    console.log(details);
     var storyElement = document.querySelector('#s-' + key);
       if (storyElement) {
+        console.log('entras sim');
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
