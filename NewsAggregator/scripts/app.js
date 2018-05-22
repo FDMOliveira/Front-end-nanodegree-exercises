@@ -25,7 +25,7 @@ APP.Main = (function() {
       commentDetails,
       i=0,
       k=0,
-      dataWorker = new Worker("./data.js"),
+      dataWorker = new Worker("./scripts/data.js"),
       localeData = {
         data: {
           intl: {
