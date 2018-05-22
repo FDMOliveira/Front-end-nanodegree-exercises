@@ -40,6 +40,7 @@
 
   // functionNumber 1
   function getTopStories() { 
+    console.log('data.js inicio')
     request(HN_TOPSTORIES_URL, function(evt) {
       data = evt.target.response;
       postMessage(data);
