@@ -57,8 +57,8 @@ APP.Main = (function() {
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    console.log(details);
     var storyElement = document.querySelector('#s-' + key);
+    console.log(storyElement);
       if (storyElement) {
         console.log('entras sim');
         storyElement.innerHTML = storyTemplate(details);
