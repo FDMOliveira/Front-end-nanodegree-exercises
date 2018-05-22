@@ -14,10 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function() {
+APP.Main = (function() {
 
   var $ = document.querySelector.bind(document),
       stories = null,
+      count = 100,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
@@ -132,19 +133,17 @@
       loadStoryBatch(); */
    });
 
-function loadStoryBatch() {    
+function loadStoryBatch() {
     function loadStoryAnimation() {
-      while (i < stories.length) {
+      if (i < stories.length) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
-        console.log(story.id);
+        onStoryData(story.id, details);
         dataWorker.postMessage([stories[i], 2]);
         dataWorker.onmessage = function(e) {
-          onStoryData(story.id, details);
           details = e.data;
-          console.log(story.id);
         }
         i++;
         requestAnimationFrame(loadStoryAnimation);
