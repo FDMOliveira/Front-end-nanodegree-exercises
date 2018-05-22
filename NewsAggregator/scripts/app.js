@@ -57,7 +57,7 @@ APP.Main = (function() {
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    console.log(details);
+    console.log(key);
     var storyElement = document.querySelector('#s-' + key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
