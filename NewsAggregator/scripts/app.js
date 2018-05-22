@@ -57,7 +57,7 @@ APP.Main = (function() {
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    var storyElement = document.querySelector('#s-' + key);
+    var storyElement = document.getElementById(key);
     console.log(storyElement);
       if (storyElement) {
         console.log('entras sim');
@@ -147,7 +147,7 @@ function loadStoryBatch() {
         dataWorker.postMessage([stories[i], 2]);
         dataWorker.onmessage = function(e) {
           details = e.data;
-          onStoryData(stories[i], details);
+          onStoryData(story.id, details);
         }
         i++;
         requestAnimationFrame(loadStoryAnimation);
