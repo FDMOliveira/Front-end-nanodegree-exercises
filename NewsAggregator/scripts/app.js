@@ -24,9 +24,9 @@ APP.Main = (function() {
       isStoryDetails = false,
       commentDetails,
       i=0,
-      k=0,
-      var dataWorker = new Worker("data.js"),
-      localeData = {
+      k=0;
+      var dataWorker = new Worker("data.js");
+      var localeData = {
         data: {
           intl: {
             locales: 'en-US'
