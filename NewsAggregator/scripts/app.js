@@ -155,11 +155,14 @@ function loadStoryBatch() {
     }
     requestAnimationFrame(loadStoryAnimation);
 }
-  dataWorker.postMessage([1])
-  dataWorker.onmessage = function(e) {
-    stories = e.data;
-    loadStoryBatch();
-    main.classList.remove('loading');
+  function firstLoad() {
+    dataWorker.postMessage(1);
+    dataWorker.onmessage = function(e) {
+      stories = e.data;
+      loadStoryBatch();
+      main.classList.remove('loading');
+    }
   }
+  firstLoad();
 
 })();
