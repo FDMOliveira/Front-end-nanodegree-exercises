@@ -43,6 +43,7 @@
   function getTopStories() { 
     request(HN_TOPSTORIES_URL, function(evt) {
       data = evt.target.response;
+      
       postMessage(data);
     });
   }
