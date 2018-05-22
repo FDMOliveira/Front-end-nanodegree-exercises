@@ -27,7 +27,6 @@
     var functionName = e.data[1];
     if(e.data.length==1)
       functionNumber = e.data[0];
-    console.log(functionNumber);
     switch(functionNumber) {
       case 1: getTopStories();
               break;
@@ -36,8 +35,6 @@
       case 3: getStoryComment(id);
               break;
     }
-
-    console.log('informação recebida pelo web worker');
   }
 
   // functionNumber 1
@@ -45,6 +42,7 @@
     request(HN_TOPSTORIES_URL, function(evt) {
       data = evt.target.response;
       postMessage(data);
+      console.log(data);
     });
   }
 
