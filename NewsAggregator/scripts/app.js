@@ -136,7 +136,7 @@ APP.Main = (function() {
 function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
-
+    console.log('loadStory function');
     function loadStoryAnimation() {
       if (i < count) {
         var story = document.createElement('div');
@@ -160,6 +160,7 @@ function loadStoryBatch() {
     dataWorker.onmessage = function(e) {
       stories = e.data;
       loadStoryBatch();
+      console.log('firstLoad function');
       main.classList.remove('loading');
     }
   }

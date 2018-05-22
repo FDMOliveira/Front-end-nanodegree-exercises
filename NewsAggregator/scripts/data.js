@@ -47,8 +47,7 @@
   }
 
   // functionNumber 2
-  function getStoryById(id) { // 1
-    console.log('função getStoryById invocada');
+  function getStoryById(id) {
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
     request(storyURL, function(evt) {
@@ -60,8 +59,6 @@
 
   // functionNumber 3
   function getStoryComment(id) {
-    console.log('função getStoryComment invocada');
-
     var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
 
     request(storyCommentURL, function(evt) {
