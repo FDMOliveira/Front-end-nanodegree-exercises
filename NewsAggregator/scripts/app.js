@@ -136,7 +136,7 @@
 function loadStoryBatch() {
     if (count >= stories.length)
         count=stories.length;
-    console.log(count);
+    console.log(stories.length);
     
     dataWorker.postMessage([stories[i], 2]);
     dataWorker.onmessage = function(e) {
