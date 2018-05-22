@@ -146,7 +146,7 @@ function loadStoryBatch() {
         dataWorker.postMessage([stories[i], 2]);
         dataWorker.onmessage = function(e) {
           details = e.data;
-          console.log('mensagem recebida no app.js');
+          console.log(details);
           onStoryData(stories[i], details);
         }
         i++;
@@ -160,7 +160,6 @@ function loadStoryBatch() {
     dataWorker.onmessage = function(e) {
       stories = e.data;
       loadStoryBatch();
-      console.log('firstLoad function');
       main.classList.remove('loading');
     }
   }
