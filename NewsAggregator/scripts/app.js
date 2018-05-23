@@ -106,7 +106,7 @@
         dataWorker.onmessage = function(e) {
           commentDetails = e.data;
           var comment = document.body.querySelector(
-            '#sdc-' + commentDetails.id);
+            '#sdc-' + commentDetails);
           comment.innerHTML = storyDetailsCommentTemplate(
             commentDetails,localeData);
         }
