@@ -145,7 +145,7 @@ function loadStoryBatch() {
         story.classList.add('story');
         main.appendChild(story);
         i++;
-//        onStoryData(story.id, details);
+        onStoryData(story.id, details);
         requestAnimationFrame(loadStoryAnimation);
       }
     }
