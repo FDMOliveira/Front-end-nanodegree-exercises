@@ -53,14 +53,13 @@
       request(storyURL, function(evt) {
         data = evt.target.response;
         postMessage([element, data]);
-        console.log('function 2');
       });
     });
   }
 
   // functionNumber 3
   function getStoryComment(comments) {
-    data="";
+    var data = "";
     comments.forEach(comment => {
       var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, comment);
       request(storyCommentURL, function(evt) {

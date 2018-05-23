@@ -101,10 +101,8 @@
           requestAnimationFrame(getCommentKids);
         }
         requestAnimationFrame(getCommentKids);
-
-        setTimeout(() => {
-          dataWorker.postMessage([kids, 3]);
-        }, 1000);
+        
+        dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentId = e.data[0];
           commentDetails = e.data[1];
