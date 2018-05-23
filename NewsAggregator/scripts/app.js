@@ -17,6 +17,7 @@
 (function() {
 
   var $ = document.querySelector.bind(document),
+      stories,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
@@ -155,7 +156,7 @@ function loadStoryBatch() {
   function firstLoad() {
     dataWorker.postMessage([1]);
     dataWorker.onmessage = function(e) {
-      var stories = e.data;
+      stories = e.data;
       loadStoryBatch();
       main.classList.remove('loading');
     }
