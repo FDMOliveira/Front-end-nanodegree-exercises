@@ -25,7 +25,6 @@
       commentId,
       details,
       count=100,
-      storyStart=0,
       i=0,
       k=0,
       dataWorker = new Worker("./scripts/data.js"),
@@ -142,10 +141,11 @@
    });
 
 function loadStoryBatch() {
-    var end = storyStart + count;
+    if (count >= stories.length)
+      count=stories.length;
     
     function loadStoryAnimation() {
-      if (storyStart < end) {
+      if (i < count) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
@@ -154,7 +154,7 @@ function loadStoryBatch() {
         requestAnimationFrame(loadStoryAnimation);
       }
     }
-    storyStart += count;
+    i=0;
     requestAnimationFrame(loadStoryAnimation);
 
     dataWorker.postMessage([stories, 2]);
