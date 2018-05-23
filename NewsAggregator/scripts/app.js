@@ -16,8 +16,7 @@
  */
 (function() {
 
-  var $ = document.querySelector.bind(document),
-      stories,
+  var stories,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
