@@ -150,7 +150,7 @@ function loadStoryBatch() {
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
     
     function loadStoryAnimation() {
-      if ((firstElementChunk < stories.length) && (i < firstElementChunk)) {
+      if ((firstElementChunk < stories.length) && (i < storyChunk.length)) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
