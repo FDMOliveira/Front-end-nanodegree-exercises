@@ -145,8 +145,7 @@ function loadStoryBatch() {
     var end = storyStart + count;
     
     function loadStoryAnimation() {
-      i=storyStart;
-      if (i < end) {
+      if (storyStart < end) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
