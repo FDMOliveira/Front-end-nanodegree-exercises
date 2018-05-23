@@ -106,7 +106,7 @@
           commentDetails = e.data[0];
           var comment = document.getElementById(
             'sdc-' + commentDetails);
-            console.log(comment);
+            console.log(commentDetails);
           comment.innerHTML = storyDetailsCommentTemplate(
             commentDetails,localeData);
         }
