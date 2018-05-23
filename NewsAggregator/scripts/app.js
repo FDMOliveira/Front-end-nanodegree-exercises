@@ -138,10 +138,9 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    
-      console.log(document.querySelector('#s-'+storyChunk[storyChunk.length-1]));
+  
     // If the last element of the array is shown, it creates a new one 
-      if ((lastElement.offsetTop) > main.scrollTop) {
+      if ((document.querySelector('#s-'+storyChunk[storyChunk.length-1]).offsetTop) > main.scrollTop) {
         loadStoryBatch();
         console.log('carrega!');
     } 
