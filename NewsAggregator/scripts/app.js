@@ -151,7 +151,7 @@ function loadStoryBatch() {
       key = e.data[0];
       details = e.data[1];
       console.log(key);
-      console.log(data);
+      console.log(details);
       onStoryData(key, details);
     }
 }
