@@ -169,8 +169,8 @@ function loadStoryBatch() {
       onStoryData(key, details);
     }
   firstElementChunk+=elmentsNumberPerChunk;
-  
-  lastElementTop = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4];
+  lastElementTop = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4].offsetTop;
+
 }
   function firstLoad() {
     dataWorker.postMessage([1]);
