@@ -64,6 +64,7 @@
       request(storyCommentURL, function(evt) {
         data = evt.target.response;
         postMessage([comment,data]);
+        console.log(comment);
       });
     })
   }
