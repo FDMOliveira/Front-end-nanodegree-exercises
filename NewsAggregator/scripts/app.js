@@ -70,7 +70,6 @@
         if (details.url)
           details.urlobj = new URL(details.url);
         var kids = details.kids;
-        console.log(kids);
         var commentHtml = storyDetailsCommentTemplate({
           by: '', text: 'Loading comment...'
         }); 
@@ -105,6 +104,7 @@
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentDetails = e.data[0];
+          console.log(commentDetails);
           var comment = document.getElementById(
             'sdc-' + commentDetails);
           comment.innerHTML = storyDetailsCommentTemplate(
