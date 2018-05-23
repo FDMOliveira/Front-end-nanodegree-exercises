@@ -63,7 +63,7 @@
       var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, comment);
       request(storyCommentURL, function(evt) {
         data = evt.target.response;
-        postMessage(data);
+        postMessage([comment,data]);
       });
     })
   }

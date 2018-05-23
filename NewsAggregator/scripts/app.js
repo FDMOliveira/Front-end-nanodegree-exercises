@@ -104,7 +104,7 @@
         requestAnimationFrame(getCommentKids);
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
-          commentDetails = e.data;
+          commentDetails = e.data[0];
           var comment = document.body.querySelector(
             '#sdc-' + commentDetails);
           comment.innerHTML = storyDetailsCommentTemplate(
