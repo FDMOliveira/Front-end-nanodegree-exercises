@@ -101,14 +101,13 @@
           requestAnimationFrame(getCommentKids);
         }
         requestAnimationFrame(getCommentKids);
-        
+
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentId = e.data[0];
           commentDetails = e.data[1];
           var comment = document.getElementById(
             'sdc-' + commentId);
-            console.log(commentId);
           comment.innerHTML = storyDetailsCommentTemplate(
             commentDetails,localeData);
         }
