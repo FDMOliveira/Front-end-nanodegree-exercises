@@ -74,7 +74,6 @@
           by: '', text: 'Loading comment...'
         }); 
         var storyDetails = document.querySelector("section");
-        var fragment = document.createDocumentFragment();
   
         if(!isStoryDetails) {
           storyDetails = document.createElement('section');
@@ -95,22 +94,21 @@
             comment.setAttribute('id', 'sdc-' + kids[k]);
             comment.classList.add('story-details__comment');
             comment.innerHTML = commentHtml;
-            fragment.appendChild(comment)
+            document.querySelector('.js-comments').appendChild(comment);
             k++;
           }
           requestAnimationFrame(getCommentKids);
         }
         requestAnimationFrame(getCommentKids);
+
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentDetails = e.data[0];
-          console.log(commentDetails);
           var comment = document.getElementById(
             'sdc-' + commentDetails);
           comment.innerHTML = storyDetailsCommentTemplate(
             commentDetails,localeData);
         }
-        document.querySelector('.js-comments').appendChild(fragment);
       }
       // There is a story container
       isStoryDetails = true;
