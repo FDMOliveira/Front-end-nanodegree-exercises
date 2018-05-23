@@ -59,11 +59,10 @@
   function onStoryData (key, details) {
     var storyElement = document.getElementById(key);
       if (storyElement) {
+        console.log(storyElement);
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
-      console.log(key);
-      console.log(details);
     }  
     function onStoryClick(details) {    
       setTimeout(showStory.bind(this, details.id), 60);
