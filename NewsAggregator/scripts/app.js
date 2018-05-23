@@ -139,8 +139,7 @@
     else
       document.body.classList.remove('raised'); 
     
-    console.log(lastElement.offsetTop);
-    
+      console.log(document.querySelector('#s-'+storyChunk[storyChunk.length-1]));
     // If the last element of the array is shown, it creates a new one 
       if ((lastElement.offsetTop) > main.scrollTop) {
         loadStoryBatch();
@@ -151,8 +150,6 @@
 function loadStoryBatch() {
     var elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
-    var element = window.querySelector('#s-17134531');
-    console.log(element);
 
 
     function loadStoryAnimation() {
