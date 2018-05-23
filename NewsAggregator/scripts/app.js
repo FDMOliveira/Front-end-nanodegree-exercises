@@ -22,7 +22,7 @@
       inDetails = false,
       isStoryDetails = false,
       commentDetails,
-      lastElement,
+      lastElementTop,
       commentId,
       details,
       storyChunk,
@@ -138,10 +138,12 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    console.log(document.querySelector('.story:last-of-type').offsetTop);
-    console.log(document.querySelector('.story:last-of-type'));
+    lastElementTop = document.querySelector('.story:last-of-type').offsetTop 
+    - document.querySelector('.story:last-of-type').scrollTop + 
+    document.querySelector('.story:last-of-type').clientTop;
+    console.log(lastElementTop);
       // If the last element of the array is shown, it creates a new one 
-      if ((document.querySelector('.story:last-of-type').offsetTop) <= main.scrollTop) {
+      if (lastElementTop <= main.scrollTop) {
         loadStoryBatch();
         console.log('carrega!');
     } 
