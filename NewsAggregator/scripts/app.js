@@ -62,6 +62,8 @@
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
+      console.log(key);
+      console.log(details);
     }  
     function onStoryClick(details) {    
       setTimeout(showStory.bind(this, details.id), 60);
@@ -150,8 +152,6 @@ function loadStoryBatch() {
     dataWorker.onmessage = function(e) {
       key = e.data[0];
       details = e.data[1];
-      console.log(key);
-      console.log(details);
       onStoryData(key, details);
     }
 }
