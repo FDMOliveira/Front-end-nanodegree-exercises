@@ -138,11 +138,11 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    lastElement = document.getElementById('s-17136233');
-    console.log(jQuery(lastElement));
+    
+    console.log(lastElement.offsetTop);
     
     // If the last element of the array is shown, it creates a new one 
-      if (($(lastElement).offset().top) > main.scrollTop) {
+      if ((lastElement.offsetTop) > main.scrollTop) {
         loadStoryBatch();
         console.log('carrega!');
     } 
@@ -151,6 +151,7 @@
 function loadStoryBatch() {
     var elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
+    lastElement = document.getElementById('s-'+storyChunk[storyChunk.length-1]);
 
 
     function loadStoryAnimation() {
