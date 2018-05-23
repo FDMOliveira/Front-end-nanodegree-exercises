@@ -18,7 +18,6 @@
 
   var $ = document.querySelector.bind(document),
       stories = null,
-      count = 100,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
