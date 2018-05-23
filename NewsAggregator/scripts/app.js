@@ -145,10 +145,13 @@ function loadStoryBatch() {
       }
     }
     requestAnimationFrame(loadStoryAnimation);
+
     dataWorker.postMessage([stories, 2]);
     dataWorker.onmessage = function(e) {
       key = e.data[0];
       details = e.data[1];
+      console.log(key);
+      console.log(data);
       onStoryData(key, details);
     }
 }
