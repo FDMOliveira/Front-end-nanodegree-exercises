@@ -63,7 +63,6 @@
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
-        console.log(storyElement);
       }
     }  
     function onStoryClick(details) {    
