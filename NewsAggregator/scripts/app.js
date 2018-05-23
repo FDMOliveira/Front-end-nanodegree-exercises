@@ -24,6 +24,8 @@
       commentDetails,
       commentId,
       details,
+      storyChunk,
+      firstElementChunk = 0,
       count=100,
       i=0,
       k=0,
@@ -135,17 +137,20 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised');
-    // Check if we need to load the next batch of stories.
-/*      if (main.scrollTop > window.innerHeight)
-      loadStoryBatch();  */
+
+    // If the last element of the array is shown, it creates a new one 
+     if (($('s-'+storyChunk[storyChunk.length-1]).offset().top) > main.scrollTop) {
+        loadStoryBatch();
+        console.log('carrega!'); 
+    }
    });
 
 function loadStoryBatch() {
-    if (count >= stories.length)
-      count=stories.length;
+    var elmentsNumberPerChunk = stories.length / 5;
+    storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
     
     function loadStoryAnimation() {
-      if (i < count) {
+      if ((firstElementChunk < stories.length) && (i < firstElementChunk)) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
@@ -154,15 +159,15 @@ function loadStoryBatch() {
         requestAnimationFrame(loadStoryAnimation);
       }
     }
-    i=0;
     requestAnimationFrame(loadStoryAnimation);
-
+    
     dataWorker.postMessage([stories, 2]);
     dataWorker.onmessage = function(e) {
       key = e.data[0];
       details = e.data[1];
       onStoryData(key, details);
     }
+  firstElementChunk+=elmentsNumberPerChunk;
 }
   function firstLoad() {
     dataWorker.postMessage([1]);
