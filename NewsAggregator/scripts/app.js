@@ -138,7 +138,8 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    console.log($(document.getElementById('s-17136233')));
+    lastElement = document.getElementById('s-17136233');
+    console.log(jQuery(lastElement));
     
     // If the last element of the array is shown, it creates a new one 
       if (($(lastElement).offset().top) > main.scrollTop) {
