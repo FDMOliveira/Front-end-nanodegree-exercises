@@ -58,11 +58,13 @@
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
+    i++;
     var storyElement = document.getElementById('s-' + key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
+      console.log(i);
     }  
     function onStoryClick(details) {    
       setTimeout(showStory.bind(this, details.id), 60);
@@ -106,7 +108,6 @@
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentId = e.data[0];
-          console.log(commentId);
           commentDetails = e.data[1];
           document.getElementById('sdc-'+commentId).innerHTML = 
             storyDetailsCommentTemplate(commentDetails,localeData);
@@ -136,8 +137,8 @@
     else
       document.body.classList.remove('raised');
     // Check if we need to load the next batch of stories.
-   /*  if (main.scrollTop > window.innerHeight)
-      loadStoryBatch(); */
+     if (main.scrollTop > window.innerHeight)
+      loadStoryBatch(); 
    });
 
 function loadStoryBatch() {
