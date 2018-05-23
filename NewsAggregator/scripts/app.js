@@ -17,7 +17,6 @@
 (function() {
 
   var $ = document.querySelector.bind(document),
-      stories = null,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
@@ -94,14 +93,14 @@
           comment.classList.add('story-details__comment');
           comment.innerHTML = commentHtml;
           fragment.appendChild(comment)
-          dataWorker.postMessage([kids[k], 3]);
-          dataWorker.onmessage = function(e) {
-            commentDetails = e.data;
-            var comment = document.body.querySelector(
-              '#sdc-' + commentDetails.id);
-            comment.innerHTML = storyDetailsCommentTemplate(
-              commentDetails,localeData);
-          }
+        }
+        dataWorker.postMessage([kids[k], 3]);
+        dataWorker.onmessage = function(e) {
+          commentDetails = e.data;
+          var comment = document.body.querySelector(
+            '#sdc-' + commentDetails.id);
+          comment.innerHTML = storyDetailsCommentTemplate(
+            commentDetails,localeData);
         }
         document.querySelector('.js-comments').appendChild(fragment);
       }
@@ -156,7 +155,7 @@ function loadStoryBatch() {
   function firstLoad() {
     dataWorker.postMessage([1]);
     dataWorker.onmessage = function(e) {
-      stories = e.data;
+      var stories = e.data;
       loadStoryBatch();
       main.classList.remove('loading');
     }
