@@ -53,6 +53,7 @@
       request(storyURL, function(evt) {
         data = evt.target.response;
         postMessage([element, data]);
+        console.log('function 2');
       });
     });
   }
