@@ -22,6 +22,7 @@
       inDetails = false,
       isStoryDetails = false,
       commentDetails,
+      details,
       i=0,
       k=0,
       dataWorker = new Worker("./scripts/data.js"),
@@ -136,12 +137,11 @@ function loadStoryBatch() {
     dataWorker.postMessage([stories, 2]);
     dataWorker.onmessage = function(e) {
       details = e.data;
-      console.log(details);
     }
     function loadStoryAnimation() {
       if (i < stories.length) {
         var story = document.createElement('div');
-        story.id = 's-' + stories[i];
+        story.id = 's-' + stories[i].id;
         story.classList.add('story');
         main.appendChild(story);
         i++;
