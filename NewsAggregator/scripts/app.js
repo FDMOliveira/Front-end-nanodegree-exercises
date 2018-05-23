@@ -151,7 +151,7 @@
 function loadStoryBatch() {
     var elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
-    console.log(document.querySelector('#s-'+storyChunk[storyChunk.length-1]));
+    console.log(document.querySelector('#s-17134531'));
 
 
     function loadStoryAnimation() {
