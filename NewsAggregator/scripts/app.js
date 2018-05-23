@@ -137,6 +137,7 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised');
+      console.log($('#s-'+storyChunk[storyChunk.length-1]));
 
     // If the last element of the array is shown, it creates a new one 
       if (($('#s-'+storyChunk[storyChunk.length-1]).offset.top) > main.scrollTop) {
@@ -148,7 +149,7 @@
 function loadStoryBatch() {
     var elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
-    console.log($('#s-'+storyChunk[storyChunk.length-1]));
+
     function loadStoryAnimation() {
       if ((firstElementChunk < stories.length) && (i < storyChunk.length)) {
         var story = document.createElement('div');
