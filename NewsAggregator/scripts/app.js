@@ -16,16 +16,17 @@
  */
 (function() {
 
-  var stories,
+  var $ = document.querySelector.bind(document),
+      stories,
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
       commentDetails,
-      lastElementTop,
       commentId,
       details,
       storyChunk,
       firstElementChunk = 0,
+      lastElementTop = document.querySelector('.story:last-of-type').offsetTop,
       count=100,
       i=0,
       k=0,
@@ -137,7 +138,7 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    console.log($('.story:last-of-type').offset().top);
+
       // If the last element of the array is shown, it creates a new one 
       if (lastElementTop <= main.scrollTop) {
         loadStoryBatch();
