@@ -138,7 +138,7 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-  
+    lastElement = document.getElementById('s-17136233');
     console.log($(lastElement));
     
     // If the last element of the array is shown, it creates a new one 
@@ -151,7 +151,6 @@
 function loadStoryBatch() {
     var elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
-    lastElement = document.getElementById('s-17136233');
 
 
     function loadStoryAnimation() {
