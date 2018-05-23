@@ -137,7 +137,7 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    var lastElement = document.getElementById('s-'+storyChunk[storyChunk.length-1]);
+    var lastElement = $('s-'+storyChunk[storyChunk.length-1]);
     // If the last element of the array is shown, it creates a new one 
       if (($(lastElement).offset().top) > main.scrollTop) {
         loadStoryBatch();
