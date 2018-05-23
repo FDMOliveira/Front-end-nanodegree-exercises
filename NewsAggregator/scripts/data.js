@@ -53,6 +53,7 @@
       request(storyURL, function(evt) {
         data = evt.target.response;
         postMessage([element, data]);
+        console.log('função 2');
       });
     });
   }
@@ -62,6 +63,7 @@
     comments.forEach(CommentId => {
       var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, CommentId);
       request(storyCommentURL, function(evt) {
+        console.log('função 3');
         data = evt.target.response;
         postMessage([CommentId,data]);
       });
