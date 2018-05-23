@@ -137,7 +137,7 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    lastElementTop = document.querySelector('.story(:last-of-type(4))').offsetTop;
+    lastElementTop = document.querySelectorAll('.story(:last-of-type(4))').offsetTop;
     console.log('lastelementop: '+lastElementTop);
     console.log(main.scrollTop)
       // If the last element of the array is shown, it creates a new one 
