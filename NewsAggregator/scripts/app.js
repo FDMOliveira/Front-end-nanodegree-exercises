@@ -134,11 +134,6 @@
    });
 
 function loadStoryBatch() {
-    dataWorker.postMessage([stories, 2]);
-    dataWorker.onmessage = function(e) {
-      details = e.data;
-      console.log(details);
-    }
     function loadStoryAnimation() {
       if (i < stories.length) {
         var story = document.createElement('div');
@@ -150,7 +145,12 @@ function loadStoryBatch() {
       }
     }
     requestAnimationFrame(loadStoryAnimation);
-    //onStoryData(story.id, details);
+    dataWorker.postMessage([stories, 2]);
+    dataWorker.onmessage = function(e) {
+      key = e.data[0];
+      details = e.data[1];
+      onStoryData(key, details);
+    }
 }
   function firstLoad() {
     dataWorker.postMessage([1]);

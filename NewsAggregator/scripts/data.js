@@ -52,7 +52,7 @@
       var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, element);
       request(storyURL, function(evt) {
         data = evt.target.response;
-        postMessage(data);
+        postMessage([element, data]);
       });
     });
   }
