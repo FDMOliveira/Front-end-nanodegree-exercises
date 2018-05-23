@@ -138,7 +138,7 @@
     else
       document.body.classList.remove('raised'); 
     lastElementTop = document.querySelector('.story:last-of-type').offsetTop;
-    console.log(lastElementTop);
+    console.log('lastelementop: '+lastElementTop);
     console.log(main.scrollTop)
       // If the last element of the array is shown, it creates a new one 
       if (lastElementTop <= main.scrollTop) {
