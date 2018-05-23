@@ -55,11 +55,11 @@
         postMessage([element, data]);
       });
     });
+    close();
   }
 
   // functionNumber 3
   function getStoryComment(comments) {
-    var data = "";
     comments.forEach(comment => {
       var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, comment);
       request(storyCommentURL, function(evt) {
