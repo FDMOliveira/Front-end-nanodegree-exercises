@@ -60,13 +60,11 @@
 
   // functionNumber 3
   function getStoryComment(comments) {
-    data=null;
-    var data;
-    comments.forEach(comment => {
-      var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, comment);
+    comments.forEach(CommentId => {
+      var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, CommentId);
       request(storyCommentURL, function(evt) {
-        data = evt.target.response;
-        postMessage([comment,data]);
+        var comment = evt.target.response;
+        postMessage([CommentId,comment]);
       });
     })
   }
