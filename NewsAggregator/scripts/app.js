@@ -70,6 +70,7 @@
         if (details.url)
           details.urlobj = new URL(details.url);
         var kids = details.kids;
+        console.log(kids);
         var commentHtml = storyDetailsCommentTemplate({
           by: '', text: 'Loading comment...'
         }); 
