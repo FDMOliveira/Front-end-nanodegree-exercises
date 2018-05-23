@@ -169,7 +169,7 @@ function loadStoryBatch() {
       onStoryData(key, details);
     }
   firstElementChunk+=elmentsNumberPerChunk;
-  lastElementTop = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4].offsetTop;
+      lastElementTop = document.getElementsByClassName('story')[50].offsetTop;
 
 }
   function firstLoad() {
