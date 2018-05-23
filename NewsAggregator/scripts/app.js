@@ -57,8 +57,6 @@
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    console.log(storyElement);
-    console.log()
     var storyElement = document.getElementById(key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
@@ -139,6 +137,7 @@ function loadStoryBatch() {
     dataWorker.postMessage([stories, 2]);
     dataWorker.onmessage = function(e) {
       details = e.data;
+      console.log(details);
     }
     function loadStoryAnimation() {
       if (i < stories.length) {
@@ -147,13 +146,11 @@ function loadStoryBatch() {
         story.classList.add('story');
         main.appendChild(story);
         i++;
-        onStoryData(story.id, details);
-        setTimeout(() => {
-          requestAnimationFrame(loadStoryAnimation);
-        }, 500);
+        requestAnimationFrame(loadStoryAnimation);
       }
     }
     requestAnimationFrame(loadStoryAnimation);
+    //onStoryData(story.id, details);
 }
   function firstLoad() {
     dataWorker.postMessage([1]);
