@@ -57,6 +57,8 @@
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
+    console.log(storyElement);
+    console.log()
     var storyElement = document.getElementById(key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
@@ -146,7 +148,9 @@ function loadStoryBatch() {
         main.appendChild(story);
         i++;
         onStoryData(story.id, details);
-        requestAnimationFrame(loadStoryAnimation);
+        setTimeout(() => {
+          requestAnimationFrame(loadStoryAnimation);
+        }, 500);
       }
     }
     requestAnimationFrame(loadStoryAnimation);
