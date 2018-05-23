@@ -137,7 +137,6 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    lastElementTop = document.getElementsByClassName('.story')[50].offsetTop;
     console.log('lastelementop: '+lastElementTop);
     console.log(main.scrollTop)
       // If the last element of the array is shown, it creates a new one 
@@ -170,6 +169,8 @@ function loadStoryBatch() {
       onStoryData(key, details);
     }
   firstElementChunk+=elmentsNumberPerChunk;
+  
+  lastElementTop = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4];
 }
   function firstLoad() {
     dataWorker.postMessage([1]);
