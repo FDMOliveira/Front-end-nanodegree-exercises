@@ -57,8 +57,7 @@
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    var storyElement = document.getElementById('s-'+key);
-    console.log(storyElement);
+    var storyElement = document.getElementById('s-' + key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
