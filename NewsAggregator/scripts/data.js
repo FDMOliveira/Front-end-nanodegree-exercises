@@ -47,13 +47,14 @@
   }
 
   // functionNumber 2
-  function getStoryById(id) {
-    var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
-    request(storyURL, function(evt) {
-      data = evt.target.response;
-      postMessage(data);
+  function getStoryById(stories) {
+    stories.array.forEach(element => {
+      var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, element);
+      request(storyURL, function(evt) {
+        data = evt.target.response;
+        postMessage(data);
+      });
     });
-
   }
 
   // functionNumber 3

@@ -133,22 +133,20 @@
    });
 
 function loadStoryBatch() {
+    dataWorker.postMessage([stories, 2]);
+    dataWorker.onmessage = function(e) {
+      details = e.data;
+      console.log(details);
+    }
     function loadStoryAnimation() {
       if (i < stories.length) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
-        dataWorker.postMessage([stories[i], 2]);
-        dataWorker.onmessage = function(e) {
-          details = e.data;
-          console.log(story.id);
-          onStoryData(story.id, details);
-        }
-        setTimeout(() => {
-          i++;
-          requestAnimationFrame(loadStoryAnimation);
-        }, 500);
+        i++;
+        onStoryData(story.id, details);
+        requestAnimationFrame(loadStoryAnimation);
       }
     }
     requestAnimationFrame(loadStoryAnimation);
