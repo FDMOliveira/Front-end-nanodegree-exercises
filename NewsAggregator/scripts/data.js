@@ -48,7 +48,7 @@
 
   // functionNumber 2
   function getStoryById(stories) {
-    stories.array.forEach(element => {
+    stories.forEach(element => {
       var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, element);
       request(storyURL, function(evt) {
         data = evt.target.response;
