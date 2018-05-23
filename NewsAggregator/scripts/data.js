@@ -60,7 +60,8 @@
 
   // functionNumber 3
   function getStoryComment(comments) {
-    console.log('entrou na função 3');
+    data=null;
+    var data;
     comments.forEach(CommentId => {
       var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, CommentId);
       request(storyCommentURL, function(evt) {

@@ -107,7 +107,8 @@
         dataWorker.onmessage = function(e) {
           commentId = e.data[0];
           commentDetails = e.data[1];
-          document.getElementById('sdc-'+commentId).innerHTML = storyDetailsCommentTemplate(commentDetails,localeData);
+          document.getElementById('sdc-'+commentId).innerHTML = 
+            storyDetailsCommentTemplate(commentDetails,localeData);
         }
       }
       // There is a story container
