@@ -24,6 +24,8 @@
       commentDetails,
       commentId,
       details,
+      count=100,
+      storyStart=0,
       i=0,
       k=0,
       dataWorker = new Worker("./scripts/data.js"),
@@ -58,13 +60,11 @@
       Handlebars.compile(tmplStoryDetailsComment);
 
   function onStoryData (key, details) {
-    i++;
     var storyElement = document.getElementById('s-' + key);
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
       }
-      console.log(i);
     }  
     function onStoryClick(details) {    
       setTimeout(showStory.bind(this, details.id), 60);
@@ -142,8 +142,11 @@
    });
 
 function loadStoryBatch() {
+    var end = storyStart + count;
+    
     function loadStoryAnimation() {
-      if (i < stories.length) {
+      i=storyStart;
+      if (i < end) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
@@ -152,6 +155,7 @@ function loadStoryBatch() {
         requestAnimationFrame(loadStoryAnimation);
       }
     }
+    storyStart += count;
     requestAnimationFrame(loadStoryAnimation);
 
     dataWorker.postMessage([stories, 2]);
