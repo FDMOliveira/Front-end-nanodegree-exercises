@@ -22,6 +22,7 @@
       inDetails = false,
       isStoryDetails = false,
       commentDetails,
+      commentId,
       details,
       i=0,
       k=0,
@@ -103,10 +104,12 @@
 
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
-          commentDetails = e.data[0];
+          commentId = e.data[0];
+          commentDetails = e.data[1];
           var comment = document.getElementById(
-            'sdc-' + commentDetails);
+            'sdc-' + commentId);
             console.log(commentDetails);
+            console.log(commentId);
           comment.innerHTML = storyDetailsCommentTemplate(
             commentDetails,localeData);
         }
