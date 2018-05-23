@@ -25,6 +25,7 @@
       commentId,
       details,
       storyChunk,
+      lastElement,
       firstElementChunk = 0,
       count=100,
       i=0,
@@ -137,7 +138,7 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
-    console.log('lastelementop: '+lastElementTop);
+    console.log('lastelement: '+lastElement);
     console.log(main.scrollTop)
       // If the last element of the array is shown, it creates a new one 
       if (lastElementTop <= main.scrollTop) {
@@ -169,8 +170,8 @@ function loadStoryBatch() {
       onStoryData(key, details);
     }
   firstElementChunk+=elmentsNumberPerChunk;
-  lastElementTop = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4].offsetTop;
-
+  lastElement = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4];
+  var lastElementTop = lastElement.offsetTop;
 }
   function firstLoad() {
     dataWorker.postMessage([1]);
