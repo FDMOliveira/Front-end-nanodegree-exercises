@@ -58,13 +58,15 @@
   }
 
   // functionNumber 3
-  function getStoryComment(id) {
-    var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
-    request(storyCommentURL, function(evt) {
-      data = evt.target.response;
-      postMessage(data);
-    });
-
+  function getStoryComment(comments) {
+    comments.forEach(comment => {
+      console.log(comment);
+      var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
+      request(storyCommentURL, function(evt) {
+        data = evt.target.response;
+        postMessage(data);
+      });
+    })
   }
 
   function request(url, callback) {

@@ -88,14 +88,20 @@
   
         if (typeof kids === 'undefined')
           return;
-        for (var k = 0; k < kids.length; k++) {
-          var comment = document.createElement('aside');
-          comment.setAttribute('id', 'sdc-' + kids[k]);
-          comment.classList.add('story-details__comment');
-          comment.innerHTML = commentHtml;
-          fragment.appendChild(comment)
+        
+        function getCommentKids() {
+          if (k<kids.length) {
+            var comment = document.createElement('aside');
+            comment.setAttribute('id', 'sdc-' + kids[k]);
+            comment.classList.add('story-details__comment');
+            comment.innerHTML = commentHtml;
+            fragment.appendChild(comment)
+            k++;
+          }
+          requestAnimationFrame(getCommentKids);
         }
-        dataWorker.postMessage([kids[k], 3]);
+        requestAnimationFrame(getCommentKids);
+        dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentDetails = e.data;
           var comment = document.body.querySelector(
@@ -162,5 +168,4 @@ function loadStoryBatch() {
     }
   }
   firstLoad();
-
 })();
