@@ -101,7 +101,8 @@
           requestAnimationFrame(getCommentKids);
         }
         requestAnimationFrame(getCommentKids);
-
+        
+        // GETSTORYCOMMENT
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentId = e.data[0];

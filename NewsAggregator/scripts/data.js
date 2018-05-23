@@ -24,16 +24,16 @@
       functionNumber;
 
   onmessage = function(e) {
-    var id = e.data[0];
+    var array = e.data[0];
     var functionNumber = e.data[1];
     if(e.data.length==1)
       functionNumber = e.data[0];
     switch(functionNumber) {
       case 1: getTopStories();
               break;
-      case 2: getStoryById(id);
+      case 2: getStoryById(array);
               break;
-      case 3: getStoryComment(id);
+      case 3: getStoryComment(array);
               break;
     }
   }
@@ -62,8 +62,8 @@
     comments.forEach(CommentId => {
       var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, CommentId);
       request(storyCommentURL, function(evt) {
-        comment = evt.target.response;
-        postMessage([CommentId,comment]);
+        data = evt.target.response;
+        postMessage([CommentId,data]);
       });
     })
   }
