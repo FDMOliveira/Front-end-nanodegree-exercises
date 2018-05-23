@@ -106,6 +106,7 @@
         dataWorker.postMessage([kids, 3]);
         dataWorker.onmessage = function(e) {
           commentId = e.data[0];
+          console.log(commentId);
           commentDetails = e.data[1];
           document.getElementById('sdc-'+commentId).innerHTML = 
             storyDetailsCommentTemplate(commentDetails,localeData);
