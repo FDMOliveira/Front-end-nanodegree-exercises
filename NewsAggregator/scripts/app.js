@@ -141,8 +141,8 @@
 
       // If the last element of the array is shown, it creates a new one 
       if (lastElementTop <= main.scrollTop) {
-        loadStoryBatch();
-        console.log('carrega!');
+        loadStoryBatch(); 
+        console.log('carrega!'); 
     } 
   });
 
