@@ -63,6 +63,7 @@
       if (storyElement) {
         storyElement.innerHTML = storyTemplate(details);
         storyElement.addEventListener('click', onStoryClick.bind(this,details));
+        console.log(storyElement);
       }
     }  
     function onStoryClick(details) {    
@@ -136,8 +137,8 @@
     else
       document.body.classList.remove('raised');
     // Check if we need to load the next batch of stories.
-     if (main.scrollTop > window.innerHeight)
-      loadStoryBatch(); 
+/*      if (main.scrollTop > window.innerHeight)
+      loadStoryBatch();  */
    });
 
 function loadStoryBatch() {
