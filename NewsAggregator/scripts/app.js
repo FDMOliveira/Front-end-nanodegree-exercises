@@ -24,6 +24,7 @@
       commentDetails,
       commentId,
       details,
+      elmentsNumberPerChunk,
       storyChunk,
       firstElementChunk = 0,
       count=100,
@@ -146,7 +147,7 @@
   });
 
 function loadStoryBatch() {
-    var elmentsNumberPerChunk = stories.length / 5;
+    elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
 
     function loadStoryAnimation() {
