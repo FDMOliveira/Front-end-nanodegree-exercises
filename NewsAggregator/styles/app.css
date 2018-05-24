@@ -54,13 +54,13 @@ a {
 .header,
 .header__title-wrapper {
   transition: all 0.5s;
-  will-change: auto;
+  will-change: transform;
 }
 .header__title-wrapper {
   position: absolute;
   bottom: 16px;
   transform: scale(1);
-          transform-origin: 0 100%;
+  transform-origin: 0 100%;
 }
 
 .header__title {
