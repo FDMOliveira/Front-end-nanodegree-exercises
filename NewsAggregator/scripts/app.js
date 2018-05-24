@@ -137,16 +137,20 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
+
       // If the last element of the array is shown, it creates a new one 
-      /* if (lastElementTop <= main.scrollTop) {
+      if (lastElementTop <= main.scrollTop) {
         loadStoryBatch();
         console.log('carrega!');
-    }  */
+      } 
   });
 
 function loadStoryBatch() {
+    var elmentsNumberPerChunk = stories.length / 5;
+    storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
+
     function loadStoryAnimation() {
-      if (i < stories.length) {
+      if ((firstElementChunk < stories.length) && (i < storyChunk.length)) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
@@ -163,7 +167,10 @@ function loadStoryBatch() {
       details = e.data[1];
       onStoryData(key, details);
     }
-  }
+  firstElementChunk+=elmentsNumberPerChunk;
+  
+  lastElementTop = document.getElementsByClassName('story')[firstElementChunk+elmentsNumberPerChunk-4];
+}
   function firstLoad() {
     dataWorker.postMessage([1]);
     dataWorker.onmessage = function(e) {
