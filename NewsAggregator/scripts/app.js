@@ -134,11 +134,17 @@
       document.body.classList.add('raised');
     else
       document.body.classList.remove('raised'); 
+
+      // If the last element of the array is shown, it creates a new one 
+      if (lastElementTop <= main.scrollTop) {
+        loadStoryBatch();
+        console.log('carrega!');
+      } 
   });
 
 function loadStoryBatch() {
     function loadStoryAnimation() {
-      if (i < storyChunk.length) {
+      if (i < stories.length) {
         var story = document.createElement('div');
         story.id = 's-' + stories[i];
         story.classList.add('story');
