@@ -81,7 +81,7 @@ header.raised {
       height: 86px;
   will-change: auto;
 }
-.header__title-wrapper.raised {
+header.raised .header__title-wrapper {
 transform: scale(0.7);
 }
 main {
