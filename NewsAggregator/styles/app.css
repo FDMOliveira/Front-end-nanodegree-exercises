@@ -107,6 +107,7 @@ main.loading {
 .story-details.removeStory {
   will-change: left;
   transition: all 0.35s ease;
+  will-change: auto;
 }
 .story-details.showStory {
   transform: translateX(-100vw);
