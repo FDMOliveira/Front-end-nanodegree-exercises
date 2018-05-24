@@ -105,7 +105,6 @@ main.loading {
 
 .story-details.showStory,
 .story-details.removeStory {
-  will-change: left;
   transition: all 0.35s ease;
   will-change: auto;
 }
