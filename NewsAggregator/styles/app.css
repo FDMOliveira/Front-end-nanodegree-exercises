@@ -54,6 +54,7 @@ a {
 .header,
 .header__title-wrapper {
   transition: all 0.5s;
+  will-change: auto;
 }
 .header__title-wrapper {
   position: absolute;
@@ -79,7 +80,6 @@ a {
 header.raised {
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.23);
       height: 86px;
-  will-change: auto;
 }
 header .header__title-wrapper.raised {
   transform: scale(0.7);
@@ -90,7 +90,6 @@ main {
           flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   z-index: 0;
 }
 main.loading {
@@ -158,9 +157,6 @@ main.loading {
           flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
-
-  -webkit-overflow-scrolling: touch;
-
   padding: 0 16px 72px 72px;
 }
 .story-details__title {
@@ -249,6 +245,5 @@ footer {
 }
 
 footer a {
-  color: #666;
   font-weight: 500;
 }
