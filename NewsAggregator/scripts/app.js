@@ -149,7 +149,6 @@
 function loadStoryBatch() {
     var elmentsNumberPerChunk = stories.length / 5;
     storyChunk = stories.slice(firstElementChunk, elmentsNumberPerChunk);
-
     function loadStoryAnimation() {
       if ((firstElementChunk < stories.length) && (i < storyChunk.length)) {
         var story = document.createElement('div');
