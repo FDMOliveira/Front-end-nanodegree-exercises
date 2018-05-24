@@ -76,14 +76,12 @@ a {
   margin: 0;
   opacity: 0.54;
 }
-body.raised {
-  will-change: auto;
-}
-body.raised .header {
+header.raised {
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.23);
       height: 86px;
+  will-change: auto;
 }
-body.raised .header__title-wrapper {
+.header__title-wrapper.raised {
 transform: scale(0.7);
 }
 main {
