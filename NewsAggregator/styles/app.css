@@ -54,7 +54,6 @@ a {
 .header,
 .header__title-wrapper {
   transition: all 0.5s;
-  will-change: transform;
 }
 .header__title-wrapper {
   position: absolute;
