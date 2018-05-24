@@ -130,10 +130,15 @@
 
   main.addEventListener('scroll', function() {
     // Add a shadow to the header.
-    if (main.scrollTop > 70) 
+    if (main.scrollTop > 70)  {
       document.querySelector('header').classList.add('raised');
-    else
+      document.querySelector('.header__title-wrapper').classList.add('raised');
+    }
+    else {
       document.querySelector('header').classList.remove('raised'); 
+      document.querySelector('.header__title-wrapper').classList.remove('raised');
+    }
+      
 
       // If the last element of the array is shown, it creates a new one 
       /* if (lastElementTop <= main.scrollTop) {
