@@ -79,10 +79,10 @@ a {
 header.raised {
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.23);
       height: 86px;
-  will-change: auto;
+  will-change: contents;
 }
 header.raised .header__title-wrapper {
-transform: scale(0.7);
+  transform: scale(0.7);
 }
 main {
   padding-top: 156px;
