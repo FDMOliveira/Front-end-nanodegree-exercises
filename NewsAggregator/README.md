@@ -10,9 +10,10 @@ Unfortunately it had a bunch of performance issues, such as:
 * Long-running and badly-timed JavaScript
 * Bad touch handling
 
-My mission was to find and fix the issues, and make the app gloriously performant!
+My mission was to find and fix the issues, and make the app gloriously performant, 
+by fixing all the problems above and creating a Web Worker to send the data.  
 
-If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/2350c8b/NewsAggregator/index.html)
+If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/0866fe9/NewsAggregator/index.html)
 ## License
 
 See /LICENSE for more.
