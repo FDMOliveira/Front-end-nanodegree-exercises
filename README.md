@@ -20,6 +20,6 @@ News Aggregator is a web page that collects news from many sources, that had a l
 
 My mission was to find and fix the issues, and make the app gloriously performant.
 
-If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/0866fe9/NewsAggregator/index.html)
+If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/e6b23fd/NewsAggregator/index.html)
 ## 3. *Resume*
 This project is a resume built with information that comes from javascript objects and arrays.
