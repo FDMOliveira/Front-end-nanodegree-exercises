@@ -24,6 +24,7 @@
       commentDetails,
       commentId,
       details,
+      lastscrollTop=main.scrollTop;
       i=0,
       k=0,
       dataWorker = new Worker("./scripts/data.js"),
@@ -127,39 +128,58 @@
       return;
     document.querySelector('#sd-' + id).classList.add("removeStory");
   }
-
-  main.addEventListener('scroll', function() {
-    // Add a shadow to the header.
-    if (main.scrollTop > 70)  {
-      function headerRaised() {
-        var headerHeight = 156;
-        if (headerHeight >= 86) {
-          headerHeight -=2;
-          requestAnimationFrame(headerRaised);
-        } 
-        document.querySelector('header').style.height= headerHeight+'px';
-      }
+function headerRaisedAnimation() {
+  function headerRaised() {
+    if (headerHeight >= 86) {
+      headerHeight -=2;
       requestAnimationFrame(headerRaised);
-      document.querySelector('.header__title-wrapper').classList.add('raised');
-    }
-    else {
-      function headerRaisedOut() {
-        var headerHeight = 156;
-        if (headerHeight >= 86) {
-          headerHeight -=2;
-          requestAnimationFrame(headerRaisedOut);
-        } 
-        document.querySelector('header').style.height= headerHeight+'px';
-      }
-      requestAnimationFrame(headerRaisedOut);
-      document.querySelector('.header__title-wrapper').classList.remove('raised');
-    }
-      
+    } 
+    document.querySelector('header').style.height= headerHeight+'px';
+  }
+  requestAnimationFrame(headerRaised);
 
-      // If the last element of the array is shown, it creates a new one 
-      /* if (lastElementTop <= main.scrollTop) {
-        loadStoryBatch();
-      }  */
+  function header_titleRised() {
+    if(headerTitleScale >= 0.76) {
+      headerTitleScale*=0.1;
+      requestAnimationFrame(header_titleRised);
+    }
+    document.querySelector('header').style.transform='scale('+headerTitleScale+');';
+  }
+  requestAnimationFrame(header_titleRised);
+}
+function headerRaisedOutAnimation () {
+  function headerRaisedOut() {
+    if (headerHeight <= 156) {
+      headerHeight +=2;
+      requestAnimationFrame(headerRaisedOut);
+    } 
+    document.querySelector('header').style.height= headerHeight+'px';
+
+  }
+  requestAnimationFrame(headerRaisedOut);
+
+  function header_titleRisedOut() {
+    if(headerTitleScale <= 1) {
+      headerTitleScale*=1.1;
+      requestAnimationFrame(header_titleRisedOut);
+    }
+    document.querySelector('header').style.transform='scale('+headerTitleScale+');';
+  }
+  requestAnimationFrame(header_titleRisedOut);
+}
+  main.addEventListener('scroll', function() {
+    var headerTitleScale = 1;
+    var headerHeight = document.querySelector('header').offsetHeight;
+    
+    if (main.scrollTop > 70)  
+      document.querySelector('.header__title-wrapper').classList.add('raised');
+    else 
+      document.querySelector('.header__title-wrapper').classList.remove('raised');
+    if (main.scrollTop > lastscrollTop)
+      headerRaisedAnimation();      
+    else 
+      headerRaisedOutAnimation();
+      lastscrollTop = main.scrollTop;
   });
 
 function loadStoryBatch() {
