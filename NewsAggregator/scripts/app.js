@@ -132,6 +132,7 @@
     // Add a shadow to the header.
     if (main.scrollTop > 70)  {
       document.querySelector('header').classList.add('raised');
+      document.querySelector('header').style.height='86px';
       document.querySelector('.header__title-wrapper').classList.add('raised');
     }
     else {
