@@ -131,27 +131,20 @@
     document.querySelector('#sd-' + id).classList.add("removeStory");
   }
 function headerRaisedAnimation() {
-  function headerRaised() {
-    if (headerHeight >= 86) {
-      console.log('yes');
-      headerHeight -=2;
-    } 
+    if (headerHeight >= 86)
+        headerHeight -=2;
     document.querySelector('header').style.height= headerHeight+'px';
-  }
+}
 
-  function header_titleRised() {
-    if(headerTitleScale >= 0.76) {
+function header_titleRised() {
+    if(headerTitleScale >= 0.76)
       headerTitleScale*=0.1;
-    }
-    console.log(headerTitleScale);
     document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
-  }
 }
 function headerRaisedOutAnimation () {
   function headerRaisedOut() {
-    if (headerHeight <= 156) {
+    if (headerHeight <= 156)
       headerHeight +=2; 
-    } 
     document.querySelector('header').style.height=headerHeight+'px';
   }
 
@@ -166,16 +159,10 @@ function headerRaisedOutAnimation () {
 }
   main.addEventListener('scroll', function() {
     headerHeight = document.querySelector('header').offsetHeight;
-    console.log(main.scrollTop);
-    console.log(lastscrollTop);
-    if (main.scrollTop > lastscrollTop) {
-      console.log('down');
+    if (main.scrollTop > lastscrollTop) 
       headerRaisedAnimation();
-    }      
-    else  {
-      console.log('up');
+    else  
       headerRaisedOutAnimation();
-    }
       lastscrollTop = main.scrollTop;
   });
 
