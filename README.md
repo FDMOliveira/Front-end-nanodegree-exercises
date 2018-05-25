@@ -18,6 +18,6 @@ News Aggregator is a web page that collects news from many sources, that had a l
 * Long-running and badly-timed JavaScript
 * Bad touch handling
 
-If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/4b8c888/NewsAggregator/index.html)
+If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/56e5946/NewsAggregator/index.html)
 ## 3. *Resume*
 This project is a resume built with information that comes from javascript objects and arrays.
