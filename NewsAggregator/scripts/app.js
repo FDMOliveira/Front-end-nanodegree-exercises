@@ -14,8 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function() {
-
+APP.Main = (function() {
   var $ = document.querySelector.bind(document),
       stories,
       main = $('main'),
@@ -27,7 +26,6 @@
       lastscrollTop=main.scrollTop;
       i=0,
       k=0,
-      dataWorker = new Worker("./scripts/data.js"),
       localeData = {
         data: {
           intl: {
@@ -98,19 +96,19 @@
             comment.innerHTML = commentHtml;
             document.querySelector('.js-comments').appendChild(comment);
             k++;
+
+            APP.Data.getStoryComment(kids[k], function(commentDetails) {
+              commentDetails.time *= 1000;
+              var comment = commentsElement.querySelector(
+                  '#sdc-' + commentDetails.id);
+              comment.innerHTML = storyDetailsCommentTemplate(
+                  commentDetails,
+                  localeData);
+            });
           }
           requestAnimationFrame(getCommentKids);
         }
         requestAnimationFrame(getCommentKids);
-        
-        // GETSTORYCOMMENT
-        dataWorker.postMessage([kids, 3]);
-        dataWorker.onmessage = function(e) {
-          commentId = e.data[0];
-          commentDetails = e.data[1];
-          document.getElementById('sdc-'+commentId).innerHTML = 
-            storyDetailsCommentTemplate(commentDetails,localeData);
-        }
       }
       // There is a story container
       isStoryDetails = true;
@@ -151,26 +149,16 @@ function loadStoryBatch() {
         story.id = 's-' + stories[i];
         story.classList.add('story');
         main.appendChild(story);
+        APP.Data.getStoryById(stories[i], onStoryData.bind(this, key));
         i++;
         requestAnimationFrame(loadStoryAnimation);
       }
     }
     requestAnimationFrame(loadStoryAnimation);
-    
-    dataWorker.postMessage([stories, 2]);
-    dataWorker.onmessage = function(e) {
-      key = e.data[0];
-      details = e.data[1];
-      onStoryData(key, details);
-    }
 }
-  function firstLoad() {
-    dataWorker.postMessage([1]);
-    dataWorker.onmessage = function(e) {
-      stories = e.data;
-      loadStoryBatch();
-      main.classList.remove('loading');
-    }
-  }
-  firstLoad();
+APP.Data.getTopStories(function(data) {
+  stories = data;
+  loadStoryBatch();
+  main.classList.remove('loading');
+});
 })();

@@ -14,58 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-(function() {
+APP.Data = (function() {
 
   var HN_API_BASE = 'https://hacker-news.firebaseio.com';
   var HN_TOPSTORIES_URL = HN_API_BASE + '/v0/topstories.json';
   var HN_STORYDETAILS_URL = HN_API_BASE + '/v0/item/[ID].json';
-  var requestID = 0,
-      data,
-      functionNumber;
 
-  onmessage = function(e) {
-    var array = e.data[0];
-    var functionNumber = e.data[1];
-    if(e.data.length==1)
-      functionNumber = e.data[0];
-    switch(functionNumber) {
-      case 1: getTopStories();
-              break;
-      case 2: getStoryById(array);
-              break;
-      case 3: getStoryComment(array);
-              break;
-    }
-  }
-
-  // functionNumber 1
-  function getTopStories() { 
+  function getTopStories(callback) {
     request(HN_TOPSTORIES_URL, function(evt) {
-      data = evt.target.response;
-      postMessage(data);
+      callback(evt.target.response);
     });
   }
 
-  // functionNumber 2
-  function getStoryById(stories) {
-    stories.forEach(element => {
-      var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, element);
-      request(storyURL, function(evt) {
-        data = evt.target.response;
-        postMessage([element, data]);
-      });
+  function getStoryById(id, callback) {
+
+    var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
+
+    request(storyURL, function(evt) {
+      callback(evt.target.response);
     });
   }
 
-  // functionNumber 3
-  function getStoryComment(comments) {
-    comments.forEach(CommentId => {
-      var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, CommentId);
-      request(storyCommentURL, function(evt) {
-        data = evt.target.response;
-        postMessage([CommentId,data]);
-      });
-    })
+  function getStoryComment(id, callback) {
+
+    var storyCommentURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
+
+    request(storyCommentURL, function(evt) {
+      callback(evt.target.response);
+    });
   }
 
   function request(url, callback) {
