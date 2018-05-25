@@ -21,7 +21,7 @@ APP.Main = (function() {
       inDetails = false,
       isStoryDetails = false,
       details,
-      storiesPerLoad = stories.length / 5,
+      storiesPerLoad = 100,
       firstElement =0,
       i=0,
       k=0,
