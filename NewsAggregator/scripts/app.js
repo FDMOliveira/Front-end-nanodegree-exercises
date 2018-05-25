@@ -131,18 +131,24 @@
     document.querySelector('#sd-' + id).classList.add("removeStory");
   }
 main.addEventListener('scroll', function() {
-    header = document.querySelector('header');
-    var scrollTopCapped = Math.min(70, main.scrollTop);
-    var scaleFactor = 'scale(' + (1 - (scrollTopCapped / 300)) + ')'
+  var header = $('header');
+  var headerTitles = header.querySelector('.header__title-wrapper');
+  var scrollTopCapped = Math.min(70, main.scrollTop);
+  var scaleString = 'scale(' + (1 - (scrollTopCapped / 300)) + ')';
 
-    header.style.height = (156 - scrollTopCapped) + 'px';
-    headerTitle.style.transform = scaleFactor;
+  header.style.height = (156 - scrollTopCapped) + 'px';
+  headerTitles.style.webkitTransform = scaleString;
+  headerTitles.style.transform = scaleString;
 
-    if (main.scrollTop > 70)
+    if (main.scrollTop > 70) {
       document.querySelector('.header__title-wrapper').classList.add('raised');
-    else
+      document.querySelector('header').classList.add('raised');
+    }
+    else {
       document.querySelector('.header__title-wrapper').classList.remove('raised');
-  });
+      document.querySelector('header').classList.remove('raised');
+    }
+});
 
 function loadStoryBatch() {
     function loadStoryAnimation() {
