@@ -131,11 +131,27 @@
   main.addEventListener('scroll', function() {
     // Add a shadow to the header.
     if (main.scrollTop > 70)  {
-      document.querySelector('header').classList.add('raised');
+      function headerRaised() {
+        var headerHeight = 156;
+        if (headerHeight >= 86) {
+          headerHeight -=2;
+          requestAnimationFrame(headerRaised);
+        } 
+        document.querySelector('header').style.height= headerHeight+'px';
+      }
+      requestAnimationFrame(headerRaised);
       document.querySelector('.header__title-wrapper').classList.add('raised');
     }
     else {
-      document.querySelector('header').classList.remove('raised'); 
+      function headerRaisedOut() {
+        var headerHeight = 156;
+        if (headerHeight >= 86) {
+          headerHeight -=2;
+          requestAnimationFrame(headerRaisedOut);
+        } 
+        document.querySelector('header').style.height= headerHeight+'px';
+      }
+      requestAnimationFrame(headerRaisedOut);
       document.querySelector('.header__title-wrapper').classList.remove('raised');
     }
       
