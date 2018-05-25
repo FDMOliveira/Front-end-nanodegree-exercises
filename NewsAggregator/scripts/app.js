@@ -133,7 +133,7 @@
 function headerRaisedAnimation() {
   function headerRaised() {
     if (headerHeight >= 86) {
-      headerHeight -=2;
+      headerHeight -=5;
       requestAnimationFrame(headerRaised);
     } 
     document.querySelector('header').style.height= headerHeight+'px';
@@ -145,17 +145,17 @@ function headerRaisedAnimation() {
       headerTitleScale*=0.1;
       requestAnimationFrame(header_titleRised);
     }
-    document.querySelector('header').style.transform='scale('+headerTitleScale+');';
+    document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
   }
   requestAnimationFrame(header_titleRised);
 }
 function headerRaisedOutAnimation () {
   function headerRaisedOut() {
     if (headerHeight <= 156) {
-      headerHeight +=2;
+      headerHeight +=5;
       requestAnimationFrame(headerRaisedOut);
     } 
-    document.querySelector('header').style.height= headerHeight+'px';
+    document.querySelector('.header__title-wrapper').style.height= headerHeight+'px';
 
   }
   requestAnimationFrame(headerRaisedOut);
