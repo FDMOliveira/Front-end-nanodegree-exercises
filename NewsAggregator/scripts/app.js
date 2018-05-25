@@ -24,8 +24,8 @@
       commentDetails,
       commentId,
       details,
-      headerHeight =1,
-      headerTitleScale,
+      headerHeight,
+      headerTitleScale =1,
       lastscrollTop=main.scrollTop;
       i=0,
       k=0,
