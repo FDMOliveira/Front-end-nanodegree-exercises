@@ -171,7 +171,7 @@ function headerRaisedOutAnimation () {
   main.addEventListener('scroll', function() {
     headerTitleScale = 1;
     headerHeight = document.querySelector('header').offsetHeight;
-  console.LOG(headerTitleScale);
+    console.log(headerTitleScale);
     if (main.scrollTop > lastscrollTop)
       headerRaisedAnimation();      
     else 
