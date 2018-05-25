@@ -128,6 +128,7 @@
       return;
     document.querySelector('#sd-' + id).classList.add("removeStory");
   }
+  
 main.addEventListener('scroll', function() {
   var header = $('header');
   var headerTitles = header.querySelector('.header__title-wrapper');
