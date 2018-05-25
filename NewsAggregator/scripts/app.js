@@ -155,8 +155,7 @@ function headerRaisedOutAnimation () {
       headerHeight +=5;
       requestAnimationFrame(headerRaisedOut);
     } 
-    document.querySelector('.header__title-wrapper').style.height= headerHeight+'px';
-
+    document.querySelector('header').style.height=headerHeight+'px';
   }
   requestAnimationFrame(headerRaisedOut);
 
@@ -165,7 +164,7 @@ function headerRaisedOutAnimation () {
       headerTitleScale*=1.1;
       requestAnimationFrame(header_titleRisedOut);
     }
-    document.querySelector('header').style.transform='scale('+headerTitleScale+');';
+    document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
   }
   requestAnimationFrame(header_titleRisedOut);
 }
