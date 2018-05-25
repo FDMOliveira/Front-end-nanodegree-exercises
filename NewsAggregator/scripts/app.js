@@ -134,28 +134,19 @@ function headerRaisedAnimation() {
     if (headerHeight >= 86)
         headerHeight -=2;
     document.querySelector('header').style.height= headerHeight+'px';
-}
 
-function header_titleRised() {
     if(headerTitleScale >= 0.76)
       headerTitleScale*=0.1;
     document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
 }
 function headerRaisedOutAnimation () {
-  function headerRaisedOut() {
     if (headerHeight <= 156)
       headerHeight +=2; 
     document.querySelector('header').style.height=headerHeight+'px';
-  }
-
-  function header_titleRisedOut() {
-    if(headerTitleScale <= 1) {
+    if(headerTitleScale <= 1)
       headerTitleScale*=1.1;
-      requestAnimationFrame(header_titleRisedOut);
-    }
+    
     document.querySelector('.header__title-wrapper').style.transform='scale('+0.1+');';
-  }
-  requestAnimationFrame(header_titleRisedOut);
 }
   main.addEventListener('scroll', function() {
     headerHeight = document.querySelector('header').offsetHeight;
