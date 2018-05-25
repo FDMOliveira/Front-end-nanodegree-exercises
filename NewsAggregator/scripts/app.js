@@ -131,12 +131,12 @@
   main.addEventListener('scroll', function() {
     // Add a shadow to the header.
     if (main.scrollTop > 70)  {
-/*       document.querySelector('header').classList.add('raised');
- */      document.querySelector('.header__title-wrapper').classList.add('raised');
+      document.querySelector('header').classList.add('raised');
+      document.querySelector('.header__title-wrapper').classList.add('raised');
     }
     else {
-/*       document.querySelector('header').classList.remove('raised'); 
- */      document.querySelector('.header__title-wrapper').classList.remove('raised');
+      document.querySelector('header').classList.remove('raised'); 
+      document.querySelector('.header__title-wrapper').classList.remove('raised');
     }
       
 
