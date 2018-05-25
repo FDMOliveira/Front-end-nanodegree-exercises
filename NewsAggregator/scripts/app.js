@@ -133,6 +133,7 @@
 function headerRaisedAnimation() {
   function headerRaised() {
     if (headerHeight >= 86) {
+      console.log('yes');
       headerHeight -=2;
     } 
     document.querySelector('header').style.height= headerHeight+'px';
