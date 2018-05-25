@@ -136,7 +136,8 @@
       document.querySelector('.header__title-wrapper').classList.add('raised');
     }
     else {
-      document.querySelector('header').classList.remove('raised'); 
+      document.querySelector('header').classList.remove('raised');
+      document.querySelector('header').style.height='156px'; 
       document.querySelector('.header__title-wrapper').classList.remove('raised');
     }
       
