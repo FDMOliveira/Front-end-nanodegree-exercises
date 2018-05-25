@@ -145,7 +145,7 @@ main.addEventListener('scroll', function() {
       story.id = 's-' + stories[i];
       story.classList.add('story');
       main.appendChild(story);
-      APP.Data.getStoryById(stories[i], onStoryData.bind(this, key));
+      APP.Data.getStoryById(stories[i], onStoryData.bind(this, story.id));
       i++;
       requestAnimationFrame(loadStoryAnimation);
     }
