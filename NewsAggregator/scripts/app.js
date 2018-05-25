@@ -21,6 +21,8 @@ APP.Main = (function() {
       inDetails = false,
       isStoryDetails = false,
       details,
+      storiesPerLoad = stories.length / 5,
+      firstElement =0,
       i=0,
       k=0,
       localeData = {
@@ -140,15 +142,17 @@ main.addEventListener('scroll', function() {
 });
 
   function loadStoryAnimation() {
-    if (i < stories.length) {
+    var end = firstElement + storiesPerLoad;
+    if (firstElement < end) {
       var story = document.createElement('div');
       story.id = 's-' + stories[i];
       story.classList.add('story');
       main.appendChild(story);
       APP.Data.getStoryById(stories[i], onStoryData.bind(this, story.id));
-      i++;
+      firstElement++;
       requestAnimationFrame(loadStoryAnimation);
     }
+    firstElement+=storiesPerLoad;
   }
 APP.Data.getTopStories(function(data) {
   stories = data;
