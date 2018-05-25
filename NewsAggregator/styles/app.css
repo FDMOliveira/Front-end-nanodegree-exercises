@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-* {
+ * {
   box-sizing: border-box;
 }
 
@@ -54,11 +54,12 @@ a {
 header,
 .header__title-wrapper {
   transition: all 0.5s;
+  will-change: transform;
 }
 .header__title-wrapper {
   position: absolute;
   bottom: 16px;
-  transform: scale(1);
+  /* transform: scale(1); */
   transform-origin: 0 100%;
 }
 
