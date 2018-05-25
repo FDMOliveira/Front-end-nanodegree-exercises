@@ -132,7 +132,7 @@
   }
 function headerRaisedAnimation() {
     if (headerHeight >= 86)
-        headerHeight -=2;
+        headerHeight -=5;
     document.querySelector('header').style.height= headerHeight+'px';
 
     if(headerTitleScale >= 0.76)
