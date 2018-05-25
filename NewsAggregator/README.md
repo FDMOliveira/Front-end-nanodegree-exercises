@@ -12,7 +12,7 @@ Unfortunately it had a bunch of performance issues, such as:
 
 My mission was to find and fix the issues, and make the app gloriously performant!
 
-If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/53ba419/NewsAggregator/index.html)
+If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/ee35e1b/NewsAggregator/index.html)
 ## License
 
 See /LICENSE for more.
