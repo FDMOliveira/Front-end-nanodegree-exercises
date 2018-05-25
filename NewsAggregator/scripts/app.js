@@ -140,14 +140,10 @@ main.addEventListener('scroll', function() {
   headerTitles.style.webkitTransform = scaleString;
   headerTitles.style.transform = scaleString;
 
-    if (main.scrollTop > 70) {
-      document.querySelector('.header__title-wrapper').classList.add('raised');
-      document.querySelector('header').classList.add('raised');
-    }
-    else {
-      document.querySelector('.header__title-wrapper').classList.remove('raised');
-      document.querySelector('header').classList.remove('raised');
-    }
+  if (main.scrollTop > 70)
+  document.body.classList.add('raised');
+  else
+  document.body.classList.remove('raised');
 });
 
 function loadStoryBatch() {
