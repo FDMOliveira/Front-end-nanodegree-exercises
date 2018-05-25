@@ -14,23 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-APP.Main = (function() {
+(function() {
 
-  var LAZY_LOAD_THRESHOLD = 300;
-  var $ = document.querySelector.bind(document);
-
-  var stories = null;
-  var storyStart = 0;
-  var count = 100;
-  var main = $('main');
-  var inDetails = false;
-  var storyLoadCount = 0;
-  var localeData = {
-    data: {
-      intl: {
-        locales: 'en-US'
-      }
-    }
+  var $ = document.querySelector.bind(document),
+      stories,
+      main = $('main'),
+      inDetails = false,
+      isStoryDetails = false,
+      commentDetails,
+      commentId,
+      details,
+      header,
+      headerTitle = document.body.querySelector('.header__title-wrapper'),
+      lastscrollTop=main.scrollTop;
+      i=0,
+      k=0,
+      dataWorker = new Worker("./scripts/data.js"),
+      localeData = {
+        data: {
+          intl: {
+            locales: 'en-US'
+          }
+        }
   };
 
   var tmplStory = $('#tmpl-story').textContent;
@@ -48,10 +53,6 @@ APP.Main = (function() {
     tmplStoryDetailsComment = tmplStoryDetailsComment.replace(intlRelative, '');
   }
 
-  var storyDetails = document.createElement('section');
-  storyDetails.classList.add('story-details');
-  document.body.appendChild(storyDetails);
-
   var storyTemplate =
       Handlebars.compile(tmplStory);
   var storyDetailsTemplate =
@@ -59,153 +60,118 @@ APP.Main = (function() {
   var storyDetailsCommentTemplate =
       Handlebars.compile(tmplStoryDetailsComment);
 
-  /**
-   * As every single story arrives in shove its
-   * content in at that exact moment. Feels like something
-   * that should really be handled more delicately, and
-   * probably in a requestAnimationFrame callback.
-   */
   function onStoryData (key, details) {
-
-    var story = document.querySelector('.story#s-' + key);
-    details.time *= 1000;
-    var html = storyTemplate(details);
-    story.innerHTML = html;
-    story.addEventListener('click', onStoryClick.bind(this, details));
-    story.classList.add('clickable');
-
-    // Tick down. When zero we can batch in the next load.
-    storyLoadCount--;
-  }
-
-  function onStoryClick(details) {
-    if (details.url)
-      details.urlobj = new URL(details.url);
-
-    var comment;
-    var commentsElement;
-    var storyHeader;
-    var storyContent;
-
-    var storyDetailsHtml = storyDetailsTemplate(details);
-    var kids = details.kids;
-    var commentHtml = storyDetailsCommentTemplate({
-      by: '', text: 'Loading comment...'
-    });
-
-    storyDetails.setAttribute('id', 'sd-' + details.id);
-    storyDetails.innerHTML = storyDetailsHtml;
-
-    commentsElement = storyDetails.querySelector('.js-comments');
-    storyHeader = storyDetails.querySelector('.js-header');
-    storyContent = storyDetails.querySelector('.js-content');
-
-    var closeButton = storyDetails.querySelector('.js-close');
-    closeButton.addEventListener('click', hideStory.bind(this, details.id));
-
-    var headerHeight = storyHeader.getBoundingClientRect().height;
-    storyContent.style.paddingTop = headerHeight + 'px';
-
-    if (typeof kids === 'undefined')
-      return;
-
-    for (var k = 0; k < kids.length; k++) {
-
-      comment = document.createElement('aside');
-      comment.setAttribute('id', 'sdc-' + kids[k]);
-      comment.classList.add('story-details__comment');
-      comment.innerHTML = commentHtml;
-      commentsElement.appendChild(comment);
-
-      // Update the comment with the live data.
-      APP.Data.getStoryComment(kids[k], function(commentDetails) {
-
-        commentDetails.time *= 1000;
-
-        var comment = commentsElement.querySelector(
-            '#sdc-' + commentDetails.id);
-        comment.innerHTML = storyDetailsCommentTemplate(
-            commentDetails,
-            localeData);
-      });
+    var storyElement = document.getElementById('s-' + key);
+      if (storyElement) {
+        storyElement.innerHTML = storyTemplate(details);
+        storyElement.addEventListener('click', onStoryClick.bind(this,details));
+      }
+    }  
+    function onStoryClick(details) {    
+      setTimeout(showStory.bind(this, details.id), 60);
+  
+      if (!storyDetails) {
+        if (details.url)
+          details.urlobj = new URL(details.url);
+        var kids = details.kids;
+        var commentHtml = storyDetailsCommentTemplate({
+          by: '', text: 'Loading comment...'
+        }); 
+        var storyDetails = document.querySelector("section");
+  
+        if(!isStoryDetails) {
+          storyDetails = document.createElement('section');
+          storyDetails.classList.add('story-details');
+          document.body.appendChild(storyDetails);
+        }
+        storyDetails.classList.remove("removeStory");
+        storyDetails.id = 'sd-' + details.id;
+        storyDetails.innerHTML = storyDetailsTemplate(details);      
+        storyDetails.querySelector('.js-close').addEventListener('click', hideStory.bind(this, details.id));
+  
+        if (typeof kids === 'undefined')
+          return;
+        
+        function getCommentKids() {
+          if (k<kids.length) {
+            var comment = document.createElement('aside');
+            comment.setAttribute('id', 'sdc-' + kids[k]);
+            comment.classList.add('story-details__comment');
+            comment.innerHTML = commentHtml;
+            document.querySelector('.js-comments').appendChild(comment);
+            k++;
+          }
+          requestAnimationFrame(getCommentKids);
+        }
+        requestAnimationFrame(getCommentKids);
+        
+        // GETSTORYCOMMENT
+        dataWorker.postMessage([kids, 3]);
+        dataWorker.onmessage = function(e) {
+          commentId = e.data[0];
+          commentDetails = e.data[1];
+          document.getElementById('sdc-'+commentId).innerHTML = 
+            storyDetailsCommentTemplate(commentDetails,localeData);
+        }
+      }
+      // There is a story container
+      isStoryDetails = true;
     }
-
-    showStory(details.id);
-  }
 
   function showStory(id) {
+    inDetails = true;
+    var storyDetails = document.querySelector('#sd-' + id);
     if (!storyDetails)
       return;
-
-    storyDetails.classList.add('visible');
-    storyDetails.classList.remove('hidden');
+    storyDetails.classList.add("showStory");  
   }
-
   function hideStory(id) {
-    storyDetails.classList.add('hidden');
-    storyDetails.classList.remove('visible');
-  }
-
-  main.addEventListener('scroll', function() {
-    var header = $('header');
-    var headerTitles = header.querySelector('.header__title-wrapper');
-    var scrollTopCapped = Math.min(70, main.scrollTop);
-    var scaleString = 'scale(' + (1 - (scrollTopCapped / 300)) + ')';
-
-    header.style.height = (156 - scrollTopCapped) + 'px';
-    headerTitles.style.webkitTransform = scaleString;
-    headerTitles.style.transform = scaleString;
-
-    // Add a shadow to the header.
-    if (main.scrollTop > 70)
-      document.body.classList.add('raised');
-    else
-      document.body.classList.remove('raised');
-
-    // Check if we need to load the next batch of stories.
-    var loadThreshold = (main.scrollHeight - main.offsetHeight -
-        LAZY_LOAD_THRESHOLD);
-    if (main.scrollTop > loadThreshold)
-      requestAnimationFrame(loadStoryBatch);
-  });
-
-  function loadStoryBatch() {
-    if (storyLoadCount > 0)
+    if (!inDetails)
       return;
-
-    storyLoadCount = count;
-
-    var end = storyStart + count;
-    for (var i = storyStart; i < end; i++) {
-
-      if (i >= stories.length)
-        return;
-
-      var key = String(stories[i]);
-      var story = document.createElement('div');
-      story.setAttribute('id', 's-' + key);
-      story.classList.add('story');
-      story.innerHTML = storyTemplate({
-        title: '...',
-        score: '-',
-        by: '...',
-        time: 0
-      });
-      main.appendChild(story);
-
-      APP.Data.getStoryById(stories[i], onStoryData.bind(this, key));
-    }
-
-    storyStart += count;
-
-    requestAnimationFrame(loadStoryBatch);
+    document.querySelector('#sd-' + id).classList.add("removeStory");
   }
+main.addEventListener('scroll', function() {
+  var header = $('header');
+  var headerTitles = header.querySelector('.header__title-wrapper');
+  var scrollTopCapped = Math.min(60, main.scrollTop);
+  var scaleString = 'scale(' + (1 - (scrollTopCapped / 300)) + ')';
 
-  // Bootstrap in the stories.
-  APP.Data.getTopStories(function(data) {
-    stories = data;
-    requestAnimationFrame(loadStoryBatch);
-    main.classList.remove('loading');
-  });
+  header.style.height = (156 - scrollTopCapped) + 'px';
+  headerTitles.style.transform = scaleString;
 
+  if (main.scrollTop > 70)
+  document.body.classList.add('raised');
+  else
+  document.body.classList.remove('raised');
+});
+
+function loadStoryBatch() {
+    function loadStoryAnimation() {
+      if (i < stories.length) {
+        var story = document.createElement('div');
+        story.id = 's-' + stories[i];
+        story.classList.add('story');
+        main.appendChild(story);
+        i++;
+        requestAnimationFrame(loadStoryAnimation);
+      }
+    }
+    requestAnimationFrame(loadStoryAnimation);
+    
+    dataWorker.postMessage([stories, 2]);
+    dataWorker.onmessage = function(e) {
+      key = e.data[0];
+      details = e.data[1];
+      onStoryData(key, details);
+    }
+}
+  function firstLoad() {
+    dataWorker.postMessage([1]);
+    dataWorker.onmessage = function(e) {
+      stories = e.data;
+      loadStoryBatch();
+      main.classList.remove('loading');
+    }
+  }
+  firstLoad();
 })();
