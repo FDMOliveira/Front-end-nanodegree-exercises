@@ -24,8 +24,6 @@
       commentDetails,
       commentId,
       details,
-      header,
-      headerTitle = document.body.querySelector('.header__title-wrapper'),
       lastscrollTop=main.scrollTop;
       i=0,
       k=0,
@@ -133,7 +131,7 @@
 main.addEventListener('scroll', function() {
   var header = $('header');
   var headerTitles = header.querySelector('.header__title-wrapper');
-  var scrollTopCapped = Math.min(40, main.scrollTop);
+  var scrollTopCapped = Math.min(70, main.scrollTop);
   var scaleString = 'scale(' + (1 - (scrollTopCapped / 300)) + ')';
 
   header.style.height = (156 - scrollTopCapped) + 'px';
