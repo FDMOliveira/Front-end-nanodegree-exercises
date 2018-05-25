@@ -24,6 +24,8 @@
       commentDetails,
       commentId,
       details,
+      headerHeight,
+      headerTitleScale,
       lastscrollTop=main.scrollTop;
       i=0,
       k=0,
@@ -168,8 +170,8 @@ function headerRaisedOutAnimation () {
   requestAnimationFrame(header_titleRisedOut);
 }
   main.addEventListener('scroll', function() {
-    var headerTitleScale = 1;
-    var headerHeight = document.querySelector('header').offsetHeight;
+    headerTitleScale = 1;
+    headerHeight = document.querySelector('header').offsetHeight;
   
     console.log(lastscrollTop);
     console.log(main.scrollTop);
