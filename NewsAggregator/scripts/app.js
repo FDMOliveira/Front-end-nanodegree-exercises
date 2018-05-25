@@ -25,7 +25,7 @@
       commentId,
       details,
       headerHeight,
-      headerTitleScale =1,
+      headerTitleScale = 1,
       lastscrollTop=main.scrollTop;
       i=0,
       k=0,
@@ -133,7 +133,7 @@
 function headerRaisedAnimation() {
   function headerRaised() {
     if (headerHeight >= 86) {
-      headerHeight -=5;
+      headerHeight -=2;
       requestAnimationFrame(headerRaised);
     } 
     document.querySelector('header').style.height= headerHeight+'px';
@@ -145,6 +145,7 @@ function headerRaisedAnimation() {
       headerTitleScale*=0.1;
       requestAnimationFrame(header_titleRised);
     }
+    console.log(headerTitleScale);
     document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
   }
   requestAnimationFrame(header_titleRised);
@@ -152,7 +153,7 @@ function headerRaisedAnimation() {
 function headerRaisedOutAnimation () {
   function headerRaisedOut() {
     if (headerHeight <= 156) {
-      headerHeight +=5;
+      headerHeight +=2;
       requestAnimationFrame(headerRaisedOut);
     } 
     document.querySelector('header').style.height=headerHeight+'px';
@@ -170,7 +171,7 @@ function headerRaisedOutAnimation () {
 }
   main.addEventListener('scroll', function() {
     headerHeight = document.querySelector('header').offsetHeight;
-    console.log(headerTitleScale);
+
     if (main.scrollTop > lastscrollTop)
       headerRaisedAnimation();      
     else 
