@@ -168,10 +168,14 @@ function headerRaisedOutAnimation () {
     headerHeight = document.querySelector('header').offsetHeight;
     console.log(main.scrollTop);
     console.log(lastscrollTop);
-    if (main.scrollTop > lastscrollTop)
-      headerRaisedAnimation();      
-    else 
+    if (main.scrollTop > lastscrollTop) {
+      console.log('down');
+      headerRaisedAnimation();
+    }      
+    else  {
+      console.log('up');
       headerRaisedOutAnimation();
+    }
       lastscrollTop = main.scrollTop;
   });
 
