@@ -24,8 +24,8 @@
       commentDetails,
       commentId,
       details,
-      headerHeight,
-      headerTitleScale = 1,
+      header,
+      headerTitle = document.body.querySelector('.header__title-wrapper'),
       lastscrollTop=main.scrollTop;
       i=0,
       k=0,
@@ -130,31 +130,18 @@
       return;
     document.querySelector('#sd-' + id).classList.add("removeStory");
   }
-function headerRaisedAnimation() {
-    if (headerHeight >= 86)
-        headerHeight -=5;
-    document.querySelector('header').style.height= headerHeight+'px';
+main.addEventListener('scroll', function() {
+    header = document.querySelector('header');
+    var scrollTopCapped = Math.min(70, main.scrollTop);
+    var scaleFactor = 'scale(' + (1 - (scrollTopCapped / 300)) + ')'
 
-    if(headerTitleScale >= 0.76)
-      headerTitleScale*=0.1;
-    document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
-}
-function headerRaisedOutAnimation () {
-    if (headerHeight <= 156)
-      headerHeight +=2; 
-    document.querySelector('header').style.height=headerHeight+'px';
-    if(headerTitleScale <= 1)
-      headerTitleScale*=1.1;
-    
-    document.querySelector('.header__title-wrapper').style.transform='scale('+0.1+');';
-}
-  main.addEventListener('scroll', function() {
-    headerHeight = document.querySelector('header').offsetHeight;
-    if (main.scrollTop > lastscrollTop) 
-      headerRaisedAnimation();
-    else  
-      headerRaisedOutAnimation();
-      lastscrollTop = main.scrollTop;
+    header.style.height = (156 - scrollTopCapped) + 'px';
+    headerTitle.style.transform = scaleFactor;
+
+    if (main.scrollTop > 70)
+      document.querySelector('.header__title-wrapper').classList.add('raised');
+    else
+      document.querySelector('.header__title-wrapper').classList.remove('raised');
   });
 
 function loadStoryBatch() {
