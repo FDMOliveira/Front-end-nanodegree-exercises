@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 APP.Data = (function() {
-
   var HN_API_BASE = 'https://hacker-news.firebaseio.com';
   var HN_TOPSTORIES_URL = HN_API_BASE + '/v0/topstories.json';
   var HN_STORYDETAILS_URL = HN_API_BASE + '/v0/item/[ID].json';
@@ -27,9 +26,7 @@ APP.Data = (function() {
   }
 
   function getStoryById(id, callback) {
-
     var storyURL = HN_STORYDETAILS_URL.replace(/\[ID\]/, id);
-
     request(storyURL, function(evt) {
       callback(evt.target.response);
     });
@@ -57,5 +54,4 @@ APP.Data = (function() {
     getStoryById: getStoryById,
     getStoryComment: getStoryComment
   };
-
 })();

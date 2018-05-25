@@ -20,10 +20,7 @@ APP.Main = (function() {
       main = $('main'),
       inDetails = false,
       isStoryDetails = false,
-      commentDetails,
-      commentId,
       details,
-      lastscrollTop=main.scrollTop;
       i=0,
       k=0,
       localeData = {
@@ -142,23 +139,20 @@ main.addEventListener('scroll', function() {
   document.body.classList.remove('raised');
 });
 
-function loadStoryBatch() {
-    function loadStoryAnimation() {
-      if (i < stories.length) {
-        var story = document.createElement('div');
-        story.id = 's-' + stories[i];
-        story.classList.add('story');
-        main.appendChild(story);
-        APP.Data.getStoryById(stories[i], onStoryData.bind(this, key));
-        i++;
-        requestAnimationFrame(loadStoryAnimation);
-      }
+  function loadStoryAnimation() {
+    if (i < stories.length) {
+      var story = document.createElement('div');
+      story.id = 's-' + stories[i];
+      story.classList.add('story');
+      main.appendChild(story);
+      APP.Data.getStoryById(stories[i], onStoryData.bind(this, key));
+      i++;
+      requestAnimationFrame(loadStoryAnimation);
     }
-    requestAnimationFrame(loadStoryAnimation);
-}
+  }
 APP.Data.getTopStories(function(data) {
   stories = data;
-  loadStoryBatch();
+  requestAnimationFrame(loadStoryAnimation);
   main.classList.remove('loading');
 });
 })();
