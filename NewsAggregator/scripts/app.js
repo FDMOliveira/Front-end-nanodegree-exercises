@@ -133,7 +133,7 @@
 main.addEventListener('scroll', function() {
   var header = $('header');
   var headerTitles = header.querySelector('.header__title-wrapper');
-  var scrollTopCapped = Math.min(60, main.scrollTop);
+  var scrollTopCapped = Math.min(40, main.scrollTop);
   var scaleString = 'scale(' + (1 - (scrollTopCapped / 300)) + ')';
 
   header.style.height = (156 - scrollTopCapped) + 'px';
