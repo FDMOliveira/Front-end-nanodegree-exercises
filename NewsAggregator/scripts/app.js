@@ -144,9 +144,9 @@ main.addEventListener('scroll', function() {
       var story = document.createElement('div');
       story.id = 's-' + stories[i];
       story.classList.add('story');
-      APP.Data.getStoryById(stories[i], onStoryData.bind(this, story.id));
-      i++;    
       main.appendChild(story);
+      APP.Data.getStoryById(stories[i], onStoryData.bind(this, story.id));
+      i++;
       requestAnimationFrame(loadStoryAnimation);
     }
   }
