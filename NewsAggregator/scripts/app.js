@@ -134,38 +134,32 @@ function headerRaisedAnimation() {
   function headerRaised() {
     if (headerHeight >= 86) {
       headerHeight -=2;
-      requestAnimationFrame(headerRaised);
     } 
     document.querySelector('header').style.height= headerHeight+'px';
   }
-  requestAnimationFrame(headerRaised);
 
   function header_titleRised() {
     if(headerTitleScale >= 0.76) {
       headerTitleScale*=0.1;
-      requestAnimationFrame(header_titleRised);
     }
     console.log(headerTitleScale);
     document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
   }
-  requestAnimationFrame(header_titleRised);
 }
 function headerRaisedOutAnimation () {
   function headerRaisedOut() {
     if (headerHeight <= 156) {
-      headerHeight +=2;
-      requestAnimationFrame(headerRaisedOut);
+      headerHeight +=2; 
     } 
     document.querySelector('header').style.height=headerHeight+'px';
   }
-  requestAnimationFrame(headerRaisedOut);
 
   function header_titleRisedOut() {
     if(headerTitleScale <= 1) {
       headerTitleScale*=1.1;
       requestAnimationFrame(header_titleRisedOut);
     }
-    document.querySelector('.header__title-wrapper').style.transform='scale('+headerTitleScale+');';
+    document.querySelector('.header__title-wrapper').style.transform='scale('+0.1+');';
   }
   requestAnimationFrame(header_titleRisedOut);
 }
