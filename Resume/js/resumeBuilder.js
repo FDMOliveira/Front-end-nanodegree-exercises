@@ -1,11 +1,6 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
- */
 googleMap+="";
 
-//       //
-
-  var bio = {
+const bio = {
     name: "Filipe Oliveira",
     role: "Junior Front-End Developper",
     contacts: {
@@ -18,29 +13,29 @@ googleMap+="";
     skills: ["HTML5","CSS3","Bootstrap 4","Javascript","jQuery"],
     biopic: "",
     display : function() {
-        var formattedHeaderName = HTMLheaderName.replace("%data%",bio.name);
-        var formattedHeaderRole = HTMLheaderRole.replace("%data%",bio.role);
-        var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", "Welcome to my page!");
-        var formattedHTMLbioPic = HTMLbioPic.replace("%data%", "images/pic.jpg");
+        const formattedHeaderName = HTMLheaderName.replace("%data%",bio.name);
+        const formattedHeaderRole = HTMLheaderRole.replace("%data%",bio.role);
+        const formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", "Welcome to my page!");
+        const formattedHTMLbioPic = HTMLbioPic.replace("%data%", "images/pic.jpg");
     
         $('#header').prepend(formattedHeaderName,formattedHeaderRole);
         $('#header').append(formattedHTMLwelcomeMsg,formattedHTMLbioPic,HTMLskillsStart);    
         
-        for (var data in bio.contacts) {
-            var formattedHTMLcontactGeneric = HTMLcontactGeneric.replace("%contact%",data);
-            var newFormattedHTMLcontactGeneric = formattedHTMLcontactGeneric.replace("%data%",bio.contacts[data]);
+        for (let data in bio.contacts) {
+            const formattedHTMLcontactGeneric = HTMLcontactGeneric.replace("%contact%",data);
+            const newFormattedHTMLcontactGeneric = formattedHTMLcontactGeneric.replace("%data%",bio.contacts[data]);
              $("#topContacts").append(newFormattedHTMLcontactGeneric);
              $('#footerContacts').append(newFormattedHTMLcontactGeneric);
         
           }
-          for (var i=0; i<bio.skills.length; i++) {
-             var formattedHTMLskills = HTMLskills.replace("%data%", bio.skills[i]);
+          for (let i=0; i<bio.skills.length; i++) {
+             const formattedHTMLskills = HTMLskills.replace("%data%", bio.skills[i]);
              $('#skills').append(formattedHTMLskills);
           }
     } 
   };
   
-  var education = {
+  const education = {
     schools: [{
         name: "Multimedia Engineering",
         degree: "Graduation",
@@ -73,30 +68,30 @@ googleMap+="";
     display : function() {
         $('#education').append(HTMLschoolStart);
        
-        for (var i=0; i<education.schools.length; i++) {
-            var schoolObj = education.schools[i];
-            var majorStr ="";
-            var newHTMLschoolName = HTMLschoolName.replace("%data%",schoolObj["name"]);
-            var newHTMLschoolDegree = HTMLschoolDegree.replace("%data%",schoolObj["degree"]);
-            var newHTMLschoolDates = HTMLschoolDates.replace("%data%",schoolObj["dates"]);
-            var newHTMLschoolLocation = HTMLschoolLocation.replace("%data%",schoolObj["location"]);
-            for (var a=0; a<schoolObj["majors"].length;a++)
+        for (let i=0; i<education.schools.length; i++) {
+            const schoolObj = education.schools[i];
+            let majorStr ="";
+            const newHTMLschoolName = HTMLschoolName.replace("%data%",schoolObj["name"]);
+            const newHTMLschoolDegree = HTMLschoolDegree.replace("%data%",schoolObj["degree"]);
+            const newHTMLschoolDates = HTMLschoolDates.replace("%data%",schoolObj["dates"]);
+            const newHTMLschoolLocation = HTMLschoolLocation.replace("%data%",schoolObj["location"]);
+            for (let a=0; a<schoolObj["majors"].length;a++)
               majorStr = majorStr + schoolObj.majors[a]+", ";
-              var newHTMLschoolMajor = HTMLschoolMajor.replace("%data%",majorStr);
+              const newHTMLschoolMajor = HTMLschoolMajor.replace("%data%",majorStr);
            $('.education-entry').append(newHTMLschoolName,newHTMLschoolDegree,newHTMLschoolDates,newHTMLschoolLocation,newHTMLschoolMajor);
           }
           $('.education-entry').append(HTMLonlineClasses);
-        for (var i=0; i<education.onlineCourses.length;i++) {
-            var onlineCoursesObj = education.onlineCourses[i];
-            var newHTMLonlineTitle = HTMLonlineTitle.replace("%data%",onlineCoursesObj.title);
-            var newHTMLonlineSchool = HTMLonlineSchool.replace("%data%",onlineCoursesObj.school);
-            var newHTMLonlineDates = HTMLonlineDates.replace("%data%",onlineCoursesObj.dates);
-            var newHTMLonlineURL = HTMLonlineURL.replace("%data%",onlineCoursesObj.url);
+        for (let i=0; i<education.onlineCourses.length;i++) {
+            const onlineCoursesObj = education.onlineCourses[i];
+            const newHTMLonlineTitle = HTMLonlineTitle.replace("%data%",onlineCoursesObj.title);
+            const newHTMLonlineSchool = HTMLonlineSchool.replace("%data%",onlineCoursesObj.school);
+            const newHTMLonlineDates = HTMLonlineDates.replace("%data%",onlineCoursesObj.dates);
+            let newHTMLonlineURL = HTMLonlineURL.replace("%data%",onlineCoursesObj.url);
             $('.education-entry').append(newHTMLonlineTitle,newHTMLonlineSchool,newHTMLonlineDates,newHTMLonlineURL);
         }
     }
   };
-  var work = {
+  const work = {
     jobs: [{
       employer: "CaveDigital", 
       title: "Support Assistant and Developer ",
@@ -114,19 +109,19 @@ googleMap+="";
     display: function() {  
         $('#workExperience').append(HTMLworkStart);
         
-        for (var job in work.jobs) {
-            var jobArray= work.jobs[job];
-            var newHTMLworkEmployer = HTMLworkEmployer.replace("%data%", jobArray["employer"]);
-            var newHTMLworTitle = HTMLworkTitle.replace("%data%", jobArray["title"]);
-            var newHTMLworkDates = HTMLworkDates.replace("%data%", jobArray["location"]);
-            var newHTMLworkLocation = HTMLworkLocation.replace("%data%", jobArray["dates"]);
-            var newHTMLworkDescription = HTMLworkDescription.replace("%data%", jobArray["description"]);
+        for (let job in work.jobs) {
+            const jobArray= work.jobs[job];
+            const newHTMLworkEmployer = HTMLworkEmployer.replace("%data%", jobArray["employer"]);
+            const newHTMLworTitle = HTMLworkTitle.replace("%data%", jobArray["title"]);
+            const newHTMLworkDates = HTMLworkDates.replace("%data%", jobArray["location"]);
+            const newHTMLworkLocation = HTMLworkLocation.replace("%data%", jobArray["dates"]);
+            const newHTMLworkDescription = HTMLworkDescription.replace("%data%", jobArray["description"]);
         
             $('.work-entry').append(newHTMLworkEmployer,newHTMLworTitle,newHTMLworkDates,newHTMLworkLocation,newHTMLworkDescription);
         }
     }
   };
-  var projects = {
+  const projects = {
      projects: [{
       title: "My own Portefólio Web-site", 
       dates: "In progress",
@@ -135,14 +130,14 @@ googleMap+="";
     }],
     display: function() {
         $('#projects').append(HTMLprojectStart);
-        for (var project in projects.projects) {
-            var projectArray = projects.projects[project];
-            var newHTMLprojectTitle = HTMLprojectTitle.replace("%data%",projectArray["title"]);
-            var newHTMLprojectDates = HTMLprojectDates.replace("%data%",projectArray["dates"]);
-            var newHTMLprojectDescription = HTMLprojectDescription.replace("%data%",projectArray["description"]);
+        for (let project of projects.projects) {
+            const projectArray = project;
+            const newHTMLprojectTitle = HTMLprojectTitle.replace("%data%",projectArray["title"]);
+            const newHTMLprojectDates = HTMLprojectDates.replace("%data%",projectArray["dates"]);
+            const newHTMLprojectDescription = HTMLprojectDescription.replace("%data%",projectArray["description"]);
             $('.project-entry').append(newHTMLprojectTitle,newHTMLprojectDates,newHTMLprojectDescription);
-            for (var i=0;i<projectArray["images"].length;i++) {
-              var newHTMLprojectImage = HTMLprojectImage.replace("%data%",projectArray.images[i]);
+            for (let i=0;i<projectArray["images"].length;i++) {
+              const newHTMLprojectImage = HTMLprojectImage.replace("%data%",projectArray.images[i]);
               $('.project-entry').append(newHTMLprojectImage);    
             }
           }
@@ -159,8 +154,8 @@ googleMap+="";
   */
   $(document).ready(function() {
     $('button').click(function() {
-      var $name = $('#name');
-      var iName = inName($name.text()) || function(){};
+      const $name = $('#name');
+      const iName = inName($name.text()) || function(){};
       $name.html(iName);
     });
    

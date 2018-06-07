@@ -22,4 +22,4 @@ My mission was to find and fix the issues, and make the app gloriously performan
 
 If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/e6b23fd/NewsAggregator/index.html)
 ## 3. *Resume*
-This project is a resume built with information that comes from javascript objects and arrays.
+This project is a resume that usus information coming from javascript objects and arrays, a organizational paradigm **MV*** and **ES6**.
