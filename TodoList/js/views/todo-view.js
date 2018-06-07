@@ -48,7 +48,6 @@ var app = app || {};
 			if (this.model.changed.id !== undefined) {
 				return;
 			}
-
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
@@ -58,7 +57,7 @@ var app = app || {};
 		},
 
 		toggleVisible: function () {
-			this.$el.toggleClass('hidden', this.isHidden()); 
+			this.$el.toggleClass('hidden', this.isHidden());
 		},
 		setPriority : function () {
 			let priority = this.model.get('priority');
@@ -78,10 +77,11 @@ var app = app || {};
 				app.TodoFilter === 'active' :
 				app.TodoFilter === 'completed';
 		},
-
 		// Toggle the `"completed"` state of the model.
 		toggleCompleted: function () {
 			this.model.toggle();
+			if((this.$el).hasClass('completed'))
+				this.$el.attr('class', 'completed');
 		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.
