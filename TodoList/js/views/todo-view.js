@@ -117,7 +117,6 @@ var app = app || {};
 			} else {
 				this.clear();
 			}
-
 			this.$el.removeClass('editing');
 		},
 

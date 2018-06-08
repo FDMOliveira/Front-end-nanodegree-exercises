@@ -50,8 +50,8 @@ var app = app || {};
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function () {
-			var completed = app.todos.completed().length;
-			var remaining = app.todos.remaining().length;
+			let completed = app.todos.completed().length;
+			let remaining = app.todos.remaining().length;
 
 			if (app.todos.length) {
 				this.$main.show();
@@ -61,7 +61,6 @@ var app = app || {};
 					completed: completed,
 					remaining: remaining
 				}));
-
 				this.$('#filters li a')
 					.removeClass('selected')
 					.filter('[href="#/' + (app.TodoFilter || '') + '"]')
