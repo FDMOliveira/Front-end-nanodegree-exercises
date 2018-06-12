@@ -1,20 +1,43 @@
---imagemin
---grunt-responsive-images
-
 ## Website Performance Optimization portfolio project
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+This challenge was about turning a slow and not optimized portfolio in a fast and optimized one.
+Here you have the [final](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/35d5801/Pizzeria/index.html) page.
 
-### Getting started
+### Optimizing steps
+Critical Rendering Path:
+* Set *media* attribute in a CSS file to remove it from critical resources and avoid it **rendering block**
+* Set a Javascript files as **async**
+* Use inline Javascript
 
-#### Part 1: Optimize PageSpeed Insights score for index.html
+Javascript File:
+* Remove unnecessary code
+* Optimize code
+* Minification
 
-#### Part 2: Optimize Frames per Second in pizza.html
+CSS File:
+* Optimize code
+* Minification
 
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
+Reduce the number of downloads:
+* Usage of local font
 
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
+Optimizing image:
+* Usage of *srcset* to set different image sources for different resolutions
+* Compress images
+
+Grunt Tasks:
+* [Imagemin](https://github.com/gruntjs/grunt-contrib-imagemin) to compress images
+* [Responsive-images](https://github.com/andismith/grunt-responsive-images) to set different image sources for different resolutions
+* [CSSmin](https://github.com/gruntjs/grunt-contrib-cssmin) to minify CSS files
+* [Uglify](https://github.com/gruntjs/grunt-contrib-uglify) to minify Javascript Files
+
+
+Results:
+* All above mentioned resulted in a PageSpeed insight score achievment of **91%** in Mobile and **95%** in computer.
+* Scroll animation with a consistent frame-rate at **60fps** - pizza.html
+* Resize pizza animation in less then **2ms** -pizza.html
 
 ### Optimization Tips and Tricks
+Here are some sources that were very useful during this challenge: 
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
 * [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
