@@ -10,17 +10,11 @@ Some Grunt task's were used to enhance the performance of the game:
 * [Cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) to minify CSS file
 * [Imagemin](https://www.npmjs.com/package/grunt-contrib-imagemin) to compress all images
 
-## 2. *News Aggregator*
-News Aggregator is a web page that collects news from many sources, that had a lot of "jank" and the goal was to remove it. Therefore, the following performance issues were fixed: 
-* Layout Thrashing
-* Expensive painting
-* Unnecessary layouts
-* Long-running and badly-timed JavaScript
-* Bad touch handling
+## 2. *Pizzeria*
+This challenge was about turning a slow and not optimized portfolio page in a fast and optimized one.
+In it's folder you can read the corrections i have made.
 
-My mission was to find and fix the issues, and make the app gloriously performant.
-
-If you want to compare, here is the [source site](http://udacity.github.io/news-aggregator/) and the [fixed one](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/e6b23fd/NewsAggregator/index.html)
+Here is the [source site](https://cdn.rawgit.com/udacity/frontend-nanodegree-mobile-portfolio/master/index.html)  and the [fixed one](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/35d5801/Pizzeria/index.html)
 ## 3. *Resume*
 This project is a resume that usus information coming from javascript objects and arrays, using **ES6**.
 
