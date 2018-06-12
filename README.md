@@ -12,6 +12,7 @@ Some Grunt task's were used to enhance the performance of the game:
 
 ## 2. *Pizzeria*
 This challenge was about turning a slow and not optimized portfolio page in a fast and optimized one.
+
 In it's folder you can read the corrections i have made.
 
 Here is the [source site](https://cdn.rawgit.com/udacity/frontend-nanodegree-mobile-portfolio/master/index.html)  and the [fixed one](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/35d5801/Pizzeria/index.html)
