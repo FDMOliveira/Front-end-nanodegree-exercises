@@ -1,0 +1,35 @@
+{
+  "name": "front-end-nanodegree-exercises",
+  "version": "1.0.0",
+  "description": "Here you can find exercises done by me during the Udacity nanodegree program.",
+  "main": "index.js",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "grunt-contrib-uglify": "^3.3.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-pngquant": "^5.1.0",
+    "install": "^0.11.0",
+    "npm": "^6.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.2",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-imagemin": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FDMOliveira/Front-end-nanodegree-exercises.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FDMOliveira/Front-end-nanodegree-exercises/issues"
+  },
+  "homepage": "https://github.com/FDMOliveira/Front-end-nanodegree-exercises#readme"
+}
