@@ -507,17 +507,12 @@ function updatePositions() {
   if (frame % 10 === 0) {
     let timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
     logAverageFrame(timesToUpdatePosition);
-  }
-
-  // This for-loop actually creates and appends all of the pizzas when the scroll reaches the 'ingredients' container
-  const locationsTop = document.querySelector('#ingredients.row').offsetTop - document.querySelector('#locations.row').scrollTop;
-  if (locationsTop < scrollTop) {
-  for (let i = 2; i < 100; i++) {
-    document.getElementById("randomPizzas").appendChild(pizzaElementGenerator(i));
-  }
-  }
+  }  
 }
-
+// Creates all 100 pizzas elements and appends them on the screen
+for (let i = 2; i < 100; i++) {
+  document.getElementById("randomPizzas").appendChild(pizzaElementGenerator(i));
+}
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
