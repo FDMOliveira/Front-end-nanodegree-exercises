@@ -37,7 +37,21 @@ button,
 input[type="checkbox"] {
   outline: none;
 }
-
+.filter {
+	
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+}
+.filter.red {
+	background-color: #d66;
+}
+.filter.yellow {
+	background-color: #d8d143;
+}
+.filter.green {
+	background-color: #4ab54d;
+}
 #todoapp {
 	background: #fff;
 	background: rgba(255, 255, 255, 0.9);
