@@ -52,7 +52,6 @@ var app = app || {};
 		render: function () {
 			let completed = app.todos.completed().length;
 			let remaining = app.todos.remaining().length;
-
 			if (app.todos.length) {
 				this.$main.show();
 				this.$footer.show();
@@ -69,7 +68,6 @@ var app = app || {};
 				this.$main.hide();
 				this.$footer.hide();
 			}
-
 			this.allCheckbox.checked = !remaining;
 		},
 
