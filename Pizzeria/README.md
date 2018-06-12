@@ -1,7 +1,7 @@
 ## Website Performance Optimization portfolio project
 This challenge was about turning a slow and not optimized portfolio in a fast and optimized one.
 Here you have the [final](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/35d5801/Pizzeria/index.html) version page.
-You can either check the source file and compare to production file.
+You can also have the chance to check the source file and compare it to the production file.
 
 ### Optimizing steps
 Critical Rendering Path:
@@ -33,12 +33,12 @@ Grunt Tasks:
 
 
 Results:
-* All above mentioned resulted in a PageSpeed insight score achievment of **91%** in Mobile and **95%** in computer.
+* All actions that were above mentioned resulted in a PageSpeed insight score achievment of **91%** in Mobile and **95%** in computer.
 * Scroll animation with a consistent frame-rate at **60fps** - pizza.html
 * Resize pizza animation in less then **2ms** -pizza.html
 
 ### Optimization Tips and Tricks
-Here are some sources that were very useful during this challenge: 
+The following sources were very helpful during this challenge: 
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
 * [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
