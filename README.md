@@ -19,7 +19,7 @@ Here is the [source site](https://cdn.rawgit.com/udacity/frontend-nanodegree-mob
 ## 3. *Resume*
 This project is a resume that usus information coming from javascript objects and arrays, using **ES6**.
 
-##4. *TODO LIST*
+## 4. *TODO LIST*
 Todo List in a web app developed using a organizational paradigm **MV*** with help of Backbone.js.
 This Web-application lets you save a todo-list in which, in every task introduced, you can select its level of priority. 
 I hope you enjoy my [Todo List App](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/TodoList/index.html)
