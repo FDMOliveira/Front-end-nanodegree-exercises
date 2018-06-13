@@ -22,4 +22,5 @@ This project is a resume that usus information coming from javascript objects an
 ## 4. *Todo list*
 Todo List in a web app developed using a organizational paradigm **MV*** with help of Backbone.js.
 This Web-application lets you save a todo-list in which, in every task introduced, you can select its level of priority. 
+
 I hope you enjoy my [Todo List App](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/TodoList/index.html)
