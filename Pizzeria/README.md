@@ -35,7 +35,7 @@ Grunt Tasks:
 
 
 ## Results:
-* All actions that were mentioned above result in a *PageSpeed Insight* score achievment of **91%** in Mobile and **95%** in computer.
+* All actions that were mentioned above result in a *PageSpeed Insight* score of **91%** in Mobile and **95%** in computer.
 * Scroll animation with a consistent frame-rate at **60fps** - pizza.html
 * Resize pizza animation in less then **2ms** -pizza.html
 
