@@ -1,8 +1,9 @@
 ## Website Performance Optimization portfolio project
-This challenge was about turning a slow and not optimized portfolio in a fast and optimized one.
+This challenge was about turning a slow and not optimized portfolio into the best possible version. 
 
-Here you have the [final](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/9b7aff5/Pizzeria/index.html) version page.
-You can also have the chance to check the source file and compare it to the production file.
+Here you can find the [final](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/9b7aff5/Pizzeria/index.html) version of the optimized page. 
+
+You also have the chance to check the source file and compare it with the production file.
 
 ### Optimizing steps
 Critical Rendering Path:
@@ -34,7 +35,7 @@ Grunt Tasks:
 
 
 ## Results:
-* All actions that were above mentioned resulted in a PageSpeed insight score achievment of **91%** in Mobile and **95%** in computer.
+* All actions that were mentioned above result in a *PageSpeed Insight* score achievment of **91%** in Mobile and **95%** in computer.
 * Scroll animation with a consistent frame-rate at **60fps** - pizza.html
 * Resize pizza animation in less then **2ms** -pizza.html
 
