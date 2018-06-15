@@ -1,7 +1,7 @@
 ## Website Performance Optimization portfolio project
 This challenge was about turning a slow and not optimized portfolio into the best possible version. 
 
-Here you can find the [final](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/9b7aff5/Pizzeria/index.html) version of the optimized page. 
+Here you can find the [final](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/9b7aff5/Pizzeria/dist/index.html) version of the optimized page. 
 
 You also have the chance to check the source file and compare it with the production file.
 

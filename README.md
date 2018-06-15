@@ -15,7 +15,7 @@ This challenge was about turning a slow and not optimized portfolio page in a fa
 
 In it's folder you can read the corrections i have made.
 
-Here is the [source site](https://cdn.rawgit.com/udacity/frontend-nanodegree-mobile-portfolio/master/index.html)  and the [fixed one](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/9b7aff5/Pizzeria/index.html)
+Here is the [source site](https://cdn.rawgit.com/udacity/frontend-nanodegree-mobile-portfolio/master/index.html)  and the [fixed one](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/9b7aff5/Pizzeria/dist/index.html)
 ## 3. *Resume*
 This project is a resume that usus information coming from javascript objects and arrays, using **ES6**.
 
