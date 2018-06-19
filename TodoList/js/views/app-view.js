@@ -35,7 +35,7 @@ var app = app || {};
 			this.$footer = this.$('#footer');
 			this.$main = this.$('#main');
 			this.$list = $('#todo-list');
-
+			
 			this.listenTo(app.todos, 'add', this.addOne);
 			this.listenTo(app.todos, 'reset', this.addAll);
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
@@ -55,7 +55,6 @@ var app = app || {};
 			if (app.todos.length) {
 				this.$main.show();
 				this.$footer.show();
-
 				this.$footer.html(this.statsTemplate({
 					completed: completed,
 					remaining: remaining

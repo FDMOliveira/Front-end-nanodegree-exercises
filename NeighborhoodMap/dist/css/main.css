@@ -1,0 +1,17 @@
+.menu {
+    background-color: rgba(0,0,0,0.8);
+    display: block;
+    height: 100%;
+    transform:scale(0);
+    box-shadow: 0 0 30px;
+    animation: scale 0.5s 0.5s ease-in-out forwards;
+}
+@keyframes scale {
+    100% {transform: scale(1)}
+}
+.menu .entry-text{
+    color:white;
+    width: 50%;
+    position: relative;
+    top: 5%;
+}
