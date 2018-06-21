@@ -349,17 +349,17 @@ let model = {
         const term= element.name;
         const lat = element.latlng.lat;
         const lng = element.latlng.lng;
-        const request = new Request(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&latitude=${lat}&longitude=${lng}`);
-        fetch(request,{
-            headers: new Headers({
-              'Authorization': 'Bearer qtfdiU5ar6RRO3Qt8XZ0wUaxB3Sd--XZ6NRj-YJuaFQXrxIl6HNaEGXKPJKM7-A_UgGwwrkMop9EXlSaxDbxkUj1V5KbJqbAYruVk08Kf5-hfkLOaKNKVuKJst8nW3Yx'
-            }),mode: 'cors'})
+        const url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&latitude=${lat}&longitude=${lng}`;
+        const headers = {
+            'Authorization': 'Bearer qtfdiU5ar6RRO3Qt8XZ0wUaxB3Sd--XZ6NRj-YJuaFQXrxIl6HNaEGXKPJKM7-A_UgGwwrkMop9EXlSaxDbxkUj1V5KbJqbAYruVk08Kf5-hfkLOaKNKVuKJst8nW3Yx'
+        };
+        fetch(url, {headers, mode:'cors'})
         .then(response => {
             if (response.ok) 
                 return response.json()  
             else
             {
-                return Promise.reject('something went wrong!')
+                throw new Error('something went wrong!');
             }
         })
         .then(data => {
@@ -382,7 +382,7 @@ let model = {
         });
     }
 }
-let viewModel = {    
+let viewModel = {
     renderMap () {
         model.renderMap();
         viewModel.populateList();
@@ -392,10 +392,7 @@ let viewModel = {
             model.closeAllInfoWindows);
     },
     populateList () {
-        pubList = ko.observableArray([]),
-        model.pubsInfo.forEach((pub) => {
-            pubList.push(pub);
-        }),
+        pubList = ko.observableArray(model.pubsInfo);
         pubClicked = (data) => console.log(data);
     },
     createIW(element, marker) {

@@ -43,27 +43,57 @@
     input#hamburguer-menu:checked ~ .menu-container {
         transform: translateX(0%);
     }
-    input#hamburguer-menu:checked ~ label#label-menu {
-        transform: translateX(415%);
-    }
     input#hamburguer-menu:checked ~ .menu-container .menu {
         opacity: 1;
     }
     .hamburger-menu * {
-        border-radius: 50px;
+        border-radius: 4px;
         position: absolute;
-        height: 3px;
+        height: 4px;
         width: 100%;
         background-color: white;
     }
+    .hamburger-menu span:nth-child(1),
+    .hamburger-menu span:nth-child(2),
+    .hamburger-menu span:nth-child(3) {
+        transition: all 0.5s ease-in-out;
+    }
+    label#label-menu {
+        transition: all 0.3s ease-in-out;
+    }
+    input#hamburguer-menu:checked + label#label-menu .hamburger-menu span:nth-child(1) {
+        transform:translateY(9px) rotate(45deg);
+    }
+    input#hamburguer-menu:checked + label#label-menu .hamburger-menu span:nth-child(2) {
+        opacity: 0;
+    }
+    input#hamburguer-menu:checked + label#label-menu .hamburger-menu span:nth-child(3) {
+        transform:translateY(-9px) rotate(-45deg);
+    }
+    input#hamburguer-menu:checked + label#label-menu { 
+        transform: translateX(160px);
+    }
+    input#hamburguer-menu:checked + label#label-menu .hamburger-menu {
+        height: 100%;
+        width: 100%;
+        animation: rotate 0.7s ease-in-out forwards;
+    }
+    @keyframes rotate {
+        0% {transform: rotate(0)}
+        80% {transform: rotate(190deg)}
+        100% {transform: rotate(176deg)}
+    }
     .hamburger-menu span:nth-child(1) {
         top: 0;
+        transform:translateY(0);
     }
     .hamburger-menu span:nth-child(2) {
         top: 50%;
+        opacity: 1;
     }
     .hamburger-menu span:nth-child(3) {
         top: 100%;
+        transform:translateY(0);
     }
     .menu-container {
         width: 216px;
