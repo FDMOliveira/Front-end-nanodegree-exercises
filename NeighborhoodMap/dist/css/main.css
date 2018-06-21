@@ -20,6 +20,9 @@
     100% {transform: scale(1); opacity: 1;}
 } 
 @media screen and (min-width:1px) {
+    html, body {
+        overflow: hidden;
+    }
     input#hamburguer-menu {
         z-index: 1;
         display: none;
