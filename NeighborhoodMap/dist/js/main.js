@@ -7,8 +7,6 @@ let view = {
         const closeButton = $(marker).parent().children()[2];
         const markerBox = $(markerContainer).children()[3];
         const closeBtn = $(marker).parent().children()[3];
-        const placeholder = $(markerContainer).children()[2];
-
         $(closeBtn).addClass('close-btn');
         $(closeButton).addClass('close-btn');
         $(markerBox).addClass('marker-container');
@@ -302,6 +300,7 @@ let model = {
         model.map = new google.maps.Map(document.getElementsByClassName('map')[0],{center: initialPosition,
                                         zoom: 14,
                                         styles:mapStyle,
+                                        mapTypeControl: false,
                                         disableDefaultUI: true,
                                         gestureHandling: 'greedy'
                                     });     
@@ -407,7 +406,7 @@ let viewModel = {
 
         // Create Info Window
         model.createInfoWindow(marker);
-
+        
         //Set Custom InfoWindow
         view.setCustomIW();
 

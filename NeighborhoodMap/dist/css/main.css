@@ -154,6 +154,7 @@
     }
     .map .gm-style .marker-container {
         display: flex;
+        transform:scale(0); 
         opacity: 0;
         width: 161px !important;
         height: 214px !important;
@@ -161,6 +162,7 @@
         left: -30px !important;
         border-radius: 0 0 4px 4px;
         flex-wrap: wrap;
+        animation: marker 0.4s 0.5s ease-in-out forwards; 
     }
     .map .gm-style .marker-container .marker-img {
         position: relative;
