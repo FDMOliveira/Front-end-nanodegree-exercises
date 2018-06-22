@@ -386,15 +386,16 @@ let model = {
             viewModel.errorIW(error);
         });
     },
-    searchResults(input) {
-        model.prevInput+=input;
-        console.log('valor: '+model.prevInput);
-        model.pubsInfo.forEach((element, index)=>{
-            if ((model.pubsInfo[index].name).includes(model.prevInput)) {
-               // console.log(model.pubsInfo[index].name);
-            }
-        })
-        console.log(model.prevInput);
+    searchResults(input, event) {
+        if(input.length>0) {
+            if(event.inputType === "deleteContentBackward")
+                input = input.substring(0, input.length-1);
+             model.pubsInfo.forEach((element, index)=>{
+                if ((model.pubsInfo[index].name).includes(input)) {
+                     console.log(model.pubsInfo[index].name);
+                }
+            }) 
+        }
     }
 }
 let viewModel = {
@@ -438,8 +439,7 @@ let viewModel = {
     },   
     search() {
         $('.search-bar').on('input', function() {
-            console.log($(this).val())
-            model.searchResults($(this).val());
+            model.searchResults($(this).val(), event);
         });
     }
 }
