@@ -7,6 +7,8 @@ let view = {
         const closeButton = $(marker).parent().children()[2];
         const markerBox = $(markerContainer).children()[3];
         const closeBtn = $(marker).parent().children()[3];
+        const placeholder = $(markerContainer).children()[2];
+
         $(closeBtn).addClass('close-btn');
         $(closeButton).addClass('close-btn');
         $(markerBox).addClass('marker-container');
@@ -405,7 +407,7 @@ let viewModel = {
 
         // Create Info Window
         model.createInfoWindow(marker);
-        
+
         //Set Custom InfoWindow
         view.setCustomIW();
 
