@@ -300,8 +300,9 @@ let model = {
         model.map = new google.maps.Map(document.getElementsByClassName('map')[0],{center: initialPosition,
                                         zoom: 14,
                                         styles:mapStyle,
-                                        mapTypeControl: false,
-                                        disableDefaultUI: true});     
+                                        disableDefaultUI: true,
+                                        gestureHandling: 'greedy'
+                                    });     
     },
     makeMarkers (pubsInfo) {
         // Create icon
@@ -393,7 +394,7 @@ let viewModel = {
     },
     populateList () {
         pubList = ko.observableArray(model.pubsInfo);
-        pubClicked = (data) => console.log(data);
+        pubClicked = (element, index) => viewModel.createIW(element,model.markers[index.handleObj.guid-1]);
     },
     createIW(element, marker) {
         //Get Assyncronous Data from Yelp Api

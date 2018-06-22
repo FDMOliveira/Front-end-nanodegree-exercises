@@ -23,6 +23,9 @@
     html, body {
         overflow: hidden;
     }
+    #map {
+        position: fixed;
+    }
     input#hamburguer-menu {
         z-index: 1;
         display: none;
