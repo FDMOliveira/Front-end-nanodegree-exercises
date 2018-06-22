@@ -60,7 +60,7 @@ let view = {
     iwEerror(error) {
         $('.error-handling').css('display','block');
         console.log('error: '+error);
-    },
+    },   
 }
 let model = {
     map:"" ,
@@ -80,6 +80,8 @@ let model = {
     infowindow:"",
     marker:"",
     PublicID:"",
+    self :this,
+    prevInput:'',
     renderMap() {
         const initialPosition = {lat:38.7209844, lng:-9.1535356};
         const mapStyle= [
@@ -306,6 +308,7 @@ let model = {
                                     });     
     },
     makeMarkers (pubsInfo) {
+        self.bounds = new google.maps.LatLngBounds();
         // Create icon
         icon = {
             url: "./img/cocktail.svg", // url
@@ -323,17 +326,17 @@ let model = {
             marker.addListener('click', function () { 
                 viewModel.createIW(element, model.markers[index]);
             });
+            self.bounds.extend(element.latlng);
+            model.map.fitBounds(self.bounds);
         });
     },
     createInfoWindow(marker) {  
-        pubCompleteInformation =
-            `<div></div>`;
+        pubCompleteInformation =`<div></div>`;
         model.infowindow = new google.maps.InfoWindow({
             content: pubCompleteInformation 
             });
         model.infowindow.open(model.map, marker);
     },
-
     closeAllInfoWindows() {
         model.markers.forEach((marker) => {
             if (typeof model.infowindow.content !== 'undefined') {
@@ -382,6 +385,16 @@ let model = {
         }).catch(error => {
             viewModel.errorIW(error);
         });
+    },
+    searchResults(input) {
+        model.prevInput+=input;
+        console.log('valor: '+model.prevInput);
+        model.pubsInfo.forEach((element, index)=>{
+            if ((model.pubsInfo[index].name).includes(model.prevInput)) {
+               // console.log(model.pubsInfo[index].name);
+            }
+        })
+        console.log(model.prevInput);
     }
 }
 let viewModel = {
@@ -392,10 +405,14 @@ let viewModel = {
         model.makeMarkers(model.pubsInfo);
         model.map.addListener('click', 
             model.closeAllInfoWindows);
+
+        viewModel.search();
     },
     populateList () {
         pubList = ko.observableArray(model.pubsInfo);
         pubClicked = (element, index) => viewModel.createIW(element,model.markers[index.handleObj.guid-1]);
+        _pubList = model.pubsInfo;
+        obpubList = ko.observableArray(_pubList);
     },
     createIW(element, marker) {
         //Get Assyncronous Data from Yelp Api
@@ -418,6 +435,12 @@ let viewModel = {
     },
     errorIW(error) {
         view.iwEerror(error);
-    },
+    },   
+    search() {
+        $('.search-bar').on('input', function() {
+            console.log($(this).val())
+            model.searchResults($(this).val());
+        });
+    }
 }
 ko.applyBindings(viewModel.populateList());
