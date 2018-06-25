@@ -1,6 +1,6 @@
 function renderMap () {viewModel.renderMap();}
 let view = {
-    setCustomIW() {      
+    setCustomIW() {
         // The following variables are getting the div responsible for the content of useful area. 
         const marker = document.body.getElementsByClassName('gm-style-iw')[0];
         const markerContainer = $(marker).parent().children()[0]; 
@@ -387,12 +387,12 @@ let model = {
         });
     },
     searchResults(input, event) {
-        if(input.length>0) {
-            if(event.inputType === "deleteContentBackward")
-                input = input.substring(0, input.length-1);
+        if(input.length > 0) {
+            viewModel._pubList=[];
              model.pubsInfo.forEach((element, index)=>{
                 if ((model.pubsInfo[index].name).includes(input)) {
-                     console.log(model.pubsInfo[index].name);
+                    console.log(viewModel._pubList);
+                     viewModel._pubList.push(model.pubsInfo[index]);
                 }
             }) 
         }
@@ -406,7 +406,6 @@ let viewModel = {
         model.makeMarkers(model.pubsInfo);
         model.map.addListener('click', 
             model.closeAllInfoWindows);
-
         viewModel.search();
     },
     populateList () {
