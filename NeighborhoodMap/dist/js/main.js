@@ -1,4 +1,10 @@
-function renderMap () {viewModel.renderMap();}
+function renderMap () {
+    viewModel.renderMap();
+    $('#hamburguer-menu').change(() => {
+        if(this.checked)
+            $('#hamburguer-menu').toogleClass('');
+    })
+}
 let view = {
     setCustomIW() {
         // The following variables are getting the div responsible for the content of useful area. 
@@ -386,15 +392,19 @@ let model = {
             viewModel.errorIW(error);
         });
     },
-    searchResults(input, event) {
+    searchResults(input) {
+        console.log(_pubList);
         if(input.length > 0) {
-            viewModel._pubList=[];
+            _pubList=[]
              model.pubsInfo.forEach((element, index)=>{
                 if ((model.pubsInfo[index].name).includes(input)) {
-                    console.log(viewModel._pubList);
-                     viewModel._pubList.push(model.pubsInfo[index]);
+                     this.name = ko.observable(model.pubsInfo[index].name)
+                     this.latlng = ko.observable(model.pubsInfo[index].latlng)
+                     _pubList.push(model.pubsInfo[index]);
                 }
-            }) 
+            })
+            console.log(_pubList);
+            console.log(obpubList());
         }
     }
 }
@@ -409,7 +419,6 @@ let viewModel = {
         viewModel.search();
     },
     populateList () {
-        pubList = ko.observableArray(model.pubsInfo);
         pubClicked = (element, index) => viewModel.createIW(element,model.markers[index.handleObj.guid-1]);
         _pubList = model.pubsInfo;
         obpubList = ko.observableArray(_pubList);
@@ -438,7 +447,7 @@ let viewModel = {
     },   
     search() {
         $('.search-bar').on('input', function() {
-            model.searchResults($(this).val(), event);
+            model.searchResults($(this).val());
         });
     }
 }
