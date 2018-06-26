@@ -276,7 +276,10 @@
         padding-top: 20%;
     }
     input#hamburguer-menu:checked ~ label#label-menu {
-        transform: translateX(280px);
+        transform: translateX(280px) rotate(180deg);
+    }
+    label#label-menu {
+        transition: all 0.5s;
     }
     .menu .separator {
         margin: 20% auto 0 auto;
