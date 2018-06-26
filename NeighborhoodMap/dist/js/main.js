@@ -2,31 +2,22 @@ function renderMap () {
     viewModel.renderMap();
 }
 let view = {
-    setCustomIW() {
+    renderIW(name,img,price,type,address,rating) {
+        //Initialize the display property of error message as none.
+        $('.error-handling').css('display','none');
+
+        // If the lateral menu is checked, the bar hide itself before showing the IW
         if ($('input[type=checkbox]').is(':checked')) {
             $('input[type=checkbox]').trigger('click'); 
-        } 
-        // The following variables are getting the div responsible for the content of useful area. 
-         const marker = document.body.getElementsByClassName('gm-style-iw')[0];
-        const markerContainer = $(marker).parent().children()[0]; 
-        const closeButton = $(marker).parent().children()[2];
-        const markerBox = $(markerContainer).children()[3];
-        const closeBtn = $(marker).parent().children()[3];
-        $(closeBtn).addClass('close-btn');
-        $(closeButton).addClass('close-btn'); 
-        
+        }
+
         pubImg = $('.marker-img');
         pubName = $('.marker-title');
         pubRating = $('.marker-rating');
         pubType = $('.bar-type');
         pubPrice = $('.bar-price');
         pubaddress = $('.address');
-        $('.marker-container').parent().css('position','absolute');
 
-        //Initialize the display property of error message as none.
-        $('.error-handling').css('display','none');   
-    },
-    renderIW(name,img,price,type,address,rating) {
         $(pubName).append(name);
         let _img = new Image();
         _img.src = img;
@@ -339,7 +330,8 @@ let model = {
                 There was an error and we cannot show the card. We are sorry for that 
             </div>
             </div>
-        </div>`;
+        </div>
+        <div class="marker-arrow"></div>`;
         model.infowindow = new google.maps.InfoWindow({
             content: pubCompleteInformation 
             });
@@ -433,9 +425,6 @@ let viewModel = {
 
         // Create Info Window
         model.createInfoWindow(marker);
-        
-        //Set Custom InfoWindow
-        view.setCustomIW();
 
         // Move Camera to element position 
         model.map.panTo(element.latlng);

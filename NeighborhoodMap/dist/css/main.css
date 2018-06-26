@@ -6,7 +6,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'Montserrat';
     src: url('../fonts/Montserrat-Regular.woff2') format('woff2'),
@@ -15,7 +14,12 @@
     font-weight: normal;
     font-style: normal;
 }
-
+@keyframes marker {
+    100% {opacity: 1;transform: scale(1);}
+}
+@keyframes marker-arrow {
+    100% {opacity: 1;transform: rotate(45deg) scale(1);}
+}
 @media screen and (min-width:1px) {
     #map {
         position: fixed;
@@ -144,6 +148,34 @@
     .bar-list .list-item:active {
         color: #8e8e8e;
     }
+    .map .gm-style .gm-style-pbc + div > div:nth-child(2) > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(3),
+    .map .gm-style .gm-style-pbc + div > div:nth-child(2) > div:nth-child(4) > div > div:nth-child(1) > div:nth-child(4) {
+        opacity: 0;
+    }
+    .map .gm-style .gm-style-iw {
+        position: initial !important;
+    }
+    .map .gm-style .gm-style-iw + div {
+        opacity: 0 !important;
+    }
+    .map .gm-style .gm-style-iw > div > div {
+        position: absolute;
+        top: -197px ;
+        left: -20px ;
+        overflow: visible !important;
+    }
+    .map .gm-style .gm-style-iw .marker-arrow {
+        width: 30px;
+        height: 35px;
+        background-color: white;
+        transform: rotate(45deg) scale(0);
+        position: absolute;
+        top: 193px;
+        left: 31px;
+        opacity: 0;
+        z-index: 1;
+        animation: marker-arrow 0.3s 0.7s ease-in-out forwards; 
+    }
     .map .gm-style .marker-container {
         display: flex;
         transform:scale(0); 
@@ -155,6 +187,9 @@
         border-radius: 0 0 4px 4px;
         flex-wrap: wrap;
         animation: marker 0.4s 0.5s ease-in-out forwards; 
+        overflow: hidden;
+        background-color: white;
+        z-index: 2;
     }
     .map .gm-style .marker-container .marker-img {
         position: relative;
@@ -256,9 +291,6 @@
     }
     ::placeholder {
         color:white;
-    }
-    @keyframes marker {
-        100% {opacity: 1;transform: scale(1);}
     }
 }
 @media screen and (min-width: 1024px) {
