@@ -1,48 +1,30 @@
 function renderMap () {
     viewModel.renderMap();
-    $('#hamburguer-menu').change(() => {
-        if(this.checked)
-            $('#hamburguer-menu').toogleClass('');
-    })
 }
 let view = {
     setCustomIW() {
+        if ($('input[type=checkbox]').is(':checked')) {
+            $('input[type=checkbox]').trigger('click'); 
+        } 
         // The following variables are getting the div responsible for the content of useful area. 
-        const marker = document.body.getElementsByClassName('gm-style-iw')[0];
+         const marker = document.body.getElementsByClassName('gm-style-iw')[0];
         const markerContainer = $(marker).parent().children()[0]; 
         const closeButton = $(marker).parent().children()[2];
         const markerBox = $(markerContainer).children()[3];
         const closeBtn = $(marker).parent().children()[3];
         $(closeBtn).addClass('close-btn');
-        $(closeButton).addClass('close-btn');
-        $(markerBox).addClass('marker-container');
-        $(markerBox).html(`<div class='marker-img'></div>
-                            <div class='marker-title'></div>
-                            <div class='marker-rating'>
-                                <div class='rating'></div>
-                                <div class='rating'></div>
-                                <div class='rating'></div>
-                                <div class='rating'></div>
-                                <div class='rating'></div>
-                            </div>
-                            <div class='bar-price'></div>
-                            <div class='bar-type'></div>
-                            <div class="address"></div>
-                            <div class="error-handling">
-                                <div class="symbol">
-                                </div>
-                                There was an error and we cannot show the card. We are sorry for that 
-                            </div>
-                            </div>`);
+        $(closeButton).addClass('close-btn'); 
+        
         pubImg = $('.marker-img');
         pubName = $('.marker-title');
         pubRating = $('.marker-rating');
         pubType = $('.bar-type');
         pubPrice = $('.bar-price');
         pubaddress = $('.address');
+        $('.marker-container').parent().css('position','absolute');
 
         //Initialize the display property of error message as none.
-        $('.error-handling').css('display','none');
+        $('.error-handling').css('display','none');   
     },
     renderIW(name,img,price,type,address,rating) {
         $(pubName).append(name);
@@ -337,7 +319,27 @@ let model = {
         });
     },
     createInfoWindow(marker) {  
-        pubCompleteInformation =`<div></div>`;
+        pubCompleteInformation =`
+        <div class="marker-container">
+            <div class='marker-img'></div>
+            <div class='marker-title'></div>
+            <div class='marker-rating'>
+                <div class='rating'></div>
+                <div class='rating'></div>
+                <div class='rating'></div>
+                <div class='rating'></div>
+                <div class='rating'></div>
+            </div> 
+            <div class='bar-price'></div>
+            <div class='bar-type'></div>
+            <div class="address"></div>
+            <div class="error-handling">
+                <div class="symbol">
+                </div>
+                There was an error and we cannot show the card. We are sorry for that 
+            </div>
+            </div>
+        </div>`;
         model.infowindow = new google.maps.InfoWindow({
             content: pubCompleteInformation 
             });
@@ -393,7 +395,6 @@ let model = {
         });
     },
     searchResults(input) {
-        console.log(_pubList);
         if(input.length > 0) {
             _pubList=[]
              model.pubsInfo.forEach((element, index)=>{
