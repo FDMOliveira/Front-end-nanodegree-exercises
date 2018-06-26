@@ -190,6 +190,7 @@
         overflow: hidden;
         background-color: white;
         z-index: 2;
+        box-shadow: 0 0 30px #1b1b1b;
     }
     .map .gm-style .marker-container .marker-img {
         position: relative;

@@ -2,14 +2,18 @@ function renderMap () {
     viewModel.renderMap();
 }
 let view = {
+    hideBar() {
+        // If the lateral menu is checked, the bar hide itself before showing the IW
+        // This is only valid for smartphones
+        if((window.matchMedia("(max-width: 700px)")).matches) {
+            if ($('input[type=checkbox]').is(':checked')) {
+                $('input[type=checkbox]').trigger('click'); 
+            }   
+        }
+    },
     renderIW(name,img,price,type,address,rating) {
         //Initialize the display property of error message as none.
         $('.error-handling').css('display','none');
-
-        // If the lateral menu is checked, the bar hide itself before showing the IW
-        if ($('input[type=checkbox]').is(':checked')) {
-            $('input[type=checkbox]').trigger('click'); 
-        }
 
         pubImg = $('.marker-img');
         pubName = $('.marker-title');
@@ -417,6 +421,9 @@ let viewModel = {
         obpubList = ko.observableArray(_pubList);
     },
     createIW(element, marker) {
+        //Hide bar before showing the IW
+        view.hideBar();
+        
         //Get Assyncronous Data from Yelp Api
         model.getData(element);
 
