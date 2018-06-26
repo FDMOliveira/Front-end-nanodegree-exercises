@@ -392,16 +392,16 @@ let model = {
     },
     searchResults(input) {
         if(input.length > 0) {
-            _pubList=[]
+            pubList= [];
              model.pubsInfo.forEach((element, index)=>{
                 if ((model.pubsInfo[index].name).includes(input)) {
-                     this.name = ko.observable(model.pubsInfo[index].name)
-                     this.latlng = ko.observable(model.pubsInfo[index].latlng)
-                     _pubList.push(model.pubsInfo[index]);
+                     name = model.pubsInfo[index].name;
+                     latlng = model.pubsInfo[index].latlng;
+                     let data = {name, latlng};
+                     pubList.push(data);
                 }
             })
-            console.log(_pubList);
-            console.log(obpubList());
+            viewModel.populateList(pubList)
         }
     }
 }
@@ -415,10 +415,11 @@ let viewModel = {
             model.closeAllInfoWindows);
         viewModel.search();
     },
-    populateList () {
+    populateList (_pubList) {
+        pubList = _pubList || model.pubsInfo;
         pubClicked = (element, index) => viewModel.createIW(element,model.markers[index.handleObj.guid-1]);
-        _pubList = model.pubsInfo;
-        obpubList = ko.observableArray(_pubList);
+        obpubList = ko.observableArray(pubList);
+        console.log(obpubList());
     },
     createIW(element, marker) {
         //Hide bar before showing the IW
