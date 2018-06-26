@@ -62,9 +62,11 @@ let model = {
     markers:[],
     infowindow:"",
     marker:"",
-    PublicID:"",
     self :this,
-    prevInput:'',
+    Pubs : function(pub) {
+        this.name = ko.observable(pub.name),
+        this.latlng = ko.observable(pub.latlng)
+    },
     renderMap() {
         const initialPosition = {lat:38.7209844, lng:-9.1535356};
         const mapStyle= [
@@ -395,10 +397,9 @@ let model = {
             pubList= [];
              model.pubsInfo.forEach((element, index)=>{
                 if ((model.pubsInfo[index].name).includes(input)) {
-                     name = model.pubsInfo[index].name;
-                     latlng = model.pubsInfo[index].latlng;
-                     let data = {name, latlng};
-                     pubList.push(data);
+                    name = model.pubsInfo[index].name;
+                    latlng = model.pubsInfo[index].latlng;
+                    pubList.push({name,latlng});
                 }
             })
             viewModel.populateList(pubList)
@@ -415,12 +416,22 @@ let viewModel = {
             model.closeAllInfoWindows);
         viewModel.search();
     },
-    populateList (_pubList) {
-        pubList = _pubList || model.pubsInfo;
-        pubClicked = (element, index) => viewModel.createIW(element,model.markers[index.handleObj.guid-1]);
-        obpubList = ko.observableArray(pubList);
+    populateList (pubList) {
+        obpubList = ko.observableArray([]);
+        if (typeof pubList == "undefined") {
+            model.pubsInfo.forEach((pub) => {
+                obpubList.push(new model.Pubs(pub));
+            })
+        }   
+        else
+        {
+            obpubList = ko.observableArray([]);
+            pubList.forEach((pub) => {
+                obpubList.push(new model.Pubs({pub}));
+            });
+        }
         console.log(obpubList());
-    },
+        pubClicked = (element, index) => viewModel.createIW({name: element.name(), latlng:element.latlng()},model.markers[index.handleObj.guid-1])},
     createIW(element, marker) {
         //Hide bar before showing the IW
         view.hideBar();
