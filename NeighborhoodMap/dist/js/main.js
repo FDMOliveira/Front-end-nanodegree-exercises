@@ -396,10 +396,11 @@ let model = {
         if(input.length > 0) {
             pubList= [];
              model.pubsInfo.forEach((element, index)=>{
-                if ((model.pubsInfo[index].name).includes(input)) {
+                if ((model.pubsInfo[index].name).includes(input)) { 
                     name = model.pubsInfo[index].name;
                     latlng = model.pubsInfo[index].latlng;
-                    pubList.push({name,latlng});
+                    let data = {name, latlng}
+                    pubList.push(data);
                 }
             })
             viewModel.populateList(pubList)
@@ -409,29 +410,31 @@ let model = {
 let viewModel = {
     renderMap () {
         model.renderMap();
-        viewModel.populateList();
-
         model.makeMarkers(model.pubsInfo);
         model.map.addListener('click', 
             model.closeAllInfoWindows);
-        viewModel.search();
     },
-    populateList (pubList) {
-        obpubList = ko.observableArray([]);
-        if (typeof pubList == "undefined") {
-            model.pubsInfo.forEach((pub) => {
-                obpubList.push(new model.Pubs(pub));
+    populateList () {
+        query = ko.observable("");
+        obpubList = ko.observableArray();
+        let self = this;
+        model.pubsInfo.forEach((pub) => {
+            obpubList.push(new model.Pubs(pub));
+        })
+        
+        search = function () {
+            let list=[];
+            model.pubsInfo.forEach((element, index) => {
+                if ((model.pubsInfo[index].name).includes(query())) { 
+                    name = model.pubsInfo[index].name;
+                    latlng = model.pubsInfo[index].latlng;
+                    list.push(new model.Pubs({name, latlng}))
+                }
+                obpubList(list);
             })
-        }   
-        else
-        {
-            obpubList = ko.observableArray([]);
-            pubList.forEach((pub) => {
-                obpubList.push(new model.Pubs({pub}));
-            });
         }
-        console.log(obpubList());
-        pubClicked = (element, index) => viewModel.createIW({name: element.name(), latlng:element.latlng()},model.markers[index.handleObj.guid-1])},
+        pubClicked = (element, index) => viewModel.createIW({name: element.name(), latlng:element.latlng()},model.markers[index.handleObj.guid-1])
+    },
     createIW(element, marker) {
         //Hide bar before showing the IW
         view.hideBar();
@@ -453,11 +456,6 @@ let viewModel = {
     },
     errorIW(error) {
         view.iwEerror(error);
-    },   
-    search() {
-        $('.search-bar').on('input', function() {
-            model.searchResults($(this).val());
-        });
     }
 }
 ko.applyBindings(viewModel.populateList());
