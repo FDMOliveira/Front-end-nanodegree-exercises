@@ -67,6 +67,13 @@ let model = {
         this.name = ko.observable(pub.name),
         this.latlng = ko.observable(pub.latlng)
     },
+    compare(a,b) {
+        if (a.name < b.name)
+          return -1;
+        if (a.name > b.name)
+          return 1;
+        return 0;
+    },
     renderMap() {
         const initialPosition = {lat:38.7209844, lng:-9.1535356};
         const mapStyle= [
@@ -410,30 +417,40 @@ let model = {
 let viewModel = {
     renderMap () {
         model.renderMap();
+        model.pubsInfo.sort(model.compare);
         model.makeMarkers(model.pubsInfo);
         model.map.addListener('click', 
             model.closeAllInfoWindows);
     },
     populateList () {
+        model.pubsInfo.sort(model.compare);
         query = ko.observable("");
         obpubList = ko.observableArray();
-        let self = this;
         model.pubsInfo.forEach((pub) => {
             obpubList.push(new model.Pubs(pub));
         })
-        
-        search = function () {
+
+        search = () => {
             let list=[];
-            model.pubsInfo.forEach((element, index) => {
-                if ((model.pubsInfo[index].name).includes(query())) { 
-                    name = model.pubsInfo[index].name;
-                    latlng = model.pubsInfo[index].latlng;
+            model.pubsInfo.forEach((element) => {
+                if ((element.name).includes(query())) { 
+                    name = element.name;
+                    latlng = element.latlng;
                     list.push(new model.Pubs({name, latlng}))
                 }
-                obpubList(list);
+            })
+            obpubList(list);
+        }
+        pubClicked = (element) => { 
+            let name = element.name();
+            model.pubsInfo.forEach((pub,index) => {
+                if (pub.name === name) {
+                    if (model.markers.length > 9) {
+                       viewModel.createIW({name: pub.name, latlng:pub.latlng},model.markers[index])
+                    }
+                }           
             })
         }
-        pubClicked = (element, index) => viewModel.createIW({name: element.name(), latlng:element.latlng()},model.markers[index.handleObj.guid-1])
     },
     createIW(element, marker) {
         //Hide bar before showing the IW
