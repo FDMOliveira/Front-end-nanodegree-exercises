@@ -25,7 +25,7 @@ This Web-application lets you save a todo-list in which, in every task introduce
 
 I hope you enjoy my [Todo List App](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/TodoList/index.html)
 
-## 5. *NeighborhoodMap*
+## 5. *Neighborhood Map*
 Neighborhood Map is a Single Page Aplication project which displays a neighborhood map using Google maps' API, fetch requests, JavaScript design patterns and more.
 
 To know more details about it, please consult the Readme file in the correspondant directory.
