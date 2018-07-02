@@ -24,3 +24,10 @@ Todo List in a web app developed using a organizational paradigm **MV*** with he
 This Web-application lets you save a todo-list in which, in every task introduced, you can select its level of priority. 
 
 I hope you enjoy my [Todo List App](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/TodoList/index.html)
+
+## 5. *NeighborhoodMap*
+Neighborhood Map is a Single Page Aplication project which displays a neighborhood map using Google maps' API, fetch requests, JavaScript design patterns and more.
+
+Run it [here](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/4a93602/NeighborhoodMap/dist/index.html)
+
+To know more details about it, please consult the Readme file in the correspondant directory.
