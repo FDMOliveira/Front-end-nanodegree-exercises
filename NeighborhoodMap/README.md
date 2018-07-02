@@ -2,7 +2,7 @@
 Neighborhood Map is a Single Page Aplication project which displays a neighborhood map using Google maps' API, fetch requests, JavaScript design patterns and more.
 
 ## How to Run
-* Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/4a93602/NeighborhoodMap/dist/index.html)
+* Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/ba093fd/NeighborhoodMap/dist/index.html)
 
 ## Stack
 * Task runner: [Grunt](https://gruntjs.com/)
