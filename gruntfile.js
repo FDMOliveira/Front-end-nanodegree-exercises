@@ -1,8 +1,19 @@
 module.exports = function(grunt) {
   const mozjpeg = require('imagemin-mozjpeg');
-  
+  require("load-grunt-tasks")(grunt);
+
     // Project configuration.
     grunt.initConfig({
+      "babel": {
+        options: {
+          sourceMap: true
+        },
+        dist: {
+          files: {
+            "NeighborhoodMap\dist\js\main.js": "NeighborhoodMap\dist\js\main.js"
+          }
+        }
+      },
       pkg: grunt.file.readJSON('package.json'),
         imagemin: {
           static: {
@@ -24,8 +35,8 @@ module.exports = function(grunt) {
       uglify: {
         my_target: {
           files: {
-            'Pizzeria/js/perfmatters.min.js': ['Pizzeria/js/perfmatters.js'],
-            'Pizzeria/views/js/main.min.js': ['Pizzeria/views/js/main.js']
+            'NeighborhoodMap/dist/js/main.min.js': ['NeighborhoodMap/dist/js/main.js'],
+            'NeighborhoodMap/dist/js/knockout-3.4.2.js.min.js': ['NeighborhoodMap/dist/js/knockout-3.4.2.js']
           }
         }
       },
@@ -52,10 +63,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.registerTask('ugli', ['uglify']);
 
+    grunt.loadNpmTasks('grunt-babel');
+    grunt.registerTask('babel', ['babel']);
+
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.registerTask('default', ['imagemin']);
 
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.registerTask('task', ['cssmin']);
-
   };

@@ -14,6 +14,7 @@ let view = {
     renderIW(name,img,price,type,address,rating) {
         //Initialize the display property of error message as none.
         $('.error-handling').css('display','none');
+        $('.marker-show').css('display','block');
 
         pubImg = $('.marker-img');
         pubName = $('.marker-title');
@@ -41,6 +42,7 @@ let view = {
         $(pubaddress).append(`${address.address}, ${address.location}`);  
     },
     iwEerror(error) {
+        $('.marker-show').css('display','none');
         $('.error-handling').css('display','block');
         console.log('error: '+error);
     },   
@@ -63,6 +65,7 @@ let model = {
     infowindow:"",
     marker:"",
     self :this,
+    pendentRequest : false,
     Pubs : function(pub) {
         this.name = ko.observable(pub.name),
         this.latlng = ko.observable(pub.latlng)
@@ -325,18 +328,20 @@ let model = {
     createInfoWindow(marker) {  
         pubCompleteInformation =`
         <div class="marker-container">
-            <div class='marker-img'></div>
-            <div class='marker-title'></div>
-            <div class='marker-rating'>
-                <div class='rating'></div>
-                <div class='rating'></div>
-                <div class='rating'></div>
-                <div class='rating'></div>
-                <div class='rating'></div>
-            </div> 
-            <div class='bar-price'></div>
-            <div class='bar-type'></div>
-            <div class="address"></div>
+            <div class="marker-show">
+                <div class='marker-img'></div>
+                <div class='marker-title'></div>
+                <div class='marker-rating'>
+                    <div class='rating'></div>
+                    <div class='rating'></div>
+                    <div class='rating'></div>
+                    <div class='rating'></div>
+                    <div class='rating'></div>
+                </div> 
+                <div class='bar-price'></div>
+                <div class='bar-type'></div>
+                <div class="address"></div>
+            </div>
             <div class="error-handling">
                 <div class="symbol">
                 </div>
@@ -359,11 +364,7 @@ let model = {
         })
     },
     getData(element) {
-    //  Abort any open request
-/*         const controller = new AbortController();
-        const signal = controller.signal
-        controller.abort(); */
-
+        model.pendentRequest = true;
         const term= element.name;
         const lat = element.latlng.lat;
         const lng = element.latlng.lng;
@@ -381,6 +382,7 @@ let model = {
             }
         })
         .then(data => {
+            model.pendentRequest = false;
             let scoreRating = Math.round(data.businesses[0].rating),
                 i=1,
                 green=0,
@@ -433,7 +435,7 @@ let viewModel = {
         search = () => {
             let list=[];
             model.pubsInfo.forEach((element) => {
-                if ((element.name).includes(query())) { 
+                if ((element.name.toLowerCase()).includes(query().toLowerCase())) { 
                     name = element.name;
                     latlng = element.latlng;
                     list.push(new model.Pubs({name, latlng}))

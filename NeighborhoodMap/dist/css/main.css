@@ -264,9 +264,9 @@
         height: 25%;
         text-align: right;
         font-size: 14px;
-        padding: 0 10px;
+        padding: 10px;
     }
-    .map .gm-style .marker-container .error-handling {
+    .map .gm-style .error-handling {
         position: absolute;
         top: 0px;
         font-size: 14px;
@@ -277,7 +277,7 @@
         color: black;
         display: none;
     }
-    .map .gm-style .marker-container .error-handling .symbol {
+    .map .gm-style .error-handling .symbol {
         background: url('../img/baseline-error_outline-24px.svg') center/cover no-repeat;
         position: relative;
         width: 78%;
