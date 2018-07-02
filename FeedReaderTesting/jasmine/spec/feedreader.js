@@ -1,30 +1,21 @@
 $(function() {
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-
         it('have URL defined and not empty', function() {
             allFeeds.forEach((feed) => {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
             })
-        })
-
+        });
         it('have name defined and not empty', function() {
             allFeeds.forEach((feed) => {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).not.toBe(0);
             })
-        })
+        });
     });
     describe('The menu', () => {
         it('is hidden by default', () => {
