@@ -2,7 +2,7 @@
 Project from Udacity's Front End Web Developer nanodegree program which consists in creating unit tests to test a RSS feed reader application using Jasmine framework.
 
 ## Run the project
-Open [index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/eb1844e/FeedReaderTesting/index.html)
+Open [index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/e028303/FeedReaderTesting/index.html)
 
 ## Stack
 * Test Framework:
