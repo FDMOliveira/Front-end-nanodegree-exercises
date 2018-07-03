@@ -19,10 +19,14 @@ $(function() {
     });
     describe('The menu', () => {
         it('is hidden by default', () => {
-            expect($('.slide-menu').css('display')).toBe('none');
+            expect($('body')).toHaveClass('menu-hidden');
         });
         it('changes visibility when the icon is clicked', () => {
-            expect(menuClicked).not.toEqual(0);
+            $('.menu-icon-link').click();
+            expect($('body')).not.toHaveClass('menu-hidden');
+
+            $('.menu-icon-link').click();
+            expect($('body')).toHaveClass('menu-hidden');
         }); 
     });  
     describe('Initial Entries', function() {
@@ -54,6 +58,9 @@ $(function() {
         })
         it('Content changes when new feed is loaded', (done) => {
             expect(feedContent.last).not.toEqual(feedContent.first);
+            expect(allFeeds).toBeDefined();
+            expect(allFeeds[allFeeds.length-1].url).toBeDefined();
+            expect(allFeeds[allFeeds.length-1].name).toBeDefined();
             done();
         });
     });

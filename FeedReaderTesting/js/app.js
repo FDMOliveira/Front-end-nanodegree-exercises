@@ -91,22 +91,13 @@ google.setOnLoadCallback(init);
  * place our code in the $() function to ensure it doesn't execute
  * until the DOM is ready.
  */     
-let i=0;
-$('.icon-list').on('click', menuClicked);
-function menuClicked() {
-    i++;
-    if(i%2 == 0) 
-        $('.slide-menu').css('display','none');
-    else
-        $('.slide-menu').css('display','block');
-    return i;
-} 
+
 $(function() {
     var container = $('.feed'),
         feedList = $('.feed-list'),
         feedItemTemplate = Handlebars.compile($('.tpl-feed-list-item').html()),
         feedId = 0,
-        menuIcon = $('.icon-list');
+        menuIcon = $('.menu-icon-link');
     /* Loop through all of our feeds, assigning an id property to
      * each of the feeds based upon its index within the array.
      * Then parse that feed against the feedItemTemplate (created
