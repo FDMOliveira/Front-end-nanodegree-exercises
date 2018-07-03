@@ -7,9 +7,6 @@
 html {
     box-sizing: border-box;
 }
-.slide-menu {
-    display: none;
-}
 body {
     color: #111;
     font-family: 'Roboto', sans-serif;
