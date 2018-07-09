@@ -309,7 +309,7 @@ let model = {
     },
     makeMarkers (pubsInfo) {
         self.bounds = new google.maps.LatLngBounds();
-        const myoverlay = new google.maps.OverlayView();
+        let myoverlay = new google.maps.OverlayView();
         // Create icon
         icon = {
             url: "./img/cocktail.svg", // url
@@ -321,7 +321,7 @@ let model = {
                 marker = new google.maps.Marker({
                 position:element.latlng,
                 icon: icon,
-                optimized:false,
+                optimized: false,
                 map:model.map
             })
             model.markers.push(marker);
