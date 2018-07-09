@@ -26,6 +26,7 @@ In it's folder you can read the corrections i have made.
 
 ### How To run
 Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/3.Pizzeria/dist/index.html)
+
 You can run the not optimized one [here](https://cdn.rawgit.com/udacity/frontend-nanodegree-mobile-portfolio/master/index.html)
 
 ## 4. *Todo list*
