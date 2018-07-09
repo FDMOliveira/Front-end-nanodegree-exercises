@@ -5,7 +5,7 @@ Here you can find exercises done by me during the Udacity nanodegree program.
 This project is a resume that uses information coming from javascript objects and arrays, using **ES6**.
 
 ### How To run
-Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/1.Resume/index.html)
+Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/6e6da84/1.Resume/index.html)
 
 ## 2. *FroggerGame*
 Frogger game is a child game built to practice OOP javascript.
