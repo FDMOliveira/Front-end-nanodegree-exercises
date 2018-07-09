@@ -430,6 +430,8 @@ let viewModel = {
         })
 
         search = () => {
+            model.closeAllInfoWindows();
+            
             let list=[];
             console.log(model.pubsInfo);
             console.log($('#markerLayer'));
