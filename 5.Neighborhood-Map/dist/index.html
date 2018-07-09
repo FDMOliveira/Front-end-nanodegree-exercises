@@ -17,10 +17,29 @@
         margin: 0;
         overflow: hidden;
     }
+    .error-map,
     .map {
         height: 100%;
         width: 100%;
         position: absolute;
+    }
+    .error-map {
+        display: none;
+        width: 85%;
+        right: 0;
+        top: 7%;
+    }
+    div#title {
+        font-size: 28px;
+        font-weight: 800;    
+        margin-bottom: 2%;
+    }
+    div#title,
+    div#desc {
+        font-family: 'Muli';
+    }
+    div#desc { 
+        font-family: 20px;
     }
     .menu {
         height: 100%;
@@ -34,6 +53,15 @@
 </head>
 <body>
     <div class="map"></div>
+    <div class="error-map">
+        <div id="title">
+            Something went <span class="red">wrong</span>
+        </div>
+        <div id="desc">
+            There was an error with Google Maps API and we cannot display the map.
+            <p>Sorry for the inconvenience.</p>
+        </div>
+    </div>
     <input type="checkbox" id="hamburguer-menu">
     <label for="hamburguer-menu" id="label-menu">
             <div class="hamburger-menu">
@@ -61,6 +89,6 @@
 </body>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/main.js"></script> 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnX8AVWRSwreCJlhCHkUZLVASk7mXnXrM&callback=renderMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnX8AVWRSwreCJlhCHkUZLVASk7mXnXrM&callback=renderMap" onerror="mapError()"
     async defer></script>
 </html>

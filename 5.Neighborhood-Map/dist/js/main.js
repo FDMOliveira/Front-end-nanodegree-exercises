@@ -1,6 +1,9 @@
 function renderMap () {
     viewModel.renderMap();
 }
+function mapError() {
+    view.renderMapError();
+}
 let view = {
     hideBar() {
         // If the lateral menu is checked, the bar hide itself before showing the IW
@@ -46,6 +49,9 @@ let view = {
         $('.error-handling').css('display','block');
         console.log('error: '+error);
     },   
+    renderMapError() {
+        $('.error-map').css('display','block');
+    }
 }
 let model = {
     map:"" ,
@@ -65,7 +71,6 @@ let model = {
     infowindow:"",
     marker:"",
     self :this,
-    pendentRequest : false,
     Pubs : function(pub) {
         this.name = ko.observable(pub.name),
         this.latlng = ko.observable(pub.latlng)
@@ -304,6 +309,7 @@ let model = {
     },
     makeMarkers (pubsInfo) {
         self.bounds = new google.maps.LatLngBounds();
+        const myoverlay = new google.maps.OverlayView();
         // Create icon
         icon = {
             url: "./img/cocktail.svg", // url
@@ -315,6 +321,7 @@ let model = {
                 marker = new google.maps.Marker({
                 position:element.latlng,
                 icon: icon,
+                optimized:false,
                 map:model.map
             })
             model.markers.push(marker);
@@ -323,7 +330,11 @@ let model = {
             });
             self.bounds.extend(element.latlng);
             model.map.fitBounds(self.bounds);
+            myoverlay.draw = function () {
+                this.getPanes().markerLayer.id='markerLayer';
+            };
         });
+        myoverlay.setMap(model.map);
     },
     createInfoWindow(marker) {  
         pubCompleteInformation =`
@@ -400,20 +411,6 @@ let model = {
         }).catch(error => {
             viewModel.errorIW(error);
         });
-    },
-    searchResults(input) {
-        if(input.length > 0) {
-            pubList= [];
-             model.pubsInfo.forEach((element, index)=>{
-                if ((model.pubsInfo[index].name).includes(input)) { 
-                    name = model.pubsInfo[index].name;
-                    latlng = model.pubsInfo[index].latlng;
-                    let data = {name, latlng}
-                    pubList.push(data);
-                }
-            })
-            viewModel.populateList(pubList)
-        }
     }
 }
 let viewModel = {
@@ -434,11 +431,19 @@ let viewModel = {
 
         search = () => {
             let list=[];
-            model.pubsInfo.forEach((element) => {
+            console.log(model.pubsInfo);
+            console.log($('#markerLayer'));
+            model.pubsInfo.forEach((element,index) => {
                 if ((element.name.toLowerCase()).includes(query().toLowerCase())) { 
+                    $('#markerLayer > div:nth-child('+index+')').removeClass('remove-marker');
                     name = element.name;
                     latlng = element.latlng;
                     list.push(new model.Pubs({name, latlng}))
+                }
+                else {
+                    let value = ++index;
+                    console.log($('#markerLayer'));
+                    $('#markerLayer > div:nth-child('+ value +')').addClass('remove-marker');
                 }
             })
             obpubList(list);
