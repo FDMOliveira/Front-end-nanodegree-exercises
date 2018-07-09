@@ -4,7 +4,7 @@ Here you can find exercises done by me during the Udacity nanodegree program.
 ## 1. *Resume*
 This project is a resume that uses information coming from javascript objects and arrays, using **ES6**.
 
-### How To run
+#### How To run
 Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/6e6da84/1.Resume/index.html)
 
 ## 2. *FroggerGame*
