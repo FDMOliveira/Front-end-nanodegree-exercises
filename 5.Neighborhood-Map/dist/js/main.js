@@ -330,7 +330,11 @@ let model = {
             });
             self.bounds.extend(element.latlng);
             model.map.fitBounds(self.bounds);
+            myoverlay.draw = function () {
+                this.getPanes().markerLayer.id='markerLayer';
+            };
         });
+        myoverlay.setMap(model.map);
     },
     createInfoWindow(marker) {  
         pubCompleteInformation =`
@@ -428,14 +432,14 @@ let viewModel = {
         search = () => {
             model.closeAllInfoWindows();
             let list=[];
-            list = model.pubsInfo.filter((element) => {
+            console.log(model.pubsInfo);
+            list = model.pubsInfo.filter((element, index) => {
                 if ((element.name.toLowerCase()).includes(query().toLowerCase())) {
                     name = element.name;
                     latlng = element.latlng;
                     return list.push(new model.Pubs({name,latlng}))
                 }
             });
-              //  $('#markerLayer > div:nth-child('+ value +')').addClass('remove-marker');
             model.makeMarkers(list);
             obpubList(list);
         }
