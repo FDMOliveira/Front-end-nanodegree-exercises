@@ -431,23 +431,19 @@ let viewModel = {
 
         search = () => {
             model.closeAllInfoWindows();
-            
+            let filteredMarkers=[];
             let list=[];
-            console.log(model.pubsInfo);
-            console.log($('#markerLayer'));
             model.pubsInfo.forEach((element,index) => {
                 if ((element.name.toLowerCase()).includes(query().toLowerCase())) { 
                     $('#markerLayer > div:nth-child('+index+')').removeClass('remove-marker');
                     name = element.name;
                     latlng = element.latlng;
                     list.push(new model.Pubs({name, latlng}))
-                }
-                else {
-                    let value = ++index;
-                    console.log($('#markerLayer'));
-                    $('#markerLayer > div:nth-child('+ value +')').addClass('remove-marker');
+                    filteredMarkers.push(element);
                 }
             })
+            model.makeMarkers(filteredMarkers);
+
             obpubList(list);
         }
         pubClicked = (element) => { 
