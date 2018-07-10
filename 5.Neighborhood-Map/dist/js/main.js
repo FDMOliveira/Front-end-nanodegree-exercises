@@ -330,11 +330,7 @@ let model = {
             });
             self.bounds.extend(element.latlng);
             model.map.fitBounds(self.bounds);
-            myoverlay.draw = function () {
-                this.getPanes().markerLayer.id='markerLayer';
-            };
         });
-        myoverlay.setMap(model.map);
     },
     createInfoWindow(marker) {  
         pubCompleteInformation =`
@@ -431,23 +427,20 @@ let viewModel = {
 
         search = () => {
             model.closeAllInfoWindows();
-            let filteredMarkers=[];
             let list=[];
-            model.pubsInfo.forEach((element,index) => {
-                if ((element.name.toLowerCase()).includes(query().toLowerCase())) { 
-                    $('#markerLayer > div:nth-child('+index+')').removeClass('remove-marker');
+            list = model.pubsInfo.filter((element) => {
+                if ((element.name.toLowerCase()).includes(query().toLowerCase())) {
                     name = element.name;
                     latlng = element.latlng;
-                    list.push(new model.Pubs({name, latlng}))
-                    filteredMarkers.push(element);
+                    return list.push(new model.Pubs({name,latlng}))
                 }
-            })
-            model.makeMarkers(filteredMarkers);
-
+            });
+              //  $('#markerLayer > div:nth-child('+ value +')').addClass('remove-marker');
+            model.makeMarkers(list);
             obpubList(list);
         }
-        pubClicked = (element) => { 
-            let name = element.name();
+        pubClicked = (element) => {
+            let name = ((typeof element.name === 'function') ? element.name() : element.name);
             model.pubsInfo.forEach((pub,index) => {
                 if (pub.name === name) {
                     if (model.markers.length > 9) {
