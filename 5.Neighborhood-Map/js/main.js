@@ -381,7 +381,6 @@ let model = {
         })
     },
     getData(element) {
-        model.pendentRequest = true;
         const term= element.name;
         const lat = element.latlng.lat;
         const lng = element.latlng.lng;
@@ -399,7 +398,6 @@ let model = {
             }
         })
         .then(data => {
-            model.pendentRequest = false;
             let scoreRating = Math.round(data.businesses[0].rating),
                 i=1,
                 green=0,
@@ -439,7 +437,6 @@ let viewModel = {
         search = () => {
             model.closeAllInfoWindows();
             let list=[];
-            console.log(model.pubsInfo);
             list = model.pubsInfo.filter((element) => {
                 if ((element.name.toLowerCase()).includes(query().toLowerCase())) {
                     name = element.name;
@@ -447,7 +444,6 @@ let viewModel = {
                     return list.push(new model.Pubs({name,latlng}))
                 }
             });
-            console.log(list);
             model.makeMarkers(list);
             obpubList(list);
         }
