@@ -42,7 +42,7 @@ Neighborhood Map is a Single Page Aplication project which displays a neighborho
 To know more details about it, please consult the Readme file in the correspondant directory.
 
 ### How To run
-Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/bbabdf0/5.Neighborhood-Map/index.html)
+Open [Index](https://cdn.rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/57fd605/5.Neighborhood-Map/index.html)
 
 ## 6. *Feed Reader Testing*
 This project consist in a using a testing a testing framework for javascript, [Jasmine](https://jasmine.github.io/), to test if the application accomplish the goals.
