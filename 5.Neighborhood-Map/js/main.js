@@ -307,6 +307,9 @@ let model = {
                                         gestureHandling: 'greedy'
                                     });     
     },
+    insertIndexValue() {
+        model.pubsInfo.forEach((element, index)=> element.index=index);
+    },
     makeMarkers (pubsInfo) {
         self.bounds = new google.maps.LatLngBounds();
         let myoverlay = new google.maps.OverlayView();
@@ -317,16 +320,19 @@ let model = {
             origin: new google.maps.Point(0,0), // origin
             anchor: new google.maps.Point(0, 0) // anchor
         };        
-        pubsInfo.forEach((element,index) => {
+        pubsInfo.forEach((element) => {
                 marker = new google.maps.Marker({
                 position:element.latlng,
                 icon: icon,
                 optimized: false,
                 map:model.map
             })
+            // Set _index to the index value in the object
+            // This is important for the index doesn't change when the array is filtered
+            let _index = element.index;
             model.markers.push(marker);
             marker.addListener('click', function () { 
-                viewModel.createIW(element, model.markers[index]);
+                viewModel.createIW(element, model.markers[_index]);
             });
             self.bounds.extend(element.latlng);
             model.map.fitBounds(self.bounds);
@@ -417,6 +423,7 @@ let viewModel = {
     renderMap () {
         model.renderMap();
         model.pubsInfo.sort(model.compare);
+        model.insertIndexValue();
         model.makeMarkers(model.pubsInfo);
         model.map.addListener('click', 
             model.closeAllInfoWindows);
@@ -440,6 +447,7 @@ let viewModel = {
                     return list.push(new model.Pubs({name,latlng}))
                 }
             });
+            console.log(list);
             model.makeMarkers(list);
             obpubList(list);
         }
