@@ -440,7 +440,7 @@ let viewModel = {
             model.closeAllInfoWindows();
             let list=[];
             console.log(model.pubsInfo);
-            list = model.pubsInfo.filter((element, index) => {
+            list = model.pubsInfo.filter((element) => {
                 if ((element.name.toLowerCase()).includes(query().toLowerCase())) {
                     name = element.name;
                     latlng = element.latlng;
