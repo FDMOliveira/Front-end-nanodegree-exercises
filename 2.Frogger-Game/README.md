@@ -1,5 +1,5 @@
 ## Frogger Game
-Frogger Game can be accessed by this [link](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/FroggerGame/index.html).
+Frogger Game can be accessed by this [link](https://rawgit.com/FDMOliveira/Front-end-nanodegree-exercises/master/2.Frogger-Game/index.html).
 
 # Instructions
 The goal of the game is to reach the water. 
